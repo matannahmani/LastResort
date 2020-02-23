@@ -27,3 +27,5 @@ function checkmap() {
     ismap = false;
   }
 }
+
+export {checkmap}

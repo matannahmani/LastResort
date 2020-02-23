@@ -19,3 +19,5 @@ const config = {
 };
 
 window.game = new Phaser.Game(config);
+
+export {config}
