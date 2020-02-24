@@ -1,4 +1,5 @@
 import "bootstrap";
+
 // import checkmap from "./dom"
 // import config from "./game"
 // import loadMap from "./mapbox";
