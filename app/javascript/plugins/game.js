@@ -16,7 +16,7 @@ function preload() {
     }
 
 function create() {
-      // this.add.image(0, 0, 'map').setOrigin(0);
+      this.add.image(0, 0, 'map').setOrigin(0);
 
       var map = this.make.tilemap({ key: 'tilemap' });
 
