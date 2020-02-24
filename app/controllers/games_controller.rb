@@ -1,4 +1,8 @@
 class GamesController < ApplicationController
+
+  def main
+  end
+
   def index
     @base = current_user.base
   end
