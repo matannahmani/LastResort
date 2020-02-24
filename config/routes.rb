@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   get 'base', to: "game#index"
   patch 'base', to: "game#update"
   get 'story', to: "stories#show"
+
+
 end
