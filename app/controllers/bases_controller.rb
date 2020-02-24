@@ -1,3 +1,0 @@
-class BasesController < ApplicationController
-
-end
