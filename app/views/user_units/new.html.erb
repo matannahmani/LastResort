@@ -1,0 +1,30 @@
+<h1>UserUnits#create</h1>
+
+<%#= cl_image_tag("firstmeeting1_xusbw5.png") %>
+
+
+<div id="add-one-unit">
+  <p> button 1</p>
+</div>
+
+
+
+
+
+<script>
+  <% random_unit = Units.all.sample %>
+  let csrf = document.querySelector('meta[name="csrf-token"]')
+  fetch('http://localhost:3000/user_units', {
+    method: 'post',
+    headers: {
+      'X-CSRF-Token': csrf.content
+    },
+    body: JSON.stringify({
+      user_id: current_user.id,
+      user_unit: random_unit.id
+      type: 1
+    })
+  })
+</script>
+
+<!-- type is 1 or.5 -->
