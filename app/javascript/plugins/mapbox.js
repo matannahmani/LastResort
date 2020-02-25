@@ -1,16 +1,21 @@
 import mapboxgl from 'mapbox-gl';
 
+const fitMapToMarkers = (map, markers) => {
+  const bounds = new mapboxgl.LngLatBounds();
+  markers.forEach(marker => bounds.extend([ marker.longtitude, marker.latitude ]));
+  map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 });
+};
+
 const initMapbox = () => {
   const mapElement = document.getElementById('map');
 
   if (mapElement) {
-    console.log(mapElement.dataset.mapboxApiKey)
     mapboxgl.accessToken = mapElement.dataset.mapboxApiKey
     const map = new mapboxgl.Map({
       style: 'mapbox://styles/matanmatan999new/ck6c251js4mwd1imo5g3w2j2q',
       center: [-74.0066, 40.7135],
       zoom: 14,
-      maxZoom: 15,
+      maxZoom: 20,
       minZoom: 13,
       pitch: 60,
       bearing: -17.6,
@@ -68,6 +73,23 @@ const initMapbox = () => {
     },
     );
     });
+    map.addControl(
+      new mapboxgl.GeolocateControl({
+        positionOptions: {
+          enableHighAccuracy: true
+        },
+        trackUserLocation: true
+      })
+    );
+    const markers = JSON.parse(mapElement.dataset.markers);
+    console.log(markers)
+    markers.forEach((marker) => {
+    new mapboxgl.Marker()
+      .setLngLat([ marker.longtitude, marker.latitude ])
+      .addTo(map);
+
+    });
+    fitMapToMarkers(map, markers);
   }
 };
 

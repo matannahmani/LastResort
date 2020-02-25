@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_24_142916) do
+ActiveRecord::Schema.define(version: 2020_02_25_113033) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,19 @@ ActiveRecord::Schema.define(version: 2020_02_24_142916) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "cache_resources", force: :cascade do |t|
+    t.bigint "resource_id"
+    t.bigint "user_id"
+    t.float "latitude"
+    t.float "longtitude"
+    t.boolean "extracted", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "amount"
+    t.index ["resource_id"], name: "index_cache_resources_on_resource_id"
+    t.index ["user_id"], name: "index_cache_resources_on_user_id"
   end
 
   create_table "resources", force: :cascade do |t|
@@ -92,6 +105,8 @@ ActiveRecord::Schema.define(version: 2020_02_24_142916) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "cache_resources", "resources"
+  add_foreign_key "cache_resources", "users"
   add_foreign_key "resources", "user_resources"
   add_foreign_key "units", "user_units"
   add_foreign_key "user_resources", "resources"
