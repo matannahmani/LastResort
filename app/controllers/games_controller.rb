@@ -5,6 +5,7 @@ class GamesController < ApplicationController
 
   def index
     @base = current_user.base
+    @user_resources = current_user.cache_resources
   end
 
   def update
