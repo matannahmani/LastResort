@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'games/main'
   devise_for :users
-  root to: 'story#show'
+  root to: 'stories#show'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :units, only: :index
   resources :user_units, only: [:create, :new]
@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   get 'inventory/:id', to: "user_resources#update"
   get 'base', to: "games#index"
   patch 'base', to: "games#update"
-  get 'story', to: "story#show"
   post 'extract', to: "extracts#pick_up"
+  get 'story', to: "stories#show"
 end
