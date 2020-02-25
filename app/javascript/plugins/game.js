@@ -10,7 +10,7 @@ const config = {
 }
 function preload() {
       this.load.image('tiles', '../fortuna-tiles.png');
-      this.load.tilemapTiledJSON('tilemap', '../anothertest.json');
+      this.load.tilemapTiledJSON('tilemap', '../test.json');
       var url = 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexpinchplugin.min.js';
       this.load.plugin('rexpinchplugin', url, true);
     }
