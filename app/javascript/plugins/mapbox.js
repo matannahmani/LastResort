@@ -6,6 +6,11 @@ const fitMapToMarkers = (map, markers) => {
   map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 });
 };
 
+const extractButton = () => {
+
+};
+
+
 const initMapbox = () => {
   const mapElement = document.getElementById('map');
 
@@ -90,6 +95,45 @@ const initMapbox = () => {
 
     });
     fitMapToMarkers(map, markers);
+
+    const extractHTML = "<a href=''>Extract</a>"
+
+    class MyCustomControl {
+      onAdd(map){
+        this.map = map;
+        this.container = document.createElement('div');
+        this.container.className = 'my-custom-control mapboxgl-ctrl';
+        this.container.innerHTML = extractHTML;
+        return this.container;
+      }
+      onRemove(){
+        this.container.parentNode.removeChild(this.container);
+        this.map = undefined;
+      }
+    }
+
+    const myCustomControl = new MyCustomControl();
+
+    map.addControl(myCustomControl, 'bottom-left');
+
+
+
+
+    const buttonDiv = document.querySelector('.my-custom-control')
+    buttonDiv.addEventListener('click', (event) => {
+      event.preventDefault()
+      navigator.geolocation.getCurrentPosition(function(position) {
+        let lat = position.coords.latitude;
+        let lng = position.coords.longitude;
+        console.log(`/extracts?lat=${lat}&lng=${lng}`)
+        fetch(`/extracts?lat=${lat}&lng=${lng}`)
+          // .then(response => response.json())
+          // .then((data) => {
+          //   console.log(data);
+          // });
+      });
+    });
+
   }
 };
 
