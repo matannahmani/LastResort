@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_24_101036) do
+ActiveRecord::Schema.define(version: 2020_02_25_140016) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,14 +25,30 @@ ActiveRecord::Schema.define(version: 2020_02_24_101036) do
     t.index ["user_resource_id"], name: "index_resources_on_user_resource_id"
   end
 
+  create_table "structures", force: :cascade do |t|
+    t.string "unit_name"
+    t.integer "wood"
+    t.integer "water"
+    t.integer "iron"
+    t.integer "gold"
+    t.integer "hp"
+    t.integer "attack"
+    t.integer "range"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "units", force: :cascade do |t|
     t.string "name"
     t.integer "attack"
     t.integer "defense"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "units"
     t.bigint "user_unit_id"
+    t.string "rarity"
+    t.integer "range"
+    t.integer "hp"
+    t.string "speciality"
     t.index ["user_unit_id"], name: "index_units_on_user_unit_id"
   end
 
