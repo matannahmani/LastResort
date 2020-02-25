@@ -1,6 +1,78 @@
-.card-intro {
+// .card-cinematic {
+  // background-size: cover;
+  // background-positon: center;
+
+// }
+.card-cinematic{
+  height: 650px;
+  width: 100%;
+  display: block;
   background-size: cover;
-  background-positon: center;
-  display: flex;
-  align-items: center;
+  text-align: center;
+  padding-top: 455px;
+}
+
+#cinematic-1{
+  background-image: url("https://res.cloudinary.com/dgq92f6st/image/upload/v1582635128/wavepainting_e9rqvg.jpg");
+  background-position: center;
+}
+
+#cinematic-2{
+  background-image: url("https://res.cloudinary.com/dgq92f6st/image/upload/c_scale,h_202,w_240/v1582642515/globeee_wxqgwg.jpg");
+  background-position: center;
+}
+
+#cinematic-3{
+  background-image: url("https://res.cloudinary.com/dgq92f6st/image/upload/e_improve,w_300,h_600,c_thumb,g_auto/v1582474692/oil1_j1x6zo.jpg");
+  background-position: center;
+}
+
+#cinematic-4{
+  background-image: url("https://res.cloudinary.com/dgq92f6st/image/upload/c_fill,h_121,w_116/v1582475011/desertedisland1_gdxwip.jpg");
+  background-position: center;
+}
+
+#cinematic-5{
+  background-image: url("https://res.cloudinary.com/dgq92f6st/image/upload/v1582634973/image_izeyxm.png");
+  background-position: center;
+}
+
+#cinematic-6{
+  background-image: url("https://res.cloudinary.com/dgq92f6st/image/upload/v1582634972/c30cc041f3b620befaec92b498da0eb3_czokcs.jpg");
+  background-position: center;
+}
+
+#cinematic-7{
+  background-image: url("https://res.cloudinary.com/dgq92f6st/image/upload/v1582635025/images_fkhxsz.jpg");
+  background-position: center;
+}
+
+#cinematic-8{
+  background-image: url("https://res.cloudinary.com/dgq92f6st/image/upload/v1582634972/1200px-USS_Enterprise__CV-6__under_attack_by_dive_bombers_during_the_Battle_of_Santa_Cruz_Islands_on_26_October_1942__80-G-20989_oi8vxb.jpg");
+  background-position: center;
+}
+
+#cinematic-9{
+  background-image: url("https://res.cloudinary.com/dgq92f6st/image/upload/v1582635104/nLx0l4N_ankkrl.jpg");
+  background-position: center;
+}
+
+#cinematic-10{
+  background-image: url("https://res.cloudinary.com/dgq92f6st/image/upload/v1582634972/castle_gflyi5.jpg");
+  background-position: center;
+}
+
+#cinematic-11{
+  background-image: url("https://res.cloudinary.com/dgq92f6st/image/upload/v1581946856/pWyW7Z4f35ukZy6jW9t3uoiB.png");
+  background-position: center;
+}
+
+#cinematic-12{
+  background-image: url("https://res.cloudinary.com/dgq92f6st/image/upload/v1582638390/Screenshot_2020-02-25_Cloudinary_Management_Console_-_Media_Library_q1ersp.png");
+  background-position: center;
+}
+
+#cinematic-13{
+  background-image: url("https://res.cloudinary.com/dgq92f6st/image/upload/c_scale,h_106,w_78/v1582635059/Last_Resort_Logo_iowli2.png");
+  background-position: center;
 }
