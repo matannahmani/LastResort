@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_24_142916) do
+ActiveRecord::Schema.define(version: 2020_02_25_140016) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,19 @@ ActiveRecord::Schema.define(version: 2020_02_24_142916) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "cache_resources", force: :cascade do |t|
+    t.bigint "resource_id"
+    t.bigint "user_id"
+    t.float "latitude"
+    t.float "longtitude"
+    t.boolean "extracted", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "amount"
+    t.index ["resource_id"], name: "index_cache_resources_on_resource_id"
+    t.index ["user_id"], name: "index_cache_resources_on_user_id"
+  end
+
   create_table "resources", force: :cascade do |t|
     t.string "name"
     t.integer "exchange"
@@ -46,14 +59,30 @@ ActiveRecord::Schema.define(version: 2020_02_24_142916) do
     t.index ["user_resource_id"], name: "index_resources_on_user_resource_id"
   end
 
+  create_table "structures", force: :cascade do |t|
+    t.string "unit_name"
+    t.integer "wood"
+    t.integer "water"
+    t.integer "iron"
+    t.integer "gold"
+    t.integer "hp"
+    t.integer "attack"
+    t.integer "range"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "units", force: :cascade do |t|
     t.string "name"
     t.integer "attack"
     t.integer "defense"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "units"
     t.bigint "user_unit_id"
+    t.string "rarity"
+    t.integer "range"
+    t.integer "hp"
+    t.string "speciality"
     t.index ["user_unit_id"], name: "index_units_on_user_unit_id"
   end
 
@@ -92,6 +121,8 @@ ActiveRecord::Schema.define(version: 2020_02_24_142916) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "cache_resources", "resources"
+  add_foreign_key "cache_resources", "users"
   add_foreign_key "resources", "user_resources"
   add_foreign_key "units", "user_units"
   add_foreign_key "user_resources", "resources"
