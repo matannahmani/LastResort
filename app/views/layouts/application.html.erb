@@ -17,7 +17,7 @@
     <div class="container">
       <button id="switch">Switch</button>
       <div id="map"
-        data-markers="<%= @markers.to_json %>"
+        data-markers="<%= @cache_resources.to_json %>"
         data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
       </div>
     </div>
@@ -27,5 +27,6 @@
     <%= javascript_include_tag 'application' %>
 
     <%= javascript_pack_tag 'application' %>
+    <%= link_to 'sign out',  destroy_user_session_path, method: :delete  %>
   </body>
 </html>
