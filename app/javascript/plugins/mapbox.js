@@ -116,8 +116,23 @@ const initMapbox = () => {
 
     map.addControl(myCustomControl, 'bottom-left');
 
+
+
+
     const buttonDiv = document.querySelector('.my-custom-control')
-    console.log(buttonDiv)
+    buttonDiv.addEventListener('click', (event) => {
+      event.preventDefault()
+      navigator.geolocation.getCurrentPosition(function(position) {
+        let lat = position.coords.latitude;
+        let lng = position.coords.longitude;
+        console.log(`/extracts?lat=${lat}&lng=${lng}`)
+        fetch(`/extracts?lat=${lat}&lng=${lng}`)
+          // .then(response => response.json())
+          // .then((data) => {
+          //   console.log(data);
+          // });
+      });
+    });
 
   }
 };
