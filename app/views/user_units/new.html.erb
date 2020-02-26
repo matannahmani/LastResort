@@ -21,97 +21,41 @@ actions are the same on both pages -->
 update database create a new one for structures, create the tables
  -->
 
-<body style="background-color: black">
-
-<div id="addUserUnitCarousel" class="carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <li data-target="#addUserUnitCarousel" data-slide-to="0" class="active"></li>
-    <li data-target="#addUserUnitCarousel" data-slide-to="1"></li>
-    <li data-target="#addUserUnitCarousel" data-slide-to="2"></li>
-  </ol>
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
-
     <div class="carousel-item active">
-      <%= cl_image_tag('firstmeeting1_xusbw5', width: 200, height: 400,
-                       crop: :fill, class: 'd-block w-100 h-100') %>
-      <div class="carousel-caption">
-        <h1> Buy a Fighter!</h1>
-        <div class="buy-fighter-buttons">
-          <div>
-            <%= link_to 'Buy 1', '#',
-                        data: { amount: 1 },
-                        id: 'add-one-unit',
-                        class: 'btn btn-secondary rounded' %>
-          </div>
-          <div>
-            <%= link_to 'Buy 5', '#',
-                        data: { amount: 5 },
-                        id: 'add-five-units',
-                        class: 'btn btn-secondary rounded' %>
-          </div>
-        </div>
-      </div>
+      <img src="https://res.cloudinary.com/dgq92f6st/image/upload/v1582479033/firstmeeting1_xusbw5.png" class="d-block w-100" alt="...">
     </div>
-
-
-
     <div class="carousel-item">
-      <%= cl_image_tag('mages1_cqusxs', width: 200, height: 400,
-                       crop: :fill, class: 'd-block w-100 h-100') %>
-      <div class="carousel-caption">
-        <h1> Buy a Mage!</h1>
-        <div class="buy-fighter-buttons">
-          <div>
-            <%= link_to 'Buy 1', '#',
-                        data: { amount: 1 },
-                        id: 'add-one-unit',
-                        class: 'btn btn-secondary rounded' %>
-          </div>
-          <div>
-            <%= link_to 'Buy 5', '#',
-                        data: { amount: 5 },
-                        id: 'add-five-units',
-                        class: 'btn btn-secondary rounded' %>
-          </div>
-        </div>
-      </div>
+      <img src="https://res.cloudinary.com/dgq92f6st/image/upload/v1582622819/image_160_v68j2n.png" class="d-block w-100" alt="...">
     </div>
-
-
     <div class="carousel-item">
-      <%= cl_image_tag('caravan2_rwroyn', width: 100, height: 200,
-                       crop: :fill, class: 'd-block w-100 h-100') %>
-      <div class="carousel-caption">
-        <h1>Something to Trade?</h1>
-        <div class="buy-fighter-buttons">
-          <div id="add-one-unit" data-amount='1'>
-            <%= link_to 'Wood', '#', class: 'btn btn-secondary rounded' %>
-          </div>
-          <div id="add-five-unit" data-amount='5'>
-            <%= link_to 'Water', '#', class: 'btn btn-secondary rounded' %>
-          </div>
-          <div id="add-one-unit" data-amount='1'>
-            <%= link_to 'Iron', '#', class: 'btn btn-secondary rounded' %>
-          </div>
-          <div id="add-five-unit" data-amount='5'>
-            <%= link_to 'Gold', '#', class: 'btn btn-secondary rounded' %>
-          </div>
-        </div>
-      </div>
+      <img src="https://res.cloudinary.com/dgq92f6st/image/upload/v1582622679/merchantbackground_hdeyzg.jpg" alt="...">
     </div>
-
-  </div>
-  <a class="carousel-control-prev" href="#addUserUnitCarousel" role="button" data-slide="prev">
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="sr-only">Previous</span>
   </a>
-  <a class="carousel-control-next" href="#addUserUnitCarousel" role="button" data-slide="next">
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
 </div>
 
 
+<!-- Need to insert the message in the carosel
+ --><h1> Buy a fighter!!! </h1>
+    <h1> Buy a mage!!! </h1>
+
+<!-- these buttons stay the same at the bottom of the page -->
+
+<div id="add-one-unit" data-amount='1'>
+  <p> button 1</p>
+</div>
+
+<div id="add-five-unit" data-amount='5'>
+  <p>button 5</p>
+</div>
 
 
 
@@ -141,18 +85,16 @@ update database create a new one for structures, create the tables
     })
   }
 
+
+
+
   let addOne = document.querySelector('#add-one-unit');
-  let addFive = document.querySelector('#add-five-units');
+  let addFive = document.querySelector('#add-five-unit');
 
-  addOne.addEventListener('click', (e) => {
-    e.preventDefault()
-    handleUnitCreation(addOne)
-  })
+  addOne.addEventListener('click', () => handleUnitCreation(addOne))
+  addFive.addEventListener('click', () => handleUnitCreation(addFive))
 
-  addFive.addEventListener('click', (e) => {
-    e.preventDefault()
-    handleUnitCreation(addFive)
-  })
+
 
 </script>
 
