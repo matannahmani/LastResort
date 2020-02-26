@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_cache_resources
-    @cache_resources = current_user.cache_resources if !current_user.nil?
+    # binding.pry
+    @cache_resources = current_user.cache_resources.where(extracted: false) if !current_user.nil?
   end
 end
