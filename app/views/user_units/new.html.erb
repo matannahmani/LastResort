@@ -44,9 +44,9 @@ update database create a new one for structures, create the tables
                         class: 'btn btn-secondary rounded' %>
           </div>
           <div>
-            <%= link_to 'Buy 5', '#',
-                        data: { amount: 5 },
-                        id: 'add-five-units',
+            <%= link_to 'Buy 10', '#',
+                        data: { amount: 10 },
+                        id: 'add-ten-units',
                         class: 'btn btn-secondary rounded' %>
           </div>
         </div>
@@ -68,9 +68,9 @@ update database create a new one for structures, create the tables
                         class: 'btn btn-secondary rounded' %>
           </div>
           <div>
-            <%= link_to 'Buy 5', '#',
-                        data: { amount: 5 },
-                        id: 'add-five-units',
+            <%= link_to 'Buy 10', '#',
+                        data: { amount: 10 },
+                        id: 'add-ten-units',
                         class: 'btn btn-secondary rounded' %>
           </div>
         </div>
@@ -142,7 +142,7 @@ update database create a new one for structures, create the tables
   }
 
   let addOne = document.querySelector('#add-one-unit');
-  let addFive = document.querySelector('#add-five-units');
+  let addTen = document.querySelector('#add-ten-units');
 
   addOne.addEventListener('click', (e) => {
     e.preventDefault()
