@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_25_140016) do
+ActiveRecord::Schema.define(version: 2020_02_26_094959) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,9 +54,6 @@ ActiveRecord::Schema.define(version: 2020_02_25_140016) do
     t.integer "exchange"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "resources"
-    t.bigint "user_resource_id"
-    t.index ["user_resource_id"], name: "index_resources_on_user_resource_id"
   end
 
   create_table "structures", force: :cascade do |t|
@@ -78,12 +75,10 @@ ActiveRecord::Schema.define(version: 2020_02_25_140016) do
     t.integer "defense"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_unit_id"
     t.string "rarity"
     t.integer "range"
     t.integer "hp"
     t.string "speciality"
-    t.index ["user_unit_id"], name: "index_units_on_user_unit_id"
   end
 
   create_table "user_resources", force: :cascade do |t|
@@ -123,8 +118,6 @@ ActiveRecord::Schema.define(version: 2020_02_25_140016) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "cache_resources", "resources"
   add_foreign_key "cache_resources", "users"
-  add_foreign_key "resources", "user_resources"
-  add_foreign_key "units", "user_units"
   add_foreign_key "user_resources", "resources"
   add_foreign_key "user_resources", "users"
   add_foreign_key "user_units", "units"
