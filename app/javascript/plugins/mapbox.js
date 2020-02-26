@@ -1,21 +1,25 @@
 import mapboxgl from 'mapbox-gl';
-var allmarkers = []
-
+let allmarkers = []
+let map;
+let newMarker;
     function cleaner(markers) {
-    if (markers!==null) {
-            console.log(markers);
-      for (var i = markers.length - 1; i >= 0; i--) {
-        markers[i].remove();
-      }
+    if (markers.length > 0 ) {
+      markers.forEach(marker => {
+        if (marker["_update"]!==null) {
+          marker.remove();
+        }
+      })
+      // for (var i = markers.length - 1; i >= 0; i--) {
+      //   markers[i].remove();
+      // }
     }
   }
 const fitMapToMarkers = (map, markers) => {
-  cleaner(allmarkers);
   const bounds = new mapboxgl.LngLatBounds();
   markers.forEach(marker => {
     bounds.extend([ marker.longitude, marker.latitude ])
-    markers.push(marker);
-    console.log(markers);
+    allmarkers.push(marker);
+    // console.log(markers);
   });
   map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 });
 };
@@ -25,7 +29,7 @@ const initMapbox = () => {
 
   if (mapElement) {
     mapboxgl.accessToken = mapElement.dataset.mapboxApiKey
-    const map = new mapboxgl.Map({
+    map = new mapboxgl.Map({
       style: 'mapbox://styles/matanmatan999new/ck6c251js4mwd1imo5g3w2j2q',
       center: [-74.0066, 40.7135],
       zoom: 14,
@@ -95,15 +99,21 @@ const initMapbox = () => {
         trackUserLocation: true
       })
     );
-    const markers = JSON.parse(mapElement.dataset.markers);
-    console.log(markers)
-    markers.forEach((marker) => {
-    new mapboxgl.Marker()
-      .setLngLat([ marker.longitude, marker.latitude ])
-      .addTo(map);
 
-    });
-    fitMapToMarkers(map, markers);
+    // const markerCreator = () => {
+    // }
+      const markers = JSON.parse(mapElement.dataset.markers);
+      markers.forEach((marker) => {
+      newMarker = new mapboxgl.Marker()
+        .setLngLat([ marker.longitude, marker.latitude ])
+        .addTo(map);
+        if (marker)
+      allmarkers.push(newMarker)
+      });
+
+
+      fitMapToMarkers(map, markers);
+
 
     const extractHTML = "<a href=''>Extract</a>"
 
@@ -143,6 +153,17 @@ const initMapbox = () => {
           return response.json();
         })
         .then((markers) => {
+          console.log(markers);
+          console.log(allmarkers);
+          cleaner(allmarkers);
+          console.log(allmarkers);
+          markers.forEach((marker) => {
+          console.log(marker)
+          newMarker = new mapboxgl.Marker()
+            .setLngLat([ marker.longitude, marker.latitude ])
+            .addTo(map);
+          });
+
           fitMapToMarkers(map, markers);
         });
 
