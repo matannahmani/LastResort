@@ -1,15 +1,24 @@
 import mapboxgl from 'mapbox-gl';
+var allmarkers = []
 
+    function cleaner(markers) {
+    if (markers!==null) {
+            console.log(markers);
+      for (var i = markers.length - 1; i >= 0; i--) {
+        markers[i].remove();
+      }
+    }
+  }
 const fitMapToMarkers = (map, markers) => {
+  cleaner(allmarkers);
   const bounds = new mapboxgl.LngLatBounds();
-  markers.forEach(marker => bounds.extend([ marker.longitude, marker.latitude ]));
+  markers.forEach(marker => {
+    bounds.extend([ marker.longitude, marker.latitude ])
+    markers.push(marker);
+    console.log(markers);
+  });
   map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 });
 };
-
-const extractButton = () => {
-
-};
-
 
 const initMapbox = () => {
   const mapElement = document.getElementById('map');
@@ -128,6 +137,15 @@ const initMapbox = () => {
 
 
       postData('extract', {latitude: lat, longitude: lng});
+      // get
+      fetch('extract')
+        .then((response) => {
+          return response.json();
+        })
+        .then((markers) => {
+          fitMapToMarkers(map, markers);
+        });
+
 
       });
       async function postData(url , data ) {
@@ -145,7 +163,7 @@ const initMapbox = () => {
           referrerPolicy: 'no-referrer', // no-referrer, *client
           body: JSON.stringify(data) // body data type must match "Content-Type" header
         });
-        return await response.json(); // parses JSON response into native JavaScript objects
+        // return await response.json(); // parses JSON response into native JavaScript objects
       }
 
     });
