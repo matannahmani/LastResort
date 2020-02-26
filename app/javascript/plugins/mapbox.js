@@ -2,7 +2,7 @@ import mapboxgl from 'mapbox-gl';
 
 const fitMapToMarkers = (map, markers) => {
   const bounds = new mapboxgl.LngLatBounds();
-  markers.forEach(marker => bounds.extend([ marker.longtitude, marker.latitude ]));
+  markers.forEach(marker => bounds.extend([ marker.longitude, marker.latitude ]));
   map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 });
 };
 
@@ -90,7 +90,7 @@ const initMapbox = () => {
     console.log(markers)
     markers.forEach((marker) => {
     new mapboxgl.Marker()
-      .setLngLat([ marker.longtitude, marker.latitude ])
+      .setLngLat([ marker.longitude, marker.latitude ])
       .addTo(map);
 
     });
@@ -125,13 +125,29 @@ const initMapbox = () => {
       navigator.geolocation.getCurrentPosition(function(position) {
         let lat = position.coords.latitude;
         let lng = position.coords.longitude;
-        console.log(`/extracts?lat=${lat}&lng=${lng}`)
-        fetch(`/extracts?lat=${lat}&lng=${lng}`)
-          // .then(response => response.json())
-          // .then((data) => {
-          //   console.log(data);
-          // });
+
+
+      postData('extract', {latitude: lat, longitude: lng});
+
       });
+      async function postData(url , data ) {
+        // Default options are marked with *
+        const response = await fetch(url, {
+          method: 'POST', // *GET, POST, PUT, DELETE, etc.
+          mode: 'cors', // no-cors, *cors, same-origin
+          cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+          credentials: 'same-origin', // include, *same-origin, omit
+          headers: {
+            'Content-Type': 'application/json'
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          redirect: 'follow', // manual, *follow, error
+          referrerPolicy: 'no-referrer', // no-referrer, *client
+          body: JSON.stringify(data) // body data type must match "Content-Type" header
+        });
+        return await response.json(); // parses JSON response into native JavaScript objects
+      }
+
     });
 
   }

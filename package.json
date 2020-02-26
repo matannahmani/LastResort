@@ -5,6 +5,7 @@
     "@rails/webpacker": "4.2.2",
     "bootstrap": "^4.4.1",
     "geocoder": "^0.2.3",
+    "geokit": "^0.1.4",
     "jquery": "^3.4.1",
     "mapbox": "^1.0.0-beta10",
     "mapbox-gl": "^1.8.0",
