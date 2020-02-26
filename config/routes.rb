@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   get 'inventory/:id', to: "user_resources#update"
   get 'base', to: "games#index"
   patch 'base', to: "games#update"
-  post 'extract', to: "extracts#pick_up"
+  post 'games/extract', to: "extracts#pick_up"
   get 'story', to: "stories#show"
 end
