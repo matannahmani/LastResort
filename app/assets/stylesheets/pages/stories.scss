@@ -3,13 +3,27 @@
   // background-positon: center;
 
 // }
-.card-cinematic{
-  height: 650px;
-  width: 100%;
-  display: block;
-  background-size: cover;
+
+#stories-carousel, #stories-carousel .carousel-item {
+  height: 100vh;
+}
+
+.last-carousel{
+  background-color: black;
+}
+
+#last-dislay{
+  background-color: black;
+
+}
+
+p{
+  outline: 5px yellow;
+}
+#first-part{
   text-align: center;
-  padding-top: 455px;
+  color: white;
+  padding-top: 30px;
 }
 
 #cinematic-1{
@@ -23,12 +37,12 @@
 }
 
 #cinematic-3{
-  background-image: url("https://res.cloudinary.com/dgq92f6st/image/upload/e_improve,w_300,h_600,c_thumb,g_auto/v1582474692/oil1_j1x6zo.jpg");
+  background-image: url("https://res.cloudinary.com/dgq92f6st/image/upload/v1582474692/oil1_j1x6zo.jpg");
   background-position: center;
 }
 
 #cinematic-4{
-  background-image: url("https://res.cloudinary.com/dgq92f6st/image/upload/c_fill,h_121,w_116/v1582475011/desertedisland1_gdxwip.jpg");
+  background-image: url("https://res.cloudinary.com/dgq92f6st/image/upload/v1582475011/desertedisland1_gdxwip.jpg");
   background-position: center;
 }
 
@@ -68,6 +82,13 @@
 }
 
 #cinematic-13{
-  background-image: url("https://res.cloudinary.com/dgq92f6st/image/upload/c_scale,h_115,w_119/v1582635059/Last_Resort_Logo_iowli2.png");
+  background-image: url("https://res.cloudinary.com/dgq92f6st/image/upload/c_scale,h_120,w_102/v1582709615/Screenshot_2020-02-26_last_resort_-_Google_Search_ny2ffl.png");
   background-position: center;
+}
+
+.enter{
+  border: 1px solid white;
+  color: white;
+  text-decoration: none;
+
 }
