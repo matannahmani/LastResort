@@ -1,184 +1,28 @@
-<div id="stories-carousel" class="carousel slide carousel-fade"  data-wrap="false">
+<div id="stories-carousel" class="carousel slide carousel-fade"  data-ride="carousel" data-interval="10000" data-wrap="false">
   <div class="carousel-inner">
 
-    <div class="carousel-item active">
-      <%= cl_image_tag('wavepainting_e9rqvg', width: 200, height: 400, crop: :fill, class: 'd-block w-100 h-100') %>
+    <div class="carousel-item active" id="image1">
       <!-- <img src="https://res.cloudinary.com/dgq92f6st/image/upload/v1582635128/wavepainting_e9rqvg.jpg" class="d-block w-100" alt="..."> -->
       <div class="carousel-caption">
-        <strong><p>The year is 2060 ... or 61 ...it could be 65 for all I know. The last few years have been a blur....</p></strong>
-        <%= link_to "Skip", user_session_path, class: "skip" %>
+        <strong><p id="text-one"></p></strong>
       </div>
     </div>
 
-    <div class="carousel-item">
-      <%= cl_image_tag('globeee_wxqgwg', width: 200, height: 400, crop: :fill, class: 'd-block w-100 h-100') %>
+    <div class="carousel-item" id="image2">
+      <%= link_to "Skip", games_main_path, class: "btn btn-skip" %>
       <div class="carousel-caption">
-        <p><strong>I try to put the past in the past, and lets just say that something happened. What I once thought
-        of as the world, well... it’s not that way any more....</strong></p>
+        <strong><p id="text-two"></p></strong>
       </div>
     </div>
 
-    <div class="carousel-item">
-      <%= cl_image_tag('oil1_j1x6zo', width: 200, height: 400, crop: :fill, class: 'd-block w-100 h-100') %>
+    <div class="carousel-item" id="img3">
+      <%= link_to "Skip", games_main_path, class: "btn btn-skip" %>
       <div class="carousel-caption">
-        <p><strong>I was one of the lucky ones, working for an oil mining rig off the coast of Manila, when all of a sudden there was a flash of light. </strong></p>
-      </div>
-    </div>
-
-    <div class="carousel-item">
-      <%= cl_image_tag('oil1_j1x6zo', width: 200, height: 400, crop: :fill, class: 'd-block w-100 h-100') %>
-      <div class="carousel-caption">
-        <p><strong>next thing I know I end up on a sandy beach with nothing around me... </strong></p>
-      </div>
-    </div>
-
-    <div class="carousel-item">
-      <%= cl_image_tag('desertedisland1_gdxwip', width: 200, height: 400, crop: :fill, class: 'd-block w-100 h-100') %>
-      <div class="carousel-caption">
-        <p><strong>I didn’t see anyone for a long time and so I began exploring the island, getting a
-          feel for the place.</strong></p>
-      </div>
-    </div>
-
-    <div class="carousel-item">
-      <%= cl_image_tag('desertedisland1_gdxwip', width: 200, height: 400, crop: :fill, class: 'd-block w-100 h-100') %>
-      <div class="carousel-caption">
-        <p><strong> Luckily my dad taught me to fish when I was a kid, and the monkeys here
-        make good companions.</strong></p>
-      </div>
-    </div>
-
-    <div class="carousel-item">
-      <%= cl_image_tag('c30cc041f3b620befaec92b498da0eb3_czokcs', width: 200, height: 400, crop: :fill, class: 'd-block w-100 h-100') %>
-      <div class="carousel-caption">
-        <p><strong>As I continued to explore the island, I discovered a strange cave. It took time for me to build up the courage to go in, </strong></p>
-      </div>
-    </div>
-
-    <div class="carousel-item">
-      <%= cl_image_tag('c30cc041f3b620befaec92b498da0eb3_czokcs', width: 200, height: 400, crop: :fill, class: 'd-block w-100 h-100') %>
-      <div class="carousel-caption">
-        <p><strong>and when I finally did I saw two bright blue portal looking.. but I stayed away from them for the time being..</strong></p>
-      </div>
-    </div>
-
-    <div class="carousel-item">
-      <%= cl_image_tag('images_fkhxsz', width: 200, height: 400, crop: :fill, class: 'd-block w-100 h-100') %>
-      <div class="carousel-caption">
-        <p><strong>...Until two weeks ago, when I had my first visitor arrive at the island. There must have been about 20 of them on a small boat, and before I knew what was going on, they attacked me..</strong></p>
-      </div>
-    </div>
-
-    <div class="carousel-item">
-      <%= cl_image_tag('images_fkhxsz', width: 200, height: 400, crop: :fill, class: 'd-block w-100 h-100') %>
-      <div class="carousel-caption">
-        <p><strong>Luckily he let me live, but took everything that I had gathered and built for myself on the island</strong></p>
-      </div>
-    </div>
-
-    <div class="carousel-item">
-      <%= cl_image_tag('v1582634972/1200px-USS_Enterprise__CV-6__under_attack_by_dive_bombers_during_the_Battle_of_Santa_Cruz_Islands_on_26_October_1942__80-G-20989_oi8vxb', width: 200, height: 400, crop: :fill, class: 'd-block w-100 h-100') %>
-      <div class="carousel-caption">
-        <p><strong>A week had passed, and another boat approached the island. This time I hid and watched as they took over the island, destroying everything in there way. I had no choice but to flee to the caves to keep myself safe. </strong></p>
-      </div>
-    </div>
-
-    <div class="carousel-item">
-      <%= cl_image_tag('nLx0l4N_ankkrl', width: 200, height: 400, crop: :fill, class: 'd-block w-100 h-100') %>
-      <div class="carousel-caption">
-        <p><strong>A day went by when all of a sudden I heard steps approaching the cave... with my life on the line and not knowing what to do I walked toward the blue lights when all of a sudden everything vanished..</strong></p>
-      </div>
-    </div>
-
-    <div class="carousel-item">
-      <%= cl_image_tag('nLx0l4N_ankkrl', width: 200, height: 400, crop: :fill, class: 'd-block w-100 h-100') %>
-      <div class="carousel-caption">
-        <p><strong>As my body was forced into the light, I had someone, or something talking to me, telling me what I had to
-          do. I guess I had a role, a part, in rebuilding this world, and to do it I was going to need help, and from my own people.</strong></p>
-      </div>
-    </div>
-
-    <div class="carousel-item">
-      <%= cl_image_tag('nLx0l4N_ankkrl', width: 200, height: 400, crop: :fill, class: 'd-block w-100 h-100') %>
-      <div class="carousel-caption">
-        <p><strong> Just not the people in the time where I currently was, but I guess you could say, I know it sounds crazy, but those from the past...</strong></p>
-      </div>
-    </div>
-
-    <div class="carousel-item" id="castle-id">
-      <%= cl_image_tag('castle_gflyi5', width: 200, height: 400, crop: :fill, class: 'd-block w-100 h-100') %>
-      <div class="carousel-caption">
-        <p><strong>Out of nowhere, I find myself standing about a kilometer from a castle, with a group of men on horseback approaching me. The
-          whole thing was so jarring, but it was good to feel the grass again and see nothing but land as
-          far as the eye could see.</strong></p>
-      </div>
-    </div>
-
-    <div class="carousel-item" id="castle-id">
-      <%= cl_image_tag('castle_gflyi5', width: 200, height: 400, crop: :fill, class: 'd-block w-100 h-100') %>
-      <div class="carousel-caption">
-        <p><strong>I wasn’t sure what to expect having just fled from a raid, but the group
-          halted 10 horse lengths in front of me, and a solo knight on a horse strode up and said, “We
-        have been expecting you"..</strong></p>
-      </div>
-    </div>
-
-    <div class="carousel-item" id="castle-id">
-      <%= cl_image_tag('castle_gflyi5', width: 200, height: 400, crop: :fill, class: 'd-block w-100 h-100') %>
-      <div class="carousel-caption">
-        <p><strong>I was escorted to the king and his high priest. They said they had something to show me, took
-          me down some stairs and there it was, the same portal I had jumped into.</strong></p>
-      </div>
-    </div>
-
-    <div class="carousel-item" id="castle-id">
-      <%= cl_image_tag('castle_gflyi5', width: 200, height: 400, crop: :fill, class: 'd-block w-100 h-100') %>
-      <div class="carousel-caption">
-        <p><strong>They had been trying to go through but were not able to. The priest spoke up and said that they couldn’t go through because they were not the chosen ones. He explained that he had sent for me because I was one of the only ones able to explore the other realms..</strong></p>
-      </div>
-    </div>
-
-    <div class="carousel-item" id="priest-talk">
-      <%= cl_image_tag('pWyW7Z4f35ukZy6jW9t3uoiB', width: 200, height: 400, crop: :fill, class: 'd-block w-100 h-100') %>
-      <div class="carousel-caption">
-        <p><strong>Standing there, bewildered, he continued to tell me that I had to bring him things from the future. By bringing medals, signas, trinkets, and other items, he would be able to figure out which people of his to send from the past to help me on my current
-        quest.</strong></p>
-      </div>
-    </div>
-
-    <div class="carousel-item" id="priest-talk">
-      <%= cl_image_tag('pWyW7Z4f35ukZy6jW9t3uoiB', width: 200, height: 400, crop: :fill, class: 'd-block w-100 h-100') %>
-      <div class="carousel-caption">
-        <p><strong>After hearing everything I just heard, I had no choice but to accept my fate and enter the portal.</strong>
-        </p>
+        <strong><p id="text-three"></p></strong>
       </div>
     </div>
 
 
-    <div class="carousel-item">
-      <%= cl_image_tag('1_mqkqjf', width: 200, height: 400, crop: :fill, class: 'd-block w-100 h-100') %>
-      <div class="carousel-caption">
-        <p><strong>As I went through I realized how complicated it all was for me.
-          I realized that there was only one way for me to survive.</strong></p>
-      </div>
-    </div>
-
-    <div class="carousel-item">
-      <%= cl_image_tag('1_mqkqjf', width: 200, height: 400, crop: :fill, class: 'd-block w-100 h-100') %>
-      <div class="carousel-caption">
-        <p><strong>I needed to gather the resources and
-        build my base to the best of my ability to preserve my life on Earth and bring back what the Priest had wanted... </strong></p>
-      </div>
-    </div>
-
-    <div class="carousel-item" id="last-display">
-      <div class="carousel-caption">
-        <h1 id="first-part">Last</h1>
-        <%= link_to "Enter", user_session_path, class: "enter" %>
-        <h1 id="second-part">Resort</h1>
-      </div>
-    </div>
-  </div>
   <!--     <div class="carousel-item">
     <img src="..." class="d-block w-100" alt="...">
   </div>
@@ -194,13 +38,6 @@
     </a>
   </div>
 </div>
+</div>
 
-<script>
-  const nextBtn = document.querySelector('.carousel-control-next');
-  const nextSlide = () => {
-    // document.querySelector('.active').id === 'last-display'
-    // setTimeout(() => {}, )
-    nextBtn.click();
-  };
-  setInterval(nextSlide, 10000);
-</script>
+    <%= javascript_pack_tag 'typedPack' %>
