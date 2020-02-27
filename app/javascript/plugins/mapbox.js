@@ -2,12 +2,14 @@ import mapboxgl from 'mapbox-gl';
 let allmarkers = []
 let map;
 let newMarker;
+let markersToShow;
     function cleaner(markers) {
     if (markers.length > 0 ) {
       markers.forEach(marker => {
-        if (marker["_update"]!==null) {
+        // if (marker["_update"]!==null) {
+
           marker.remove();
-        }
+        // }
       })
       // for (var i = markers.length - 1; i >= 0; i--) {
       //   markers[i].remove();
@@ -18,7 +20,7 @@ const fitMapToMarkers = (map, markers) => {
   const bounds = new mapboxgl.LngLatBounds();
   markers.forEach(marker => {
     bounds.extend([ marker.longitude, marker.latitude ])
-    allmarkers.push(marker);
+    // allmarkers.push(marker);
     // console.log(markers);
   });
   map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 });
@@ -145,27 +147,36 @@ const initMapbox = () => {
         let lat = position.coords.latitude;
         let lng = position.coords.longitude;
 
+        postData('extract', {latitude: lat, longitude: lng })
+          // .then((data) => {
+          //   console.log(data); // JSON data parsed by `response.json()` call
+          //     fetch('extract')
+          // .then((response) => {
+          //   return response.json();
+          //   console.log(response);
+          // })
+          // .then((cache_resources) => {
+          //   console.log(cache_resources);
+          //   // console.log(markers);
+          //   // console.log('test');
+          //   // console.log(allmarkers);
+          //   cleaner(allmarkers);
+          //     // debugger;
+          //   cache_resources.forEach((resource) => {
+          //   if resource.longitude && resource.latitude
+          //   console.log(resource)
+          //   newMarker = new mapboxgl.Marker()
+          //     .setLngLat([ resource.longitude, resource.latitude ])
+          //     .addTo(map);
+          //   markersToShow.push(newMarker);
+          //   });
+          //   fitMapToMarkers(map, cache_resources);
+          // })
+          // });
 
-      postData('extract', {latitude: lat, longitude: lng});
+      // postData('extract', {latitude: lat, longitude: lng})
+      //   .then((data) => {
       // get
-      fetch('extract')
-        .then((response) => {
-          return response.json();
-        })
-        .then((markers) => {
-          console.log(markers);
-          console.log(allmarkers);
-          cleaner(allmarkers);
-          console.log(allmarkers);
-          markers.forEach((marker) => {
-          console.log(marker)
-          newMarker = new mapboxgl.Marker()
-            .setLngLat([ marker.longitude, marker.latitude ])
-            .addTo(map);
-          });
-
-          fitMapToMarkers(map, markers);
-        });
 
 
       });
@@ -184,7 +195,7 @@ const initMapbox = () => {
           referrerPolicy: 'no-referrer', // no-referrer, *client
           body: JSON.stringify(data) // body data type must match "Content-Type" header
         });
-        // return await response.json(); // parses JSON response into native JavaScript objects
+        return await response.json(); // parses JSON response into native JavaScript objects
       }
 
     });
