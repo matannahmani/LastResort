@@ -50,13 +50,31 @@ al.save!
 
 kat = Unit.new(
 name: "kat",
-rarity: "s",
+rarity: "ss",
 speciality: "mage",
 range: 3,
 hp: 10,
 attack: 2,
 defense: 1)
 kat.save!
+
+Unit.create(
+name: "Artuhria",
+rarity: "ss",
+speciality: "saber",
+range: 3,
+hp: 10,
+attack: 2,
+defense: 1)
+
+Unit.create(
+name: "Merlin",
+rarity: "ss",
+speciality: "mage",
+range: 3,
+hp: 10,
+attack: 2,
+defense: 1)
 
 rob = Unit.new(
 name: "rob",

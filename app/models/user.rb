@@ -17,10 +17,9 @@ class User < ApplicationRecord
     resource_count.to_i.times do
       random_resource = Resource.order(Arel.sql('RANDOM()')).first
       random_amount = rand(1..100)
-      p "Got the method!!!!!!!!!!!!!!!!"
       location = Geocoder::Calculations.random_point_near(center, radius)
       CacheResource.create!(
-        longtitude: location[1],
+        longitude: location[1],
         latitude: location[0],
         amount: random_amount,
         resource: random_resource,

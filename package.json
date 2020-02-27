@@ -5,10 +5,12 @@
     "@rails/webpacker": "4.2.2",
     "bootstrap": "^4.4.1",
     "geocoder": "^0.2.3",
+    "geokit": "^0.1.4",
     "jquery": "^3.4.1",
     "mapbox": "^1.0.0-beta10",
     "mapbox-gl": "^1.8.0",
-    "popper.js": "^1.16.1"
+    "popper.js": "^1.16.1",
+    "typed.js": "^2.0.11"
   },
   "devDependencies": {
     "webpack-dev-server": "^3.10.3"

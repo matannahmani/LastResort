@@ -21,12 +21,13 @@
         data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
       </div>
     </div> -->
+    <%# binding.pry %>
 
     <%= yield %>
     <!-- <%= javascript_pack_tag 'gamepage' %> -->
     <%= javascript_include_tag 'application' %>
 
     <%= javascript_pack_tag 'application' %>
-    <%= link_to 'sign out',  destroy_user_session_path, method: :delete  %>
+    <!-- <%= link_to 'sign out',  destroy_user_session_path, method: :delete  %> -->
   </body>
 </html>

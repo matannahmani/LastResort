@@ -3,71 +3,134 @@
   // background-positon: center;
 
 // }
-.card-cinematic{
-  height: 650px;
-  width: 100%;
-  display: block;
+.typed-cursor{
+  display: none !important;
+}
+
+.carousel-caption{
+  bottom: 0;
+  top: 32%;
+}
+
+
+.btn-skip {
+  color: white;
+  border: 1px solid white;
+  padding: 8px 24px;
+  font-weight: lighter;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-left: 228px;
+}
+
+.btn-skip:hover{
+  opacity: 1;
+  color: white;
+}
+
+#image1{
+  background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(asset-path("photo-1506335453669-7e36607f95d5.png"));
   background-size: cover;
+  background-position: center;
+  // background-repeat:
+}
+
+#image2{
+  background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(asset-path("photo-1451187580459-43490279c0fa.png"));
+}
+
+#img3{
+  background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(asset-path("photo-1577915435603-24d8e3b66d71.png"));
+}
+
+.carousel-item{
+  background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4));
+}
+
+#stories-carousel, #stories-carousel .carousel-item {
+  height: 100vh;
+}
+
+.last-carousel{
+  background-color: black;
+}
+
+#last-dislay{
+  background-color: black;
+
+}
+
+#first-part{
   text-align: center;
-  padding-top: 455px;
+  color: white;
+  padding-top: 30px;
 }
 
-#cinematic-1{
-  background-image: url("https://res.cloudinary.com/dgq92f6st/image/upload/v1582635128/wavepainting_e9rqvg.jpg");
-  background-position: center;
-}
+// #cinematic-1{
+//   background-image: url("https://res.cloudinary.com/dgq92f6st/image/upload/v1582635128/wavepainting_e9rqvg.jpg");
+//   background-position: center;
+// }
 
-#cinematic-2{
-  background-image: url("https://res.cloudinary.com/dgq92f6st/image/upload/c_scale,h_202,w_240/v1582642515/globeee_wxqgwg.jpg");
-  background-position: center;
-}
+// #cinematic-2{
+//   background-image: url("https://res.cloudinary.com/dgq92f6st/image/upload/c_scale,h_202,w_240/v1582642515/globeee_wxqgwg.jpg");
+//   background-position: center;
+// }
 
-#cinematic-3{
-  background-image: url("https://res.cloudinary.com/dgq92f6st/image/upload/e_improve,w_300,h_600,c_thumb,g_auto/v1582474692/oil1_j1x6zo.jpg");
-  background-position: center;
-}
+// #cinematic-3{
+//   background-image: url("https://res.cloudinary.com/dgq92f6st/image/upload/v1582474692/oil1_j1x6zo.jpg");
+//   background-position: center;
+// }
 
-#cinematic-4{
-  background-image: url("https://res.cloudinary.com/dgq92f6st/image/upload/c_fill,h_121,w_116/v1582475011/desertedisland1_gdxwip.jpg");
-  background-position: center;
-}
+// #cinematic-4{
+//   background-image: url("https://res.cloudinary.com/dgq92f6st/image/upload/v1582475011/desertedisland1_gdxwip.jpg");
+//   background-position: center;
+// }
 
-#cinematic-6{
-  background-image: url("https://res.cloudinary.com/dgq92f6st/image/upload/v1582634972/c30cc041f3b620befaec92b498da0eb3_czokcs.jpg");
-  background-position: center;
-}
+// #cinematic-6{
+//   background-image: url("https://res.cloudinary.com/dgq92f6st/image/upload/v1582634972/c30cc041f3b620befaec92b498da0eb3_czokcs.jpg");
+//   background-position: center;
+// }
 
-#cinematic-7{
-  background-image: url("https://res.cloudinary.com/dgq92f6st/image/upload/v1582635025/images_fkhxsz.jpg");
-  background-position: center;
-}
+// #cinematic-7{
+//   background-image: url("https://res.cloudinary.com/dgq92f6st/image/upload/v1582635025/images_fkhxsz.jpg");
+//   background-position: center;
+// }
 
-#cinematic-8{
-  background-image: url("https://res.cloudinary.com/dgq92f6st/image/upload/v1582634972/1200px-USS_Enterprise__CV-6__under_attack_by_dive_bombers_during_the_Battle_of_Santa_Cruz_Islands_on_26_October_1942__80-G-20989_oi8vxb.jpg");
-  background-position: center;
-}
+// #cinematic-8{
+//   background-image: url("https://res.cloudinary.com/dgq92f6st/image/upload/v1582634972/1200px-USS_Enterprise__CV-6__under_attack_by_dive_bombers_during_the_Battle_of_Santa_Cruz_Islands_on_26_October_1942__80-G-20989_oi8vxb.jpg");
+//   background-position: center;
+// }
 
-#cinematic-9{
-  background-image: url("https://res.cloudinary.com/dgq92f6st/image/upload/v1582635104/nLx0l4N_ankkrl.jpg");
-  background-position: center;
-}
+// #cinematic-9{
+//   background-image: url("https://res.cloudinary.com/dgq92f6st/image/upload/v1582635104/nLx0l4N_ankkrl.jpg");
+//   background-position: center;
+// }
 
-#cinematic-10{
-  background-image: url("https://res.cloudinary.com/dgq92f6st/image/upload/v1582634972/castle_gflyi5.jpg");
-  background-position: center;
-}
+// #cinematic-10{
+//   background-image: url("https://res.cloudinary.com/dgq92f6st/image/upload/v1582634972/castle_gflyi5.jpg");
+//   background-position: center;
+// }
 
-#cinematic-11{
-  background-image: url("https://res.cloudinary.com/dgq92f6st/image/upload/v1581946856/pWyW7Z4f35ukZy6jW9t3uoiB.png");
-  background-position: center;
-}
+// #cinematic-11{
+//   background-image: url("https://res.cloudinary.com/dgq92f6st/image/upload/v1581946856/pWyW7Z4f35ukZy6jW9t3uoiB.png");
+//   background-position: center;
+// }
 
-#cinematic-12{
-  background-image: url("https://res.cloudinary.com/dgq92f6st/image/upload/v1582638390/Screenshot_2020-02-25_Cloudinary_Management_Console_-_Media_Library_q1ersp.png");
-  background-position: center;
-}
+// #cinematic-12{
+//   background-image: url("https://res.cloudinary.com/dgq92f6st/image/upload/v1582638390/Screenshot_2020-02-25_Cloudinary_Management_Console_-_Media_Library_q1ersp.png");
+//   background-position: center;
+// }
 
-#cinematic-13{
-  background-image: url("https://res.cloudinary.com/dgq92f6st/image/upload/c_scale,h_115,w_119/v1582635059/Last_Resort_Logo_iowli2.png");
-  background-position: center;
+// #cinematic-13{
+//   background-image: url("https://res.cloudinary.com/dgq92f6st/image/upload/c_scale,h_120,w_102/v1582709615/Screenshot_2020-02-26_last_resort_-_Google_Search_ny2ffl.png");
+//   background-position: center;
+// }
+
+.enter{
+  border: 1px solid white;
+  color: white;
+  text-decoration: none;
+
 }
