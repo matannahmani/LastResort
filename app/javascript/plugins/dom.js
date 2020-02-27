@@ -1,8 +1,9 @@
-const switchBTN = document.querySelector('#switch');
-const mapbox = document.querySelector('.mapboxgl-map');
+window.onload = function() {
+let switchBTN = document.querySelector('#switch');
+let mapbox = document.querySelector('.mapboxgl-map');
 let gamemap = document.querySelectorAll('canvas');
 let ismap = false;
-setTimeout(function(){
+// setTimeout(function(){
    if (gamemap.length !== 2){
     gamemap = document.querySelectorAll('canvas');
     gamemap[1].style.position = 'absolute';
@@ -10,7 +11,7 @@ setTimeout(function(){
     gamemap[1].style.right = 0;
     checkmap();
    }
-}, 200);
+// }, 200);
 switchBTN.addEventListener('click', click => {
   checkmap();
   });
@@ -27,3 +28,4 @@ function checkmap() {
     ismap = false;
   }
 }
+};
