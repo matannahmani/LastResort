@@ -1,7 +1,12 @@
-    <div class="container">
+    <div class="container" style="padding: 0">
       <button id="switch">Switch</button>
+      <a href="../user_units/new">
+        <img src="https://image.winudf.com/v2/image1/Y29tLkN1dGVHYWNoYS5BbmltZV9pY29uXzE1NjE4MzY4MzlfMDQy/icon.png?w=&fakeurl=1" alt=""
+        style="z-index: 44;position: absolute;bottom: 8px;right: 8px;width: 80px;height: 100px;">
+      </a>
       <div id="map"
         data-markers="<%= @cache_resources.to_json %>"
         data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
       </div>
     </div>
+<div class="phaser-app"></div>

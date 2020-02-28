@@ -2,16 +2,16 @@ window.onload = function() {
 let switchBTN = document.querySelector('#switch');
 let mapbox = document.querySelector('.mapboxgl-map');
 let gamemap = document.querySelectorAll('canvas');
+let gamemap1 = document.querySelectorAll('.mapboxgl-canvas');
 let ismap = false;
-// setTimeout(function(){
-   if (gamemap.length !== 2){
+setTimeout(function(){
     gamemap = document.querySelectorAll('canvas');
     gamemap[1].style.position = 'absolute';
     gamemap[1].style.top = 0;
     gamemap[1].style.right = 0;
     checkmap();
-   }
-// }, 200);
+  });
+
 switchBTN.addEventListener('click', click => {
   checkmap();
   });

@@ -14,7 +14,7 @@ class UserUnitsController < ApplicationController
                   result = generate
                   unit = Unit.where(rarity: result.downcase).sample
                   UserUnit.create(unit_id: unit.id, user_id: current_user.id)
-                  response << [unit.name,unit.rarity]
+                  response << [unit.name,unit.rarity,unit.attack,unit.defense]
                 end
                 current_user.gems -= TENROLL
                   current_user.save!

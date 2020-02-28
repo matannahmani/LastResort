@@ -9,101 +9,101 @@
 puts "here are some seeds"
 
 bob = Unit.new(
-name: "bob",
+name: "Cú Chulainn",
 rarity: "s",
 speciality: "lancer",
-range: 3,
-hp: 10,
-attack: 2,
-defense: 1)
+range: 50,
+hp: 300,
+attack: 60,
+defense: 25)
 bob.save!
 
 sue = Unit.new(
-name: "sue",
+name: "Elizabeth Báthory",
 rarity: "a",
 speciality: "lancer",
-range: 3,
-hp: 10,
-attack: 2,
-defense: 1)
+range: 35,
+hp: 250,
+attack: 25,
+defense: 10)
 sue.save!
 
 tim = Unit.new(
-name: "tim",
+name: "Musashibō Benkei",
 rarity: "b",
 speciality: "lancer",
-range: 3,
-hp: 10,
-attack: 2,
-defense: 1)
+range: 35,
+hp: 105,
+attack: 25,
+defense: 15)
 tim.save!
 
 al = Unit.new(
-name: "al",
+name: "Enkidu",
 rarity: "b",
 speciality: "lancer",
-range: 3,
-hp: 10,
-attack: 2,
-defense: 1)
+range: 30,
+hp: 100,
+attack: 40,
+defense: 30)
 al.save!
 
 kat = Unit.new(
-name: "kat",
+name: "King Salomn",
 rarity: "ss",
 speciality: "mage",
-range: 3,
-hp: 10,
-attack: 2,
-defense: 1)
+range: 60,
+hp: 200,
+attack: 250,
+defense: 50)
 kat.save!
 
 Unit.create(
 name: "Artuhria",
 rarity: "ss",
 speciality: "saber",
-range: 3,
-hp: 10,
-attack: 2,
-defense: 1)
+range: 20,
+hp: 700,
+attack: 120,
+defense: 60)
 
 Unit.create(
 name: "Merlin",
 rarity: "ss",
 speciality: "mage",
-range: 3,
-hp: 10,
-attack: 2,
-defense: 1)
+range: 45,
+hp: 300,
+attack: 100,
+defense: 50)
 
 rob = Unit.new(
-name: "rob",
+name: "Gilles de Rais",
 rarity: "a",
 speciality: "mage",
-range: 3,
-hp: 10,
-attack: 2,
-defense: 1)
+range: 30,
+hp: 250,
+attack: 25,
+defense: 15)
 rob.save!
 
 bill = Unit.new(
-name: "bill",
+name: "Gilgamesh",
 rarity: "b",
 speciality: "mage",
-range: 3,
-hp: 10,
-attack: 2,
-defense: 1)
+range: 30,
+hp: 100,
+attack: 20,
+defense: 10)
 bill.save!
 
 dude = Unit.new(
-name: "dude",
+name: "Leonardo Da Vinci",
 rarity: "b",
 speciality: "mage",
-range: 3,
-hp: 10,
-attack: 2,
-defense: 1)
+range: 15,
+hp: 100,
+attack: 25,
+defense: 10)
 dude.save!
 
 puts "seeded!"
