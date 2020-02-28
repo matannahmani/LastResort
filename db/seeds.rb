@@ -8,6 +8,12 @@
 
 puts "here are some seeds"
 
+CacheResource.destroy_all
+UserResource.destroy_all
+User.destroy_all
+Resource.destroy_all
+Unit.destroy_all
+
 bob = Unit.new(
 name: "Cú Chulainn",
 rarity: "s",
@@ -106,4 +112,15 @@ attack: 25,
 defense: 10)
 dude.save!
 
+
+Resource.create!(name: 'wood', exchange: 20)
+Resource.create!(name: 'water', exchange: 20)
+Resource.create!(name: 'iron', exchange: 20)
+Resource.create!(name: 'gold', exchange: 20)
+
 puts "seeded!"
+puts "Seeded #{Resource.all.count} resources"
+
+
+User.create!(email: 'bob@bob.bob', password: '123456', nickname: 'bobby')
+puts "Created user bob@bob.bob"

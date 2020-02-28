@@ -10,7 +10,7 @@
   </ol>
   <div class="carousel-inner">
 
-    <div class="carousel-item active">
+
       <div class = 'btn-base'>
         <a href="<%= games_main_path %>">
          <%#= image_tag 'base_btn.png' %>
@@ -19,7 +19,23 @@
       <%= cl_image_tag('firstmeeting1_xusbw5', width: 200, height: 400,
                        crop: :fill, class: 'd-block w-100 h-100') %>
       <div class="carousel-caption">
-        <h1> Buy a Fighter!</h1>
+
+        <div class="carousel-item active">
+          <div class="grid-container">
+          <div class="grid-item header">Header</div>
+          <div class="grid-item content">
+            <div class="grid-container-box">
+              <div class="grid-item-box">grid item 1</div>
+              <div class="grid-item-box">grid item 2</div>
+              <div class="grid-item-box">grid item 3</div>
+              <div class="grid-item-box">grid item 4</div>
+            </div>
+          </div>
+          <div class="grid-item navbar">Navbar</div>
+        </div>
+
+
+       <!--  <h1> Buy a Fighter!</h1>
         <div class="buy-fighter-buttons">
           <div>
             <%= link_to '#',
@@ -44,7 +60,7 @@
             <% end %>
 
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
 
