@@ -9,12 +9,13 @@ class UserUnitsController < ApplicationController
             case option
             when 10
               if checkgems(TENROLL)
-                response = {}
+                response = []
+                # binding.pry
                 10.times do |i|
                   result = generate
                   unit = Unit.where(rarity: result.downcase).sample
                   UserUnit.create(unit_id: unit.id, user_id: current_user.id)
-                  response[i.to_s] = unit.name
+                  response << [unit.name,unit.rarity,unit.attack,unit.defense]
                 end
                 current_user.gems -= TENROLL
                   current_user.save!
