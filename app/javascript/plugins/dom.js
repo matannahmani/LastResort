@@ -11,6 +11,7 @@ setTimeout(function(){
     gamemap[1].style.right = 0;
     checkmap();
   });
+
 switchBTN.addEventListener('click', click => {
   checkmap();
   });

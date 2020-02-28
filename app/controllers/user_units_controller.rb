@@ -10,7 +10,6 @@ class UserUnitsController < ApplicationController
             when 10
               if checkgems(TENROLL)
                 response = []
-                # binding.pry
                 10.times do |i|
                   result = generate
                   unit = Unit.where(rarity: result.downcase).sample

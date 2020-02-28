@@ -21,10 +21,11 @@
         data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
       </div>
     </div> -->
+    <%# binding.pry %>
 
     <%= yield %>
     <% if request.fullpath == '/games/main' %>
-    <%= javascript_pack_tag 'gamepage' %>
+      <%= javascript_pack_tag 'gamepage' %>
     <% end %>
     <%= javascript_include_tag 'application' %>
 
