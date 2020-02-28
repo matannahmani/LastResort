@@ -24,7 +24,9 @@
     <%# binding.pry %>
 
     <%= yield %>
-    <!-- <%= javascript_pack_tag 'gamepage' %> -->
+    <% if request.fullpath == '/games/main' %>
+      <%= javascript_pack_tag 'gamepage' %>
+    <% end %>
     <%= javascript_include_tag 'application' %>
 
     <%= javascript_pack_tag 'application' %>
