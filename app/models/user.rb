@@ -13,9 +13,6 @@ class User < ApplicationRecord
     radius = ENV['CACHE_RESOURCE_RANDOM_RADIUS'].to_f
     resource_count = 100 * radius
     center = ENV['CACHE_RESOURCE_RANDOM_CENTER']
-
-    binding.pry
-
     resource_count.to_i.times do
       random_resource = Resource.order(Arel.sql('RANDOM()')).first
       random_amount = rand(1..100)

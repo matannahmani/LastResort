@@ -10,6 +10,5 @@ Rails.application.routes.draw do
   get 'base', to: "games#index"
   patch 'base', to: "games#update"
   post 'games/extract', to: "extracts#pick_up"
-  get 'games/extract', to: "extracts#index"
   get 'story', to: "stories#show"
 end

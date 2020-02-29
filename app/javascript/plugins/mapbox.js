@@ -199,21 +199,32 @@ const initMapbox = () => {
           body: JSON.stringify(data) // body data type must match "Content-Type" header
         }).then((response) => {
              response.json().then((data) => {
+              console.log(data.allResources)
+              console.log(data.pickedResources)
+              cleaner(allmarkers);
+              data.allResources.forEach((resource) => {
+                newMarker = new mapboxgl.Marker()
+                  .setLngLat([ resource.longitude, resource.latitude ])
+                  .addTo(map);
+                // markersToShow.push(newMarker);
+                });
+              fitMapToMarkers(map, data.allResources);
+              // sweetText = data.pickedResources.forEach((resource) => {
+
+              // })
               initSweetalert('#map', 'btn-extract-resource', {
-                        title: data.msg,
-                          text: "20 units of gold added to your resources",
+                        title: "Extracted!",
+                          text: data.allResources[0].resource.name,
                           icon: "success"
                         }, (value) => {
-                          location.reload();
+                          console.log(data)
                         });
 
             }).catch((err) => {
                 console.log(err);
             })
-             });
-        // const res = await response.json(); // parses JSON response into native JavaScript objects
-        //  return res
-        }
+        });
+      }
 
     });
 
