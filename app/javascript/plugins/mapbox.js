@@ -1,4 +1,6 @@
 import mapboxgl from 'mapbox-gl';
+import { initSweetalert } from '../plugins/init_sweetalert';
+
 let allmarkers = []
 let map;
 let newMarker;
@@ -117,7 +119,7 @@ const initMapbox = () => {
       fitMapToMarkers(map, markers);
 
 
-    const extractHTML = "<a href=''>Extract</a>"
+    const extractHTML = "<button id='btn-extract-resource' class=''>Extract</button>"
 
     class MyCustomControl {
       onAdd(map){
@@ -147,7 +149,7 @@ const initMapbox = () => {
         let lat = position.coords.latitude;
         let lng = position.coords.longitude;
 
-        postData('extract', {latitude: lat, longitude: lng })
+        postData('extract', {latitude: lat, longitude: lng });
           // .then((data) => {
           //   console.log(data); // JSON data parsed by `response.json()` call
           //     fetch('extract')
@@ -180,8 +182,9 @@ const initMapbox = () => {
 
 
       });
-      async function postData(url , data ) {
+     async function postData(url , data ) {
         // Default options are marked with *
+        let answer = null;
         const response = await fetch(url, {
           method: 'POST', // *GET, POST, PUT, DELETE, etc.
           mode: 'cors', // no-cors, *cors, same-origin
@@ -194,13 +197,29 @@ const initMapbox = () => {
           redirect: 'follow', // manual, *follow, error
           referrerPolicy: 'no-referrer', // no-referrer, *client
           body: JSON.stringify(data) // body data type must match "Content-Type" header
-        });
-        return await response.json(); // parses JSON response into native JavaScript objects
-      }
+        }).then((response) => {
+             response.json().then((data) => {
+              initSweetalert('#map', 'btn-extract-resource', {
+                        title: data.msg,
+                          text: "20 units of gold added to your resources",
+                          icon: "success"
+                        }, (value) => {
+                          location.reload();
+                        });
+
+            }).catch((err) => {
+                console.log(err);
+            })
+             });
+        // const res = await response.json(); // parses JSON response into native JavaScript objects
+        //  return res
+        }
 
     });
 
   }
 };
+
+
 
 export {initMapbox}

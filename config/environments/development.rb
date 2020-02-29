@@ -60,3 +60,8 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 end
+
+Bundler.require(*Rails.groups)
+
+Dotenv::Railtie.load
+
