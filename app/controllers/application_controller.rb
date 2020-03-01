@@ -11,25 +11,26 @@ class ApplicationController < ActionController::Base
   end
 
   def set_cache_resources
-    @unextracted_resources = current_user.cache_resources.where(extracted: false) if !current_user.nil?
-    @cache_resources = @unextracted_resources.map do |resource|
-        if resource.resource.name == "wood"
-          image = #path
-        elsif resource.resource.name == "water"
-          image = #path
-        elsif resource.resource.name == "iron"
-          image = #path
-        elsif resource.resource.name == "gold"
-          image = #path
-        end
+    @cache_resources = current_user.cache_resources.where(extracted: false) if !current_user.nil?
+    @cache_resources.map do |resource|
+      if resource.resource.name == "wood"
+         resource.image_url = helpers.asset_url("log-2.png")
+      elsif resource.resource.name == "water"
+        resource.image_url = helpers.asset_url("water-2.png")
+      elsif resource.resource.name == "iron"
+        resource.image_url = helpers.asset_url("metal-2.png")
+      elsif resource.resource.name == "gold"
+        resource.image_url = helpers.asset_url("gold.png")
+      end
 
-        {
-          lat: resource.latitude,
-          lng: resource.longitude,
-          infoWindow: render_to_string(partial: "infowindow", locals: { cache_resource: resource }),
-          image_url: helpers.asset_url(image)
-        }
+        # {
+        #   lat: resource.latitude,
+        #   lng: resource.longitude,
+        #   infoWindow: render_to_string(partial: "infowindow", locals: { cache_resource: resource }),
+        #   image_url: helpers.asset_url(image)
+        # }
     end
-    @cache_resources = current_user.cache_resources.where(extracted: false) if !current_user.nil? && !current_user.cache_resources.empty?
+    # binding.pry
+    # @cache_resources = current_user.cache_resources.where(extracted: false) if !current_user.nil? && !current_user.cache_resources.empty?
   end
 end

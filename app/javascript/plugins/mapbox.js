@@ -100,17 +100,24 @@ const initMapbox = () => {
 
     // const markerCreator = () => {
     // }
-      const markers = JSON.parse(mapElement.dataset.markers);
-      markers.forEach((marker) => {
-      newMarker = new mapboxgl.Marker()
+
+    const markers = JSON.parse(mapElement.dataset.markers);
+    markers.forEach((marker) => {
+      const element = document.createElement('div');
+      element.className = 'marker';
+      element.style.backgroundImage = `url('${marker.image_url}')`;
+      element.style.backgroundSize = 'contain';
+      element.style.width = '25px';
+      element.style.height = '25px';
+      newMarker = new mapboxgl.Marker(element)
         .setLngLat([ marker.longitude, marker.latitude ])
         .addTo(map);
         if (marker)
       allmarkers.push(newMarker)
-      });
+    });
 
 
-      fitMapToMarkers(map, markers);
+    fitMapToMarkers(map, markers);
 
 
     const extractHTML = "<button id='btn-extract-resource' class=''>Extract</button>"
@@ -168,7 +175,13 @@ const initMapbox = () => {
               console.log(data.pickedResources)
               cleaner(allmarkers);
               data.allResources.forEach((resource) => {
-                newMarker = new mapboxgl.Marker()
+                const element = document.createElement('div');
+                element.className = 'marker';
+                element.style.backgroundImage = `url('${resource.image_url}')`;
+                element.style.backgroundSize = 'contain';
+                element.style.width = '25px';
+                element.style.height = '25px';
+                newMarker = new mapboxgl.Marker(element)
                   .setLngLat([ resource.longitude, resource.latitude ])
                   .addTo(map);
                 // markersToShow.push(newMarker);
