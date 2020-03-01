@@ -1,3 +1,32 @@
+
+.nav-tabs{
+  display: flex;
+  justify-content: space-evenly;
+  .nav-item{
+    flex-grow: 1;
+    text-align: center;
+  }
+}
+
+
+.fa-exchange-alt{
+  color: black;
+}
+.fa-users{
+  color: black;
+}
+
+.fa-tools{
+  color: black;
+}
+
+.fa-street-view{
+  color: white;
+}
+.icons-store{
+  display: flex;
+  flex-direction: column;
+}
 .grid-container {
   width: 400px;
   height: 300px;
