@@ -13,7 +13,9 @@ let markersToShow;
     }
   }
 const fitMapToMarkers = (map, markers) => {
+  console.log('IN FIR MAP TO NMARKERS...');
   const bounds = new mapboxgl.LngLatBounds();
+
   markers.forEach(marker => {
     bounds.extend([ marker.longitude, marker.latitude ])
     // allmarkers.push(marker);
@@ -145,6 +147,7 @@ const initMapbox = () => {
 
     const buttonDiv = document.querySelector('.my-custom-control')
     buttonDiv.addEventListener('click', (event) => {
+      console.log("anything")
       event.preventDefault()
       navigator.geolocation.getCurrentPosition(function(position) {
         let lat = position.coords.latitude;
@@ -157,6 +160,7 @@ const initMapbox = () => {
      const postData = async (url , data ) => {
         // Default options are marked with *
         let answer = null;
+
         const response = await fetch(url, {
           method: 'POST', // *GET, POST, PUT, DELETE, etc.
           mode: 'cors', // no-cors, *cors, same-origin
@@ -188,22 +192,22 @@ const initMapbox = () => {
               });
               fitMapToMarkers(map, data.allResources);
               if (data.pickedResources.length === 0) {
-                initSweetalert('#map', 'btn-extract-resource', {
-                          title: "Get closer!",
-                            text: `You're not close enough to any resource`,
-                            icon: "error"
-                          }, (value) => {
-                            console.log(data)
-                          });
+                // initSweetalert('#map', 'btn-extract-resource', {
+                //           title: "Get closer!",
+                //             text: `You're not close enough to any resource`,
+                //             icon: "error"
+                //           }, (value) => {
+                //             console.log(data)
+                //           });
 
               } else {
-                initSweetalert('#map', 'btn-extract-resource', {
-                          title: "Extracted!",
-                            text: `${data.pickedResources[0].resource.amount} ${data.pickedResources[0].resource_name} units have been added to your inventory`,
-                            icon: "success"
-                          }, (value) => {
-                            console.log(data)
-                          });
+                // initSweetalert('#map', 'btn-extract-resource', {
+                //           title: "Extracted!",
+                //             text: `${data.pickedResources[0].resource.amount} ${data.pickedResources[0].resource_name} units have been added to your inventory`,
+                //             icon: "success"
+                //           }, (value) => {
+                //             console.log(data)
+                //           });
               }
 
             }).catch((err) => {

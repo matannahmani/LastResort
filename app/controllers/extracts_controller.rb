@@ -23,7 +23,7 @@ class ExtractsController < ApplicationController
     picked_resources = []
     resources.map do |resource|
       distance = Geocoder::Calculations.distance_between([lat,lng], [resource.latitude, resource.longitude], options = { unit: :km} )
-      if distance <= 0.1 # Needs to changed to smaller distance when SSL works
+      if distance <= 0.15 # Needs to changed to smaller distance when SSL works
         resource.update!(extracted: true)
         add_resource_to_user(resource)
         picked_resources.push(resource)

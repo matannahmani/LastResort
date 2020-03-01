@@ -4,6 +4,9 @@ class GamesController < ApplicationController
     # binding.pry
   end
 
+  def null
+  end
+
   def index
     @base = current_user.base
   end
