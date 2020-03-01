@@ -1,9 +1,10 @@
-<body style="background-color: black">
+
 <div id="addUserUnitCarousel" class="carousel slide" data-ride="carousel">
 <h1 style="z-index: 444;position: absolute;top: 42px;right: 8px;text-align: center;">
   <%= current_user.gems %> <img src="https://pbs.twimg.com/profile_images/531994916181012480/EBap51cO_400x400.png" alt="" style="width:40px;height: 40px">
 </h1>
   <ol class="carousel-indicators">
+    <i class="fas fa-exchange-alt"></i>
     <li data-target="#addUserUnitCarousel" data-slide-to="0" class="active"></li>
     <li data-target="#addUserUnitCarousel" data-slide-to="1"></li>
     <li data-target="#addUserUnitCarousel" data-slide-to="2"></li>
@@ -13,10 +14,10 @@
 
       <div class = 'btn-base'>
         <a href="<%= games_main_path %>">
-         <%#= image_tag 'base_btn.png' %>
+         <%= image_tag 'base_btn.png' %>
         </a>
       </div>
-      <%= cl_image_tag('firstmeeting1_xusbw5', width: 200, height: 400,
+      <%= cl_image_tag('navy-blue-gradient-geometric-background-vector_js49db', width: 200, height: 400,
                        crop: :fill, class: 'd-block w-100 h-100') %>
       <div class="carousel-caption">
 
@@ -69,7 +70,7 @@
     <div class="carousel-item">
       <div class = 'btn-base'>
         <a href="<%= games_main_path %>">
-         <%#= image_tag 'base_btn.png' %>
+         <%= image_tag 'base_btn.png' %>
         </a>
       </div>
 
@@ -107,10 +108,10 @@
     <div class="carousel-item">
       <div class = 'btn-base'>
         <a href="<%= games_main_path %>">
-         <%#= image_tag 'base_btn.png' %>
+         <%= image_tag 'base_btn.png' %>
         </a>
       </div>
-      <%= cl_image_tag('caravan2_rwroyn', width: 100, height: 200,
+      <%= cl_image_tag('navy-blue-gradient-geometric-background-vector_js49db', width: 100, height: 200,
                        crop: :fill, class: 'd-block w-100 h-100') %>
       <div class="carousel-caption">
         <h1>Something to Trade?</h1>
