@@ -1,19 +1,26 @@
 class GamesController < ApplicationController
+  skip_before_action :verify_authenticity_token
 
   def main
     # binding.pry
   end
 
   def index
-    @base = current_user.base
+    if !current_user.nil?
+      render json: {msg: current_user.base}
+    else
+      render json: {msg: 'please log in!'}
+    end
   end
 
   def update
-    new_base = params[:base] # to be changed later
-    current_user.base = new_base
-    current_user.save
-
-    render json: {base: new_base}
+    if !current_user.nil?
+      ## here should be checking if has structure
+      current_user.base << params['base']
+      current_user.save!
+    else
+      render json: {msg: 'please log in!'}
+    end
   end
 
 end
