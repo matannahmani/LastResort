@@ -22,6 +22,7 @@ const fitMapToMarkers = (map, markers) => {
     // console.log(markers);
   });
   map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 });
+  console.log('END OF FIT MAP...');
 };
 
 const initMapbox = () => {
@@ -125,10 +126,11 @@ const initMapbox = () => {
     const extractHTML = "<button id='btn-extract-resource' class=''>Extract</button>"
 
     class MyCustomControl {
+
       onAdd(map){
         this.map = map;
         this.container = document.createElement('div');
-        this.container.className = 'my-custom-control mapboxgl-ctrl';
+        this.container.className = 'extract-button mapboxgl-ctrl';
         this.container.innerHTML = extractHTML;
         return this.container;
       }
@@ -145,7 +147,7 @@ const initMapbox = () => {
 
 
 
-    const buttonDiv = document.querySelector('.my-custom-control')
+    const buttonDiv = document.querySelector('.extract-button')
     buttonDiv.addEventListener('click', (event) => {
       console.log("anything")
       event.preventDefault()
@@ -181,6 +183,7 @@ const initMapbox = () => {
               data.allResources.forEach((resource) => {
                 const element = document.createElement('div');
                 element.className = 'marker';
+                // debugger; image_url is null!!!!!!!
                 element.style.backgroundImage = `url('${resource.image_url}')`;
                 element.style.backgroundSize = 'contain';
                 element.style.width = '25px';
@@ -192,22 +195,22 @@ const initMapbox = () => {
               });
               fitMapToMarkers(map, data.allResources);
               if (data.pickedResources.length === 0) {
-                // initSweetalert('#map', 'btn-extract-resource', {
-                //           title: "Get closer!",
-                //             text: `You're not close enough to any resource`,
-                //             icon: "error"
-                //           }, (value) => {
-                //             console.log(data)
-                //           });
+                initSweetalert('#map', 'btn-extract-resource', {
+                          title: "Get closer!",
+                            text: `You're not close enough to any resource`,
+                            icon: "error"
+                          }, (value) => {
+                            console.log(data)
+                          });
 
               } else {
-                // initSweetalert('#map', 'btn-extract-resource', {
-                //           title: "Extracted!",
-                //             text: `${data.pickedResources[0].resource.amount} ${data.pickedResources[0].resource_name} units have been added to your inventory`,
-                //             icon: "success"
-                //           }, (value) => {
-                //             console.log(data)
-                //           });
+                initSweetalert('#map', 'btn-extract-resource', {
+                          title: "Extracted!",
+                            text: `${data.pickedResources[0].resource.amount} ${data.pickedResources[0].resource_name} units have been added to your inventory`,
+                            icon: "success"
+                          }, (value) => {
+                            console.log(data)
+                          });
               }
 
             }).catch((err) => {
