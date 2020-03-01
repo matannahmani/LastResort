@@ -1,8 +1,39 @@
 <body style="background-color: black">
+  <div class="d-flex flex-row bd-highlight">
+
+     <div class="d-flex p-3 bd-highlight">
+      <p class='white-text'>5</p>
+     <%=image_tag("metal-2.png")%>
+     </div>
+
+     <div class ='d-flex p-3 bd-highlight'>
+     <p class='white-text'>5</p>
+     <%= image_tag("log-2.png") %>
+     </div>
+
+      <div class ='d-flex p-3 bd-highlight'>
+     <p class='white-text'>5</p>
+     <%= image_tag("water-2.png") %>
+     </div>
+
+      <div class ='d-flex p-3 bd-highlight'>
+     <p class='white-text'>5</p>
+     <%= image_tag("gold.png") %>
+     </div>
+
+      <div class ='d-flex p-3 bd-highlight'>
+     <p class='white-text'>5</p>
+     <%= image_tag("gem.png") %>
+     </div>
+
+ <!--    <div class="p-2 bd-highlight">
+
+    </div> -->
+
+
+   </div>
+
 <div id="addUserUnitCarousel" class="carousel slide" data-ride="carousel">
-<h1 style="z-index: 444;position: absolute;top: 42px;right: 8px;text-align: center;">
-  <%= current_user.gems %> <img src="https://pbs.twimg.com/profile_images/531994916181012480/EBap51cO_400x400.png" alt="" style="width:40px;height: 40px">
-</h1>
   <ol class="carousel-indicators">
     <li data-target="#addUserUnitCarousel" data-slide-to="0" class="active"></li>
     <li data-target="#addUserUnitCarousel" data-slide-to="1"></li>
@@ -16,7 +47,7 @@
          <%#= image_tag 'base_btn.png' %>
         </a>
       </div>
-      <%= cl_image_tag('firstmeeting1_xusbw5', width: 200, height: 400,
+      <%= cl_image_tag('castle3_vy9wlj', width: 200, height: 400,
                        crop: :fill, class: 'd-block w-100 h-100') %>
       <div class="carousel-caption">
         <h1> Buy a Fighter!</h1>
@@ -57,10 +88,10 @@
         </a>
       </div>
 
-      <%= cl_image_tag('mages1_cqusxs', width: 200, height: 400,
+      <%= cl_image_tag('background11_vzjnen', width: 200, height: 400,
                        crop: :fill, class: 'd-block w-100 h-100') %>
       <div class="carousel-caption">
-        <h1> Buy a Mage!</h1>
+        <h1> Something from the shop?</h1>
         <div class="buy-fighter-buttons">
           <div><%= link_to '#',
                         data: { amount: 1 },
@@ -79,7 +110,7 @@
                         id: 'add-ten-units' do %>
                         <div class='gem'>
                           90<br>
-                          +10 <img src="https://pbs.twimg.com/profile_images/531994916181012480/EBap51cO_400x400.png" alt="" style="width:40px;height: 40px">
+                          +10 <img src="castle4_ioe9t4" alt="" style="width:40px;height: 40px">
                         </div>
             <% end %>
           </div>
@@ -94,7 +125,7 @@
          <%#= image_tag 'base_btn.png' %>
         </a>
       </div>
-      <%= cl_image_tag('caravan2_rwroyn', width: 100, height: 200,
+      <%= cl_image_tag('background8_gvll4e', width: 100, height: 200,
                        crop: :fill, class: 'd-block w-100 h-100') %>
       <div class="carousel-caption">
         <h1>Something to Trade?</h1>
