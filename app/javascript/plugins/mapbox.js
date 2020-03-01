@@ -8,14 +8,8 @@ let markersToShow;
     function cleaner(markers) {
     if (markers.length > 0 ) {
       markers.forEach(marker => {
-        // if (marker["_update"]!==null) {
-
           marker.remove();
-        // }
       })
-      // for (var i = markers.length - 1; i >= 0; i--) {
-      //   markers[i].remove();
-      // }
     }
   }
 const fitMapToMarkers = (map, markers) => {
@@ -150,39 +144,10 @@ const initMapbox = () => {
         let lng = position.coords.longitude;
 
         postData('extract', {latitude: lat, longitude: lng });
-          // .then((data) => {
-          //   console.log(data); // JSON data parsed by `response.json()` call
-          //     fetch('extract')
-          // .then((response) => {
-          //   return response.json();
-          //   console.log(response);
-          // })
-          // .then((cache_resources) => {
-          //   console.log(cache_resources);
-          //   // console.log(markers);
-          //   // console.log('test');
-          //   // console.log(allmarkers);
-          //   cleaner(allmarkers);
-          //     // debugger;
-          //   cache_resources.forEach((resource) => {
-          //   if resource.longitude && resource.latitude
-          //   console.log(resource)
-          //   newMarker = new mapboxgl.Marker()
-          //     .setLngLat([ resource.longitude, resource.latitude ])
-          //     .addTo(map);
-          //   markersToShow.push(newMarker);
-          //   });
-          //   fitMapToMarkers(map, cache_resources);
-          // })
-          // });
-
-      // postData('extract', {latitude: lat, longitude: lng})
-      //   .then((data) => {
-      // get
 
 
       });
-     async function postData(url , data ) {
+     const postData = async (url , data ) => {
         // Default options are marked with *
         let answer = null;
         const response = await fetch(url, {
@@ -207,18 +172,26 @@ const initMapbox = () => {
                   .setLngLat([ resource.longitude, resource.latitude ])
                   .addTo(map);
                 // markersToShow.push(newMarker);
-                });
+              });
               fitMapToMarkers(map, data.allResources);
-              // sweetText = data.pickedResources.forEach((resource) => {
+              if (data.pickedResources.length === 0) {
+                initSweetalert('#map', 'btn-extract-resource', {
+                          title: "Get closer!",
+                            text: `You're not close enough to any resource`,
+                            icon: "error"
+                          }, (value) => {
+                            console.log(data)
+                          });
 
-              // })
-              initSweetalert('#map', 'btn-extract-resource', {
-                        title: "Extracted!",
-                          text: data.allResources[0].resource.name,
-                          icon: "success"
-                        }, (value) => {
-                          console.log(data)
-                        });
+              } else {
+                initSweetalert('#map', 'btn-extract-resource', {
+                          title: "Extracted!",
+                            text: `${data.pickedResources[0].resource.amount} ${data.pickedResources[0].resource_name} units have been added to your inventory`,
+                            icon: "success"
+                          }, (value) => {
+                            console.log(data)
+                          });
+              }
 
             }).catch((err) => {
                 console.log(err);
