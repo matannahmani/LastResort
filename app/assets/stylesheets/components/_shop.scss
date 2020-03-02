@@ -8,11 +8,17 @@
   }
 }
 
+.resource-chooser.selected{
+  .card-trip{
+    background-color: #ffff66;
+  }
+}
+
 .first-row-exchange{
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  margin-top: 50px;
+  margin-top: 30px;
   margin-bottom: 30px;
 }
 
@@ -61,6 +67,12 @@ input[type=submit] {
     color: black;
     font-size: 16px;
   }
+}
+
+p{
+  text-align: center;
+  margin-top: 30px;
+  font-size: 18px;
 }
 
 .fa-exchange-alt{
