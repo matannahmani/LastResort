@@ -1,10 +1,6 @@
 class GamesController < ApplicationController
 
   def main
-    # binding.pry
-  end
-
-  def null
   end
 
   def index

@@ -13,17 +13,20 @@ let markersToShow;
     }
   }
 const fitMapToMarkers = (map, markers) => {
-  console.log('IN FIR MAP TO NMARKERS...');
   const bounds = new mapboxgl.LngLatBounds();
-
   markers.forEach(marker => {
     bounds.extend([ marker.longitude, marker.latitude ])
-    // allmarkers.push(marker);
-    // console.log(markers);
   });
   map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 });
-  console.log('END OF FIT MAP...');
 };
+
+const createCustomMarkers = (element, marker) => {
+  element.className = 'marker';
+  element.style.backgroundImage = `url('${marker.image_url}')`;
+  element.style.backgroundSize = 'contain';
+  element.style.width = '25px';
+  element.style.height = '25px';
+}
 
 const initMapbox = () => {
   const mapElement = document.getElementById('map');
@@ -107,11 +110,7 @@ const initMapbox = () => {
     const markers = JSON.parse(mapElement.dataset.markers);
     markers.forEach((marker) => {
       const element = document.createElement('div');
-      element.className = 'marker';
-      element.style.backgroundImage = `url('${marker.image_url}')`;
-      element.style.backgroundSize = 'contain';
-      element.style.width = '25px';
-      element.style.height = '25px';
+      createCustomMarkers(element, marker)
       newMarker = new mapboxgl.Marker(element)
         .setLngLat([ marker.longitude, marker.latitude ])
         .addTo(map);
@@ -149,7 +148,6 @@ const initMapbox = () => {
 
     const buttonDiv = document.querySelector('.extract-button')
     buttonDiv.addEventListener('click', (event) => {
-      console.log("anything")
       event.preventDefault()
       navigator.geolocation.getCurrentPosition(function(position) {
         let lat = position.coords.latitude;
@@ -182,22 +180,16 @@ const initMapbox = () => {
               cleaner(allmarkers);
               data.allResources.forEach((resource) => {
                 const element = document.createElement('div');
-                element.className = 'marker';
-                // debugger; image_url is null!!!!!!!
-                element.style.backgroundImage = `url('${resource.image_url}')`;
-                element.style.backgroundSize = 'contain';
-                element.style.width = '25px';
-                element.style.height = '25px';
+                createCustomMarkers(element, resource)
                 newMarker = new mapboxgl.Marker(element)
                   .setLngLat([ resource.longitude, resource.latitude ])
                   .addTo(map);
-                // markersToShow.push(newMarker);
               });
               fitMapToMarkers(map, data.allResources);
               if (data.pickedResources.length === 0) {
                 initSweetalert('#map', 'btn-extract-resource', {
                           title: "Get closer!",
-                            text: `You're not close enough to any resource`,
+                            text: `You're not close enough to any resource.`,
                             icon: "error"
                           }, (value) => {
                             console.log(data)
@@ -206,7 +198,7 @@ const initMapbox = () => {
               } else {
                 initSweetalert('#map', 'btn-extract-resource', {
                           title: "Extracted!",
-                            text: `${data.pickedResources[0].resource.amount} ${data.pickedResources[0].resource_name} units have been added to your inventory`,
+                            text: `${data.pickedResources[0].resource.amount} ${data.pickedResources[0].resource_name} units have been added to your inventory.`,
                             icon: "success"
                           }, (value) => {
                             console.log(data)
