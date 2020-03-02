@@ -27,21 +27,7 @@
   height: 812px;
 }
 
-// .my-custom-control {
-//   color: #f00;
-//   background: #000;
-//   padding: 8px;
-//   border-radius: 4px;
-//   margin: 8px;
-//   height: 64px;
-//   width: 96px;
-// }
-
-// .my-custom-control button {
-//   color: white;
-// }
-
-.my-custom-control {
+.extract-button button {
   color: white;
   padding: 8px 24px;
   border-radius: 4px;
@@ -51,7 +37,7 @@
   border: 1px solid #0F60C4;
 }
 
-.my-custom-control:hover {
+.extract-button button:hover {
   background: linear-gradient(#147EFF, #0F67DA);
   color: white;
 }
