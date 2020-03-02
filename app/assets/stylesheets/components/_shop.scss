@@ -8,6 +8,37 @@
   }
 }
 
+.first-row-exchange{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.second-row-exchange{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-bottom: 30px;
+}
+
+.card-trip{
+  width: 120px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+
+  img{
+    height: 100px;
+    width: 120px;
+    object-fit: cover;
+  }
+  h1{
+    text-align: center;
+    color: black;
+  }
+}
 
 .fa-exchange-alt{
   color: black;
