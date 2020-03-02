@@ -1,204 +1,164 @@
+<div class="placeholder"></div>
 
-<div id="addUserUnitCarousel" class="carousel slide" data-ride="carousel">
-<h1 style="z-index: 444;position: absolute;top: 42px;right: 8px;text-align: center;">
-  <%= current_user.gems %> <img src="https://pbs.twimg.com/profile_images/531994916181012480/EBap51cO_400x400.png" alt="" style="width:40px;height: 40px">
-</h1>
-  <ol class="carousel-indicators">
-    <i class="fas fa-exchange-alt"></i>
-    <li data-target="#addUserUnitCarousel" data-slide-to="0" class="active"></li>
-    <li data-target="#addUserUnitCarousel" data-slide-to="1"></li>
-    <li data-target="#addUserUnitCarousel" data-slide-to="2"></li>
-  </ol>
-  <div class="carousel-inner">
-
-
-      <div class = 'btn-base'>
-        <a href="<%= games_main_path %>">
-         <%= image_tag 'base_btn.png' %>
-        </a>
-      </div>
-      <%= cl_image_tag('navy-blue-gradient-geometric-background-vector_js49db', width: 200, height: 400,
-                       crop: :fill, class: 'd-block w-100 h-100') %>
-      <div class="carousel-caption">
-
-        <div class="carousel-item active">
-          <div class="grid-container">
-          <div class="grid-item header">Header</div>
-          <div class="grid-item content">
-            <div class="grid-container-box">
-              <div class="grid-item-box">grid item 1</div>
-              <div class="grid-item-box">grid item 2</div>
-              <div class="grid-item-box">grid item 3</div>
-              <div class="grid-item-box">grid item 4</div>
+<div class="structures">
+  <div class="structure-cards">
+    <div class="structure-card-item">
+      <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+      <div class="structure-card-item-infos">
+        <div class="structure-card-row">
+          <div class="structure-card-flex-item">
+            <h2>Barrack</h2>
+          </div>
+          <div class="structure-card-flex-item">
+            <div class="resource-price-bar">
+              <div class="resource-price">
+                <p>20</p>
+                <img src="<%= asset_path( 'gold.png' ) %>" height="24px" width="16px" />
+              </div>
+              <div class="resource-price">
+                <p>20</p>
+                <img src="<%= asset_path( 'log-2.png' ) %>" height="24px" width="16px" />
+              </div>
+              <div class="resource-price">
+                <p>20</p>
+                <img src="<%= asset_path( 'metal-2.png' ) %>" height="24px" width="16px" />
+              </div>
+              <div class="resource-price">
+                <p>20</p>
+                <img src="<%= asset_path( 'water-2.png' ) %>" height="24px" width="16px" />
+              </div>
             </div>
           </div>
-          <div class="grid-item navbar">Navbar</div>
-        </div>
-
-
-       <!--  <h1> Buy a Fighter!</h1>
-        <div class="buy-fighter-buttons">
-          <div>
-            <%= link_to '#',
-                        data: { amount: 1 },
-                        id: 'add-one-unit' do %>
-                      <div class='gem'>
-                        10<br>
-                        +1<img src="https://pbs.twimg.com/profile_images/531994916181012480/EBap51cO_400x400.png" alt="" style="width:40px;height: 40px">
-                      </div>
-
-            <% end %>
-
-          </div>
-          <div>
-            <%= link_to '#',
-                        data: { amount: 10 },
-                        id: 'add-ten-units' do %>
-                        <div class='gem'>
-                          90<br>
-                          +10<img src="https://pbs.twimg.com/profile_images/531994916181012480/EBap51cO_400x400.png" alt="" style="width:40px;height: 40px">
-                        </div>
-            <% end %>
-
-          </div>
-        </div> -->
-      </div>
-    </div>
-
-
-
-    <div class="carousel-item">
-      <div class = 'btn-base'>
-        <a href="<%= games_main_path %>">
-         <%= image_tag 'base_btn.png' %>
-        </a>
-      </div>
-
-      <%= cl_image_tag('mages1_cqusxs', width: 200, height: 400,
-                       crop: :fill, class: 'd-block w-100 h-100') %>
-      <div class="carousel-caption">
-        <h1> Buy a Mage!</h1>
-        <div class="buy-fighter-buttons">
-          <div><%= link_to '#',
-                        data: { amount: 1 },
-                        id: 'add-one-unit' do %>
-                      <div class='gem'>
-                        10<br>
-                        +1 <img src="https://pbs.twimg.com/profile_images/531994916181012480/EBap51cO_400x400.png" alt="" style="width:40px;height: 40px">
-                      </div>
-
-            <% end %>
-
-          </div>
-          <div>
-            <%= link_to '#',
-                        data: { amount: 10 },
-                        id: 'add-ten-units' do %>
-                        <div class='gem'>
-                          90<br>
-                          +10 <img src="https://pbs.twimg.com/profile_images/531994916181012480/EBap51cO_400x400.png" alt="" style="width:40px;height: 40px">
-                        </div>
-            <% end %>
+          <div class="structure-card-flex-item">
+            <a class="structure-buy-btn" href="#" >Buy Now!</a>
           </div>
         </div>
       </div>
     </div>
-
-
-    <div class="carousel-item">
-      <div class = 'btn-base'>
-        <a href="<%= games_main_path %>">
-         <%= image_tag 'base_btn.png' %>
-        </a>
-      </div>
-      <%= cl_image_tag('navy-blue-gradient-geometric-background-vector_js49db', width: 100, height: 200,
-                       crop: :fill, class: 'd-block w-100 h-100') %>
-      <div class="carousel-caption">
-        <h1>Something to Trade?</h1>
-        <div class="buy-fighter-buttons">
-          <div id="add-one-unit" data-amount='1'>
-            <%= link_to 'Wood', '#', class: 'btn btn-wood rounded' %>
+    <div class="structure-card-item">
+      <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+      <div class="structure-card-item-infos">
+        <div class="structure-card-row">
+          <div class="structure-card-flex-item">
+            <h2>Barrack</h2>
           </div>
-          <div id="add-five-unit" data-amount='5'>
-            <%= link_to 'Water', '#', class: 'btn btn-water rounded' %>
+          <div class="structure-card-flex-item">
+            <div class="resource-price-bar">
+              <div class="resource-price">
+                <p>20</p>
+                <img src="<%= asset_path( 'gold.png' ) %>" height="24px" width="16px" />
+              </div>
+              <div class="resource-price">
+                <p>20</p>
+                <img src="<%= asset_path( 'log-2.png' ) %>" height="24px" width="16px" />
+              </div>
+              <div class="resource-price">
+                <p>20</p>
+                <img src="<%= asset_path( 'metal-2.png' ) %>" height="24px" width="16px" />
+              </div>
+              <div class="resource-price">
+                <p>20</p>
+                <img src="<%= asset_path( 'water-2.png' ) %>" height="24px" width="16px" />
+              </div>
+            </div>
           </div>
-          <div id="add-one-unit" data-amount='1'>
-            <%= link_to 'Iron', '#', class: 'btn btn-iron rounded' %>
-          </div>
-          <div id="add-five-unit" data-amount='5'>
-            <%= link_to 'Gold', '#', class: 'btn btn-gold rounded' %>
+          <div class="structure-card-flex-item">
+            <a class="structure-buy-btn" href="#" >Buy Now!</a>
           </div>
         </div>
       </div>
     </div>
-
-
-
-
+    <div class="structure-card-item">
+      <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+      <div class="structure-card-item-infos">
+       <div class="structure-card-row">
+         <div class="structure-card-flex-item">
+           <h2>Barrack</h2>
+         </div>
+         <div class="structure-card-flex-item">
+           <div class="resource-price-bar">
+               <div class="resource-price">
+                <p>20</p>
+                <img src="<%= asset_path( 'gold.png' ) %>" height="24px" width="16px" />
+              </div>
+              <div class="resource-price">
+                <p>20</p>
+                <img src="<%= asset_path( 'log-2.png' ) %>" height="24px" width="16px" />
+              </div>
+              <div class="resource-price">
+                <p>20</p>
+                <img src="<%= asset_path( 'metal-2.png' ) %>" height="24px" width="16px" />
+              </div>
+              <div class="resource-price">
+                <p>20</p>
+                <img src="<%= asset_path( 'water-2.png' ) %>" height="24px" width="16px" />
+              </div>
+           </div>
+         </div>
+         <div class="structure-card-flex-item">
+           <a class="structure-buy-btn" href="#" >Buy Now!</a>
+         </div>
+       </div>
+      </div>
+    </div>
+    <div class="structure-card-item">
+      <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+      <div class="structure-card-item-infos">
+        <div class="structure-card-row">
+          <div class="structure-card-flex-item">
+            <h2>Barrack</h2>
+          </div>
+          <div class="structure-card-flex-item">
+            <div class="resource-price-bar">
+               <div class="resource-price">
+                <p>20</p>
+                <img src="<%= asset_path( 'gold.png' ) %>" height="24px" width="16px" />
+              </div>
+              <div class="resource-price">
+                <p>20</p>
+                <img src="<%= asset_path( 'log-2.png' ) %>" height="24px" width="16px" />
+              </div>
+              <div class="resource-price">
+                <p>20</p>
+                <img src="<%= asset_path( 'metal-2.png' ) %>" height="24px" width="16px" />
+              </div>
+              <div class="resource-price">
+                <p>20</p>
+                <img src="<%= asset_path( 'water-2.png' ) %>" height="24px" width="16px" />
+              </div>
+            </div>
+          </div>
+          <div class="structure-card-flex-item">
+            <a class="structure-buy-btn" href="#" >Buy Now!</a>
+          </div>
+        </div>
+    </div>
   </div>
-  <a class="carousel-control-prev" href="#addUserUnitCarousel" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#addUserUnitCarousel" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
 </div>
 
-<script>
 
-  async function postData(url , data ) {
-    // Default options are marked with *
-    const response = await fetch(url, {
-      method: 'POST', // *GET, POST, PUT, DELETE, etc.
-      mode: 'cors', // no-cors, *cors, same-origin
-      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-      credentials: 'same-origin', // include, *same-origin, omit
-      headers: {
-        'Content-Type': 'application/json'
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      redirect: 'follow', // manual, *follow, error
-      referrerPolicy: 'no-referrer', // no-referrer, *client
-      body: JSON.stringify(data) // body data type must match "Content-Type" header
-    });
-    return await response.json(); // parses JSON response into native JavaScript objects
-  }
 
-  let addOne = document.querySelector('#add-one-unit');
-  let addTen = document.querySelector('#add-ten-units');
 
-  addOne.addEventListener('click', (e) => {
-    e.preventDefault()
-    postData('../user_units', { amount: 1 })
-      .then((data) => {
-        console.log(data); // JSON data parsed by `response.json()` call
-        data.forEach ((data) => {
-          alert(`You just got\n
-            Name : ${data[0]}\n
-            Rarity : ${data[1].toUpperCase()}\n
-             his Stats:\n
-             Attack: ${data[2]}\n
-             Defense: ${data[3]}`);
-        });
-      });
-  })
 
-  addTen.addEventListener('click', (e) => {
-    e.preventDefault()
-    postData('../user_units', { amount: 10 })
-      .then((data) => {
-        console.log(data);
-        data.forEach ((data) =>{
-          alert(`You just got\n
-            Name : ${data[0]}\n
-            Rarity : ${data[1].toUpperCase()}\n
-             his Stats:\n
-             Attack: ${data[2]}\n
-             Defense: ${data[3]}`);
-        });
-      })
-  });
 
-</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
