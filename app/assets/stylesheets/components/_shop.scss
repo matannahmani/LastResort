@@ -11,32 +11,55 @@
 .first-row-exchange{
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  margin-top: 30px;
+  justify-content: space-evenly;
+  margin-top: 50px;
   margin-bottom: 30px;
 }
 
 .second-row-exchange{
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-evenly;
   margin-bottom: 30px;
 }
 
+.quant-exchanged{
+  margin-bottom: 30px;
+}
+
+.submitted-exchange-fields{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#amount{
+  font-size: 20px;
+}
+
+
+input[type=submit] {
+  font-size: 25px;
+}
+
+
 .card-trip{
-  width: 120px;
+  width: 130px;
   overflow: hidden;
   background: white;
+  border: 2px solid black;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
 
   img{
-    height: 100px;
-    width: 120px;
+    height: 120px;
+    width: 130px;
     object-fit: cover;
   }
-  h1{
+  h2{
+    margin-top: 2px;
     text-align: center;
     color: black;
+    font-size: 16px;
   }
 }
 
