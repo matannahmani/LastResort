@@ -20,8 +20,8 @@
 <div class="tab-content" id="myTabContent">
   <div class="tab-pane fade show active" id="exchanged" role="tabpanel">
     <div class="pg-exchange">
-      <p>Trade 20 units of any resource into 1 <img src="https://pbs.twimg.com/profile_images/531994916181012480/EBap51cO_400x400.png" alt="" style="width:25px;height: 25px"></p>
-      <%= form_tag inventory_exchange_path do %>
+      <p>Trade resources for gems</p>
+      <%= form_tag inventory_exchange_path, autocomplete: :off do %>
         <div class="resources">
           <div class="first-row-exchange">
             <div class="exchange-wood">
@@ -77,13 +77,29 @@
 
         <div class="submitted-exchange-fields">
             <div class="quant-exchanged">
-            <%= number_field_tag :amount, 0, min: 0, step: 20 %>
+            <%#= number_field_tag :amount, 0, min: 0, step: 20, onchange: "handleGemChange(this)" %>
+            <%= hidden_field_tag :amount, 0 %>
+
+            <!-- Amount spinner -->
+            <div class="material-amount-spinner">
+              <a href="#" class="spinner-arrow spinner-arrow-up">
+                <i class="fas fa-caret-up fa-2x"></i>
+              </a>
+              <div class="spinner-view"><strong>0</strong></div>
+              <a href="#" class="spinner-arrow spinner-arrow-down">
+                <i class="fas fa-caret-down fa-2x"></i>
+              </a>
+            </div>
+            <p id="arrow-right"><i class="fas fa-arrow-right"></i></p>
+            <p id='gem-value'></p>
+            <img src="https://pbs.twimg.com/profile_images/531994916181012480/EBap51cO_400x400.png" alt="" style="width: 40px;height: 40px">
             </div>
 
             <%= hidden_field_tag 'material', :wood %>
             <%= button_tag(type: "submit", class: "exchange-btn") do %>
                 Exchange <i class="fas fa-exchange-alt"></i>
             <% end %>
+            <center><p style='color: rgba(255,255,255,0.8); font-size: 14px;'>Back <i class="fas fa-undo-alt ml-1"></i></p></center>
           <% end %>
         </div>
     </div>
@@ -232,3 +248,27 @@
   </div>
 </div>
 
+<div class="bar-container" style="background-color: black">
+  <div class="bd-highlight res-bar">
+     <div class="d-flex">
+      <p class='white-text'>5</p>
+     <img src="<%= asset_path( 'iron_new.svg' ) %>" height="32px" width="24px" />
+     </div>
+     <div class ='d-flex'>
+     <p class='white-text'>5</p>
+     <img src="<%= asset_path( 'wood_new.svg' ) %>" height="32px" width="24px" />
+     </div>
+      <div class ='d-flex'>
+     <p class='white-text'>5</p>
+     <img src="<%= asset_path( 'water_new.svg' ) %>" height="32px" width="24px" />
+     </div>
+      <div class ='d-flex'>
+     <p class='white-text'>5</p>
+     <img src="<%= asset_path( 'gold_new.svg' ) %>" height="40px" width="32px" />
+     </div>
+      <div class ='d-flex'>
+     <p class='white-text'>5</p>
+     <img src="<%= asset_path( 'gem.png' ) %>" height="40px" width="32px" />
+     </div>
+   </div>
+ </div>

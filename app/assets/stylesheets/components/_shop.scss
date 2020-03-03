@@ -32,8 +32,40 @@
 
 .quant-exchanged{
   margin-bottom: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  input {
+    height: 50px;
+    width: 70px;
+  }
 }
-
+.material-amount-spinner{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .spinner-arrow-up{
+    font-size: 20px;
+    color: black;
+  }
+  .spinner-arrow-down{
+    font-size: 20px;
+    color: black;
+  }
+  .spinner-view{
+    font-size: 20px;
+    color: white;
+  }
+  .arrow-right{
+    color: black;
+    font-size: 20px;
+  }
+  // .fa-arrow-right{
+  //   color: black;
+  //   font-size: 30px;
+  // }
+}
 .submitted-exchange-fields{
   display: flex;
   flex-direction: column;
@@ -191,8 +223,16 @@ p{
     color: black;
     padding: 0 16px;
   }
+  #gem-value{
+    color: white;
+    font-size: 28px;
+    }
 }
-
+.material-amount-spinner{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 .exchange-btn {
 
 }
@@ -269,4 +309,8 @@ $pink-shadow: #ffe3e2;
   i {
     margin-left: 6px;
   }
+}
+
+a.resource-chooser {
+  text-decoration: none;
 }

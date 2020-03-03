@@ -3,14 +3,30 @@ const getCurrentMaterialElement = () => {
   return element
 }
 
-const filterAmount = () => {
+const getMaxForCurrentResource = () => {
   const currentMaterialElement = getCurrentMaterialElement()
   const elementAmount = currentMaterialElement.dataset.amount
+  return elementAmount
+}
 
+const setResourceAmount = (amount) => {
+  const $exchangeAmount = document.getElementById('amount')
+  $exchangeAmount.value = amount
+
+  document.querySelector('.spinner-view').innerText = amount
+
+  let gemValue = document.getElementById('gem-value');
+  if(gemValue) {
+    gemValue.innerText = (amount / 20);
+  }
+}
+
+const filterAmount = () => {
+  const elementAmount = getMaxForCurrentResource()
   const $exchangeAmount = document.getElementById('amount')
   let exchangeAmount = $exchangeAmount.value
   exchangeAmount = Math.min(exchangeAmount, elementAmount)
-  $exchangeAmount.value = exchangeAmount
+  setResourceAmount(exchangeAmount)
 }
 
 const markSelected = (button) => {
@@ -46,10 +62,49 @@ const setupAmountInput = () => {
   })
 }
 
+const tryAmountSpin = (amount) => {
+  // If no resource selected, don't go further
+  if (!getCurrentMaterialElement()) {
+    return
+  }
+
+  let spinAmount = parseInt(amount)
+  const $exchangeAmount = document.getElementById('amount')
+  let oldAmount = parseInt($exchangeAmount.value)
+
+  const maxForCurrentResource = getMaxForCurrentResource()
+  let newAmount = oldAmount + spinAmount
+
+  if (newAmount > maxForCurrentResource) {
+    return
+  }
+  if (newAmount < 0) {
+    return
+  }
+  setResourceAmount(oldAmount + spinAmount)
+}
+
+const setupNumberSpinner = () => {
+  const upArrow = document.querySelector(
+    '.material-amount-spinner .spinner-arrow-up')
+  const downArrow = document.querySelector(
+    '.material-amount-spinner .spinner-arrow-down')
+
+  upArrow.addEventListener('click', () => {
+    tryAmountSpin(20)
+  })
+
+  downArrow.addEventListener('click', () => {
+    tryAmountSpin(-20)
+  })
+}
+
 const setupExchangeForm = () => {
   document.addEventListener('DOMContentLoaded', () => {
     setupResourceSelectorButtons()
+    setupNumberSpinner()
     setupAmountInput()
+    setResourceAmount(0)
   })
 }
 
