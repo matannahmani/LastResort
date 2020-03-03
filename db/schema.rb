@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2020_03_01_101143) do
 
   # These are extensions that must be enabled in order to support this database
@@ -45,6 +46,7 @@ ActiveRecord::Schema.define(version: 2020_03_01_101143) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "amount"
+    t.string "image_url"
     t.index ["resource_id"], name: "index_cache_resources_on_resource_id"
     t.index ["user_id"], name: "index_cache_resources_on_user_id"
   end

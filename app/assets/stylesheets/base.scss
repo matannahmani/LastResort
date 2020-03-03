@@ -27,20 +27,17 @@
   height: 812px;
 }
 
-.my-custom-control {
-  color: #f00;
-  background: #000;
-  padding: 8px;
+.extract-button button {
+  color: white;
+  padding: 8px 24px;
   border-radius: 4px;
-  margin: 8px;
-  height: 64px;
-  width: 96px;
+  font-weight: bold;
+  background: linear-gradient(#167FFB, #0F60C4);
+  transition: background 0.3s ease;
+  border: 1px solid #0F60C4;
 }
 
-.my-custom-control a {
-  text-decoration: none;
-}
-
-.my-custom-control-active {
-
+.extract-button button:hover {
+  background: linear-gradient(#147EFF, #0F67DA);
+  color: white;
 }
