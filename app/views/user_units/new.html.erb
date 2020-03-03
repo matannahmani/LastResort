@@ -77,11 +77,13 @@
 
         <div class="submitted-exchange-fields">
             <div class="quant-exchanged">
-            <%= number_field_tag :amount, 0, min: 0 %>
+            <%= number_field_tag :amount, 0, min: 0, step: 20 %>
             </div>
 
             <%= hidden_field_tag 'material', :wood %>
-            <%= submit_tag "Exchange!" %>
+            <%= button_tag(type: "submit", class: "exchange-btn") do %>
+                Exchange <i class="fas fa-exchange-alt"></i>
+            <% end %>
           <% end %>
         </div>
     </div>
