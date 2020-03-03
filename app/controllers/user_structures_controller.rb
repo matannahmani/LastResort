@@ -13,18 +13,18 @@ class UserStructuresController < ApplicationController
 
   def check_resources
     if !current_user.nil?
-          choice = params[:material].to_sym
+          choice = params[:structure].to_sym
           user_resources = current_user.user_resources
-          materials = idtoname
+          stuctures = idtoname
 
-          if materials[choice].nil?
+          if stuctures[choice].nil?
             flash[:alert] = "Try again"
             redirect_to new_user_unit_path
             return
           end
-          if !user_resources.where(resource_id: materials[choice])[0].nil?
+          if !user_resources.where(resource_id: stuctures[choice])[0].nil?
             # binding.pry
-            user_materials = user_resources.where(resource_id: materials[choice])[0].amount
+            user_stuctures = user_resources.where(resource_id: stuctures[choice])[0].amount
           else
             flash[:alert] = "Sorry, you don't have enough resources"
             redirect_to new_user_unit_path
@@ -32,9 +32,9 @@ class UserStructuresController < ApplicationController
             # render json: {msg: "Sorry, you don't have enough resources",bought: false}
           end
           # binding.pry
-          if materials[choice].exchange * 10 <= user_materials
-            user_minus = user_resources.find_by(resource_id: materials[choice].id)
-            user_minus.amount -= materials[choice].exchange * 10
+          if stuctures[choice].exchange * 10 <= user_stuctures
+            user_minus = user_resources.find_by(resource_id: stuctures[choice].id)
+            user_minus.amount -= stuctures[choice].exchange * 10
             user_minus.save!
 
             flash[:alert] = "Successfully bought 10 Gems!"
@@ -56,10 +56,10 @@ class UserStructuresController < ApplicationController
 
 
       def idtoname
-        barrack = Resource.find_by(name: 'barrack')
-        wheel = Resource.find_by(name: 'wheel')
-        wall = Resource.find_by(name: 'wall')
-        boat = Resource.find_by(name: 'boat')
+        barrack = Structure.find_by(name: 'barrack')
+        wheel = Structure.find_by(name: 'wheel')
+        wall = Structure.find_by(name: 'wall')
+        boat = Structure.find_by(name: 'boat')
         return {barrack: barrack, wheel: wheel, wall: wall, boat: boat}
       end
   end
