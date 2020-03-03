@@ -52,14 +52,17 @@ input[type=submit] {
 .card-trip-exchange{
   width: 130px;
   overflow: hidden;
-  background: white;
-  border: 2px solid black;
+  background: #9a7c62;
+  border: 2px solid rgba(0,0,0,0.6);
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
-
+  border-radius: 12px;
   img{
     height: 120px;
     width: 130px;
-    object-fit: cover;
+    object-fit: contain;
+    padding: 16px;
+    filter: drop-shadow(0 0 12px rgb(247, 243, 199));
+    filter: drop-shadow(1px 1px 0px #000) drop-shadow(-1px 1px 0px #000) drop-shadow(1px -1px 0px #000) drop-shadow(-1px -1px 0px #000);
   }
   h2{
     margin-top: 2px;
@@ -93,10 +96,6 @@ p{
   display: flex;
   flex-direction: column;
 }
-.grid-container {
-  width: 400px;
-  height: 300px;
-  border: 1.5px solid var(--text-color);
 
 
 .structure-cards {
