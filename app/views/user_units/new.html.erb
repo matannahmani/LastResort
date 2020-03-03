@@ -63,7 +63,8 @@
             <div class="exchange-wood">
               <a href="#" class="resource-chooser" data-resource="wood" data-amount="100">
                 <div class="card-trip-exchange">
-                  <img src="https://files.slack.com/files-pri/T02NE0241-FUPHY18VA/log-2.png" />
+                  <img src="https://image.flaticon.com/icons/svg/395/395005.svg" />
+
                   <div class="card-trip-infos">
                   <h2>Wood</h2>
                   </div>
@@ -74,7 +75,8 @@
             <div class="exchange-water">
               <a href="#" class="resource-chooser" data-resource="water" data-amount="100">
                 <div class="card-trip-exchange">
-                  <img src="https://files.slack.com/files-pri/T02NE0241-FUQ1UP6SU/water-2.png" />
+                  <img src="https://image.flaticon.com/icons/svg/315/315339.svg" />
+
                   <div class="card-trip-infos-exchange">
                   <h2>Water</h2>
                   </div>
@@ -87,7 +89,7 @@
             <div class="exchange-metal">
               <a href="#" class="resource-chooser" data-resource="metal" data-amount="100">
                 <div class="card-trip-exchange">
-                  <img src="https://files.slack.com/files-pri/T02NE0241-FURT82CHM/metal-2.png" />
+                  <img src="https://image.flaticon.com/icons/svg/605/605702.svg" />
                   <div class="card-trip-infos">
                   <h2>Iron</h2>
                   </div>
@@ -98,7 +100,8 @@
             <div class="exchange-gold">
               <a href="#" class="resource-chooser" data-resource="gold" data-amount="5">
                 <div class="card-trip-exchange">
-                  <img src="https://files.slack.com/files-pri/T02NE0241-FUS80N2HL/gold.png" />
+                  <img src="https://image.flaticon.com/icons/svg/362/362944.svg" />
+
                   <div class="card-trip-infos">
                   <h2>Gold</h2>
                   </div>
@@ -110,11 +113,13 @@
 
         <div class="submitted-exchange-fields">
             <div class="quant-exchanged">
-            <%= number_field_tag :amount, 0, min: 0 %>
+            <%= number_field_tag :amount, 0, min: 0, step: 20 %>
             </div>
 
             <%= hidden_field_tag 'material', :wood %>
-            <%= submit_tag "Exchange!" %>
+            <%= button_tag(type: "submit", class: "exchange-btn") do %>
+                Exchange <i class="fas fa-exchange-alt"></i>
+            <% end %>
           <% end %>
         </div>
     </div>
@@ -124,145 +129,144 @@
   </div>
 
   <div class="tab-pane fade" id="structures" role="tabpanel">
-      <h1>this is the structures page</h1>
-  </div>
-</div>
-
-<div class="structures">
-  <div class="structure-cards">
-    <div class="structure-card-item">
-      <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
-      <div class="structure-card-item-infos">
-        <div class="structure-card-row">
-          <div class="structure-card-flex-item">
-            <h2>Barrack</h2>
-          </div>
-          <div class="structure-card-flex-item">
-            <div class="resource-price-bar">
-              <div class="resource-price">
-                <p>20</p>
-                <img src="<%= asset_path( 'gold.png' ) %>" height="24px" width="16px" />
+      <div class="structures">
+      <div class="structure-cards">
+        <div class="structure-card-item">
+          <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+          <div class="structure-card-item-infos">
+            <div class="structure-card-row">
+              <div class="structure-card-flex-item">
+                <h2>Barrack</h2>
               </div>
-              <div class="resource-price">
-                <p>20</p>
-                <img src="<%= asset_path( 'log-2.png' ) %>" height="24px" width="16px" />
+              <div class="structure-card-flex-item">
+                <div class="resource-price-bar">
+                  <div class="resource-price">
+                    <p>20</p>
+                    <img src="<%= asset_path( 'gold.png' ) %>" height="24px" width="16px" />
+                  </div>
+                  <div class="resource-price">
+                    <p>20</p>
+                    <img src="<%= asset_path( 'log-2.png' ) %>" height="24px" width="16px" />
+                  </div>
+                  <div class="resource-price">
+                    <p>20</p>
+                    <img src="<%= asset_path( 'metal-2.png' ) %>" height="24px" width="16px" />
+                  </div>
+                  <div class="resource-price">
+                    <p>20</p>
+                    <img src="<%= asset_path( 'water-2.png' ) %>" height="24px" width="16px" />
+                  </div>
+                </div>
               </div>
-              <div class="resource-price">
-                <p>20</p>
-                <img src="<%= asset_path( 'metal-2.png' ) %>" height="24px" width="16px" />
-              </div>
-              <div class="resource-price">
-                <p>20</p>
-                <img src="<%= asset_path( 'water-2.png' ) %>" height="24px" width="16px" />
-              </div>
-            </div>
-          </div>
-          <div class="structure-card-flex-item">
-            <a class="structure-buy-btn" href="#" id="barrack" data-structure="barrack" >Buy Now!</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="structure-card-item">
-      <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
-      <div class="structure-card-item-infos">
-        <div class="structure-card-row">
-          <div class="structure-card-flex-item">
-            <h2>Wheel</h2>
-          </div>
-          <div class="structure-card-flex-item">
-            <div class="resource-price-bar">
-              <div class="resource-price">
-                <p>20</p>
-                <img src="<%= asset_path( 'gold.png' ) %>" height="24px" width="16px" />
-              </div>
-              <div class="resource-price">
-                <p>20</p>
-                <img src="<%= asset_path( 'log-2.png' ) %>" height="24px" width="16px" />
-              </div>
-              <div class="resource-price">
-                <p>20</p>
-                <img src="<%= asset_path( 'metal-2.png' ) %>" height="24px" width="16px" />
-              </div>
-              <div class="resource-price">
-                <p>20</p>
-                <img src="<%= asset_path( 'water-2.png' ) %>" height="24px" width="16px" />
+              <div class="structure-card-flex-item">
+                <a class="structure-buy-btn" href="#" id="barrack" data-structure="barrack" >Buy Now!</a>
               </div>
             </div>
           </div>
-          <div class="structure-card-flex-item">
-            <a class="structure-buy-btn" href="#" id="wheel" data-structure="wheel" >Buy Now!</a>
-
-          </div>
         </div>
-      </div>
-    </div>
-    <div class="structure-card-item">
-      <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
-      <div class="structure-card-item-infos">
-       <div class="structure-card-row">
-         <div class="structure-card-flex-item">
-           <h2>Boat</h2>
-         </div>
-         <div class="structure-card-flex-item">
-           <div class="resource-price-bar">
-               <div class="resource-price">
-                <p>20</p>
-                <img src="<%= asset_path( 'gold.png' ) %>" height="24px" width="16px" />
+
+        <div class="structure-card-item">
+          <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+          <div class="structure-card-item-infos">
+            <div class="structure-card-row">
+              <div class="structure-card-flex-item">
+                <h2>Wheel</h2>
               </div>
-              <div class="resource-price">
-                <p>20</p>
-                <img src="<%= asset_path( 'log-2.png' ) %>" height="24px" width="16px" />
+              <div class="structure-card-flex-item">
+                <div class="resource-price-bar">
+                  <div class="resource-price">
+                    <p>20</p>
+                    <img src="<%= asset_path( 'gold.png' ) %>" height="24px" width="16px" />
+                  </div>
+                  <div class="resource-price">
+                    <p>20</p>
+                    <img src="<%= asset_path( 'log-2.png' ) %>" height="24px" width="16px" />
+                  </div>
+                  <div class="resource-price">
+                    <p>20</p>
+                    <img src="<%= asset_path( 'metal-2.png' ) %>" height="24px" width="16px" />
+                  </div>
+                  <div class="resource-price">
+                    <p>20</p>
+                    <img src="<%= asset_path( 'water-2.png' ) %>" height="24px" width="16px" />
+                  </div>
+                </div>
               </div>
-              <div class="resource-price">
-                <p>20</p>
-                <img src="<%= asset_path( 'metal-2.png' ) %>" height="24px" width="16px" />
+              <div class="structure-card-flex-item">
+                <a class="structure-buy-btn" href="#" id="wheel" data-structure="wheel" >Buy Now!</a>
               </div>
-              <div class="resource-price">
-                <p>20</p>
-                <img src="<%= asset_path( 'water-2.png' ) %>" height="24px" width="16px" />
-              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="structure-card-item">
+          <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+          <div class="structure-card-item-infos">
+           <div class="structure-card-row">
+             <div class="structure-card-flex-item">
+               <h2>Boat</h2>
+             </div>
+             <div class="structure-card-flex-item">
+               <div class="resource-price-bar">
+                   <div class="resource-price">
+                    <p>20</p>
+                    <img src="<%= asset_path( 'gold.png' ) %>" height="24px" width="16px" />
+                  </div>
+                  <div class="resource-price">
+                    <p>20</p>
+                    <img src="<%= asset_path( 'log-2.png' ) %>" height="24px" width="16px" />
+                  </div>
+                  <div class="resource-price">
+                    <p>20</p>
+                    <img src="<%= asset_path( 'metal-2.png' ) %>" height="24px" width="16px" />
+                  </div>
+                  <div class="resource-price">
+                    <p>20</p>
+                    <img src="<%= asset_path( 'water-2.png' ) %>" height="24px" width="16px" />
+                  </div>
+               </div>
+             </div>
+             <div class="structure-card-flex-item">
+               <a class="structure-buy-btn" href="#" id="boat" data-structure="boat" >Buy Now!</a>
+             </div>
            </div>
-         </div>
-         <div class="structure-card-flex-item">
-           <a class="structure-buy-btn" href="#" id="boat" data-structure="boat" >Buy Now!</a>
-         </div>
-       </div>
-      </div>
-    </div>
-    <div class="structure-card-item">
-      <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
-      <div class="structure-card-item-infos">
-        <div class="structure-card-row">
-          <div class="structure-card-flex-item">
-            <h2>Wall</h2>
-          </div>
-          <div class="structure-card-flex-item">
-            <div class="resource-price-bar">
-               <div class="resource-price">
-                <p>20</p>
-                <img src="<%= asset_path( 'gold.png' ) %>" height="24px" width="16px" />
-              </div>
-              <div class="resource-price">
-                <p>20</p>
-                <img src="<%= asset_path( 'log-2.png' ) %>" height="24px" width="16px" />
-              </div>
-              <div class="resource-price">
-                <p>20</p>
-                <img src="<%= asset_path( 'metal-2.png' ) %>" height="24px" width="16px" />
-              </div>
-              <div class="resource-price">
-                <p>20</p>
-                <img src="<%= asset_path( 'water-2.png' ) %>" height="24px" width="16px" />
-              </div>
-            </div>
-          </div>
-          <div class="structure-card-flex-item">
-            <a class="structure-buy-btn" href="#" id="wall" data-structure="wall" >Buy Now!</a>
           </div>
         </div>
+        <div class="structure-card-item">
+          <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+          <div class="structure-card-item-infos">
+            <div class="structure-card-row">
+              <div class="structure-card-flex-item">
+                <h2>Wall</h2>
+              </div>
+              <div class="structure-card-flex-item">
+                <div class="resource-price-bar">
+                   <div class="resource-price">
+                    <p>20</p>
+                    <img src="<%= asset_path( 'gold.png' ) %>" height="24px" width="16px" />
+                  </div>
+                  <div class="resource-price">
+                    <p>20</p>
+                    <img src="<%= asset_path( 'log-2.png' ) %>" height="24px" width="16px" />
+                  </div>
+                  <div class="resource-price">
+                    <p>20</p>
+                    <img src="<%= asset_path( 'metal-2.png' ) %>" height="24px" width="16px" />
+                  </div>
+                  <div class="resource-price">
+                    <p>20</p>
+                    <img src="<%= asset_path( 'water-2.png' ) %>" height="24px" width="16px" />
+                  </div>
+                </div>
+              </div>
+              <div class="structure-card-flex-item">
+                <a class="structure-buy-btn" href="#" id="wall" data-structure="wall" >Buy Now!</a>
+              </div>
+            </div>
+        </div>
+      </div>
     </div>
+
   </div>
 </div>
 
