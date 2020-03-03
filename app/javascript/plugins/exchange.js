@@ -74,7 +74,7 @@ const tryAmountSpin = (amount) => {
 
   const maxForCurrentResource = getMaxForCurrentResource()
   let newAmount = oldAmount + spinAmount
-
+  // testing
   if (newAmount > maxForCurrentResource) {
     return
   }
