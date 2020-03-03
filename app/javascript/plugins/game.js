@@ -17,15 +17,17 @@ function preload() {
       var url = 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexpinchplugin.min.js';
       // scene.load.scenePlugin('rexuiplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexuiplugin.min.js', 'rexUI', 'rexUI');
       this.load.plugin('rexpinchplugin', url, true);
-
+      this.load.scenePlugin('rexuiplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexuiplugin.min.js', 'rexUI', 'rexUI');
       this.load.image('btn', '../../basepop.png');
     }
 
 function create() {
       // Creating layers calling screen adjusment
 
+
       // resizeApp();
       buildings_type = buildingList();
+
       this.add.image(0, 0, 'map').setOrigin(0);
 
       const map = this.make.tilemap({ key: 'tilemap' });
@@ -39,8 +41,40 @@ function create() {
       layer3 = map.createDynamicLayer(2, tiles);
 
       // Loading base , setting camera , setting up drag screen
-      // loadBase();
+      isplacing = [false]
+      loadBase();
+      const checkuser = checkUser();
+      placeables = checkuser; // [true/false,name,amountLeft]
+      buttons = this.rexUI.add.buttons({
+          anchor: {
+              left: 'left+10',
+              centerY: 'bottom-20'
+          },
 
+          orientation: 'x',
+          buttons: [
+            createButton(this, 'Barracks'),
+            createButton(this, 'Wall'),
+            createButton(this, 'Boat'),
+            createButton(this, 'Weel')
+          ],
+
+      })
+      buttons.hideButton()
+      buttons.layout();
+      buttons.scrollFactorX = 0;
+      buttons.scrollFactorY = 0;
+      buttons
+          .on('button.click', function (button, index, pointer, event) {
+            placeables.forEach((item) =>{
+              if (item[1] === button.text && item[2] !== 0){
+                isplacing = [true,item[1],item[2]];
+                item[2] -= 1;
+              }
+            });
+          });
+      // }
+      buttons.forEachButtton((x,index) => {buttons.hideButton(index)});
       var cam = this.cameras.main;
       cam.centerToSize();
       cam.setBounds(0, 0, layer1.width, layer1.height);
@@ -61,17 +95,48 @@ function create() {
           }, this);
 }
 
-function update() {
+var createButton = function (scene, text) {
+    return scene.rexUI.add.label({
+        width: 60,
+        height: 40,
+        background: scene.rexUI.add.roundRectangle(0, 0, 0, 0, 20, 0x7b5e57),
+        text: scene.add.text(0, 0, text, {
+            fontSize: 18
+        }),
+        space: {
+            left: 10,
+            right: 10,
+        }
+    });
+}
 
-  const worldPoint = this.input.activePointer.positionToCamera(this.cameras.main); // click cords.
-  // Draw tiles (only within the groundLayer)
-  if (this.input.manager.activePointer.isDown) { // check if screen is clicked
-    tilePoint = layer3.worldToTileXY(worldPoint.x,worldPoint.y); // get tile grid x + y
-    if (layer2.hasTileAtWorldXY(worldPoint.x, worldPoint.y) === false && layer3.hasTileAtWorldXY(worldPoint.x, worldPoint.y) === false) // check if has tile placed
-    debugger
-    layer3.putTilesAt(buildings_type[2],tilePoint.x - 2,tilePoint.y - 3);
-    // let draw = `layer3.putTilesAt(smalltent,${tilePoint.x - 2},${tilePoint.y - 3});`
-    // updateBase({base: draw}); // send the draw command to the server
+function update() {
+  buttons.forEachButtton((x,index) => {buttons.hideButton(index)});
+  placeables.forEach((item,index) => {
+    if (item[1] === 'Barracks' && item[2] > 0) buttons.showButton(0);
+    if (item[1] === 'Wall' && item[2] > 0) buttons.showButton(1);
+    if (item[1] === 'Boat' && item[2] > 0) buttons.showButton(2);
+    if (item[1] === 'Weel' && item[2] > 0) buttons.showButton(3);
+    buttons.layout();
+  });
+  // TO DO - add checking if its a wall if so display diffrent
+  if (isplacing[0] === true && isplacing[2] > 0){
+    const worldPoint = this.input.activePointer.positionToCamera(this.cameras.main); // click cords.
+    // Draw tiles (only within the groundLayer)
+    if (this.input.manager.activePointer.isDown) { // check if screen is clicked
+      tilePoint = layer3.worldToTileXY(worldPoint.x,worldPoint.y); // get tile grid x + y
+
+      // for (let i =0;i< )
+      if (layer2.hasTileAtWorldXY(worldPoint.x, worldPoint.y) === false && layer3.hasTileAtWorldXY(worldPoint.x, worldPoint.y) === false) // check if has tile placed
+      {
+      // debugger
+      layer3.putTilesAt(buildings_type[isplacing[1]],tilePoint.x - 2,tilePoint.y - 3);
+      let draw = `layer3.putTilesAt(buildings_type['${isplacing[1]}'],${tilePoint.x - 2},${tilePoint.y - 3});`
+      isplacing[0] = false;
+      isplacing[2] -= 1;
+      updateBase({base: draw,name: isplacing[1]}); // send the dra+w command to the server
+      }
+    }
   }
 }
 
@@ -100,6 +165,26 @@ function resizeApp ()
   canvas.style.height = height + 'px';
 }
 
+// function ifhasTile(type){
+//   switch (type) {
+//     case 'Barracks':
+
+//       break;
+//     default:
+//       // statements_def
+//       break;
+//   }
+// }
+
+//   function ifhasTilehelp(height,width){
+//     let bool = false;
+//     for(let i=0, i < height, i++ ){
+//       for(let j=0, j < width, j++ ){
+//         bool = layer3.hastile
+//         }
+//       }
+//     }
+
  // Fetching user buildings commands, then drawing
 
 function loadBase() {
@@ -117,15 +202,18 @@ function loadBase() {
 // Fetching if user bought new structure, then enable drawing
 
 function checkUser() {
-  fetch('../base')
+  const isplacing = [];
+  fetch('../base/checkupdate')
     .then((response) => {
       return response.json();
     })
-    .then((commands) => {
-      commands.msg.forEach((command) =>{
-        eval(command);
-      })
+    .then((buildings) => {
+      if (buildings.result === true)
+        buildings.msg.forEach((build) =>{
+          isplacing.push([false,Object.keys(build)[0],Object.values(build)[0]]);
+        });
     });
+    return isplacing;
 }
 
 // Sending new draw command to the server to be saved for next load.
@@ -150,11 +238,12 @@ function updateBase(data) {
 }
 
 function buildingList() {
-  const buildings_type = [] // 0 = wall , 1 = wall , 2 = boat , 3 = weel
-  buildings_type[0] = [[18509,18510,18511,18512,0],[18649,18650,18651,18652,0],[18789,18790,18791,18792,0],[18929,18930,18931,18932,0],[19069,19070,19071,19072,0],[19209,19210,19211,19212,0]];
-  buildings_type[1] = [8474]; // wall
-  buildings_type[2] = ship = [[0,0,0,8655,8656,8657,0,0],[8792,8793,8794,8795,8796,8797,8798,8799],[0,8933,8934,8935,8936,8937,8938,8939],[0,0,9074,9075,9076,9077,9078,9079]]
-  buildings_type[3] = [[17389,17390,17391],[17529,17530,17531],[17669,17670,17671],[17809,17810,17811],[17949,17950,17951]]
+  const buildings_type = {} // 0 = barracks , 1 = wall , 2 = boat , 3 = weel
+  buildings_type['Barracks'] = [[18509,18510,18511,18512,0],[18649,18650,18651,18652,0],[18789,18790,18791,18792,0],[18929,18930,18931,18932,0],[19069,19070,19071,19072,0],[19209,19210,19211,19212,0]];
+  buildings_type['Wall'] = [8474]; // wall
+  buildings_type['Boat'] = [[0,0,0,8655,8656,8657,0,0],[8792,8793,8794,8795,8796,8797,8798,8799],[0,8933,8934,8935,8936,8937,8938,8939],[0,0,9074,9075,9076,9077,9078,9079]]
+  buildings_type['Weel'] = [[17389,17390,17391,17392],[17529,17530,17531,17532],[17669,17670,17671,17672],[17809,17810,17811,17812],[17949,17950,17951,17952]]
   return buildings_type;
 }
+
 window.game = new Phaser.Game(config);
