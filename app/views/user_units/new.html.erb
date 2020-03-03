@@ -1,12 +1,12 @@
-<ul class="nav nav-tabs">
+<ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item">
-    <a class="nav-link active" href="#"><i class="fas fa-exchange-alt fa-2x"></i></a>
+    <a class="nav-link active" id="exchange-tab" data-toggle="tab" href="#exchanged" role="tab"><i class="fas fa-exchange-alt fa-2x"></i></a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#"><i class="fas fa-users fa-2x"></i></a>
+    <a class="nav-link" id="dudes-tab" data-toggle="tab" href="#dudes" role="tab"><i class="fas fa-users fa-2x"></i></a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#"><i class="fas fa-tools fa-2x"></i></a>
+    <a class="nav-link" id="structures-tab" data-toggle="tab" href="#structures" role="tab"><i class="fas fa-tools fa-2x"></i></a>
   </li>
 </ul>
 
@@ -16,67 +16,77 @@
  <!-- @search = params[filter'] -->
  <!-- approach 2 -->
  <!-- javascript when filter is clicked -> display:none for non related , display: block for filter choice -->
-
-<div class="pg-exchange">
-  <p>Trade 20 units of any resource into 1 <img src="https://pbs.twimg.com/profile_images/531994916181012480/EBap51cO_400x400.png" alt="" style="width:25px;height: 25px"></p>
-  <%= form_tag inventory_exchange_path do %>
-    <div class="resources">
-      <div class="first-row-exchange">
-        <div class="exchange-wood">
-          <a href="#" class="resource-chooser selected" data-resource="wood" data-amount="100">
-            <div class="card-trip">
-              <img src="https://files.slack.com/files-pri/T02NE0241-FUPHY18VA/log-2.png" />
-              <div class="card-trip-infos">
-              <h2>Wood</h2>
-              </div>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="exchanged" role="tabpanel">
+    <div class="pg-exchange">
+      <p>Trade 20 units of any resource into 1 <img src="https://pbs.twimg.com/profile_images/531994916181012480/EBap51cO_400x400.png" alt="" style="width:25px;height: 25px"></p>
+      <%= form_tag inventory_exchange_path do %>
+        <div class="resources">
+          <div class="first-row-exchange">
+            <div class="exchange-wood">
+              <a href="#" class="resource-chooser" data-resource="wood" data-amount="100">
+                <div class="card-trip-exchange">
+                  <img src="https://files.slack.com/files-pri/T02NE0241-FUPHY18VA/log-2.png" />
+                  <div class="card-trip-infos">
+                  <h2>Wood</h2>
+                  </div>
+                </div>
+              </a>
             </div>
-          </a>
+
+            <div class="exchange-water">
+              <a href="#" class="resource-chooser" data-resource="water" data-amount="100">
+                <div class="card-trip-exchange">
+                  <img src="https://files.slack.com/files-pri/T02NE0241-FUQ1UP6SU/water-2.png" />
+                  <div class="card-trip-infos-exchange">
+                  <h2>Water</h2>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="second-row-exchange">
+
+            <div class="exchange-metal">
+              <a href="#" class="resource-chooser" data-resource="metal" data-amount="100">
+                <div class="card-trip-exchange">
+                  <img src="https://files.slack.com/files-pri/T02NE0241-FURT82CHM/metal-2.png" />
+                  <div class="card-trip-infos">
+                  <h2>Iron</h2>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <div class="exchange-gold">
+              <a href="#" class="resource-chooser" data-resource="gold" data-amount="5">
+                <div class="card-trip-exchange">
+                  <img src="https://files.slack.com/files-pri/T02NE0241-FUS80N2HL/gold.png" />
+                  <div class="card-trip-infos">
+                  <h2>Gold</h2>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
         </div>
 
-        <div class="exchange-water">
-          <a href="#" class="resource-chooser" data-resource="water" data-amount="100">
-            <div class="card-trip">
-              <img src="https://files.slack.com/files-pri/T02NE0241-FUQ1UP6SU/water-2.png" />
-              <div class="card-trip-infos">
-              <h2>Water</h2>
-              </div>
+        <div class="submitted-exchange-fields">
+            <div class="quant-exchanged">
+            <%= number_field_tag :amount, 0, min: 0 %>
             </div>
-          </a>
-        </div>
-      </div>
-      <div class="second-row-exchange">
 
-        <div class="exchange-metal">
-          <a href="#" class="resource-chooser" data-resource="metal" data-amount="100">
-            <div class="card-trip">
-              <img src="https://files.slack.com/files-pri/T02NE0241-FURT82CHM/metal-2.png" />
-              <div class="card-trip-infos">
-              <h2>Iron</h2>
-              </div>
-            </div>
-          </a>
+            <%= hidden_field_tag 'material', :wood %>
+            <%= submit_tag "Exchange!" %>
+          <% end %>
         </div>
-
-        <div class="exchange-gold">
-          <a href="#" class="resource-chooser" data-resource="gold" data-amount="5">
-            <div class="card-trip">
-              <img src="https://files.slack.com/files-pri/T02NE0241-FUS80N2HL/gold.png" />
-              <div class="card-trip-infos">
-              <h2>Gold</h2>
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
     </div>
+  </div>
+  <div class="tab-pane fade" id="dudes" role="tabpanel">
+        <h1>this is the dudes page</h1>
+  </div>
 
-    <div class="submitted-exchange-fields">
-        <div class="quant-exchanged">
-        <%= number_field_tag :amount, 0, min: 0 %>
-        </div>
-
-        <%= hidden_field_tag 'material', :wood %>
-        <%= submit_tag "Exchange!" %>
-      <% end %>
-    </div>
+  <div class="tab-pane fade" id="structures" role="tabpanel">
+      <h1>this is the structures page</h1>
+  </div>
 </div>
