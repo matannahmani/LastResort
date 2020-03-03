@@ -16,7 +16,7 @@ var boatExchange = {
   'water': 20,
   'gold': 20
 }
-var goldExchange = {
+var wallExchange = {
   'wood': 20,
   'iron': 20,
   'water': 20,
