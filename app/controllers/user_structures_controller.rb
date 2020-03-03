@@ -12,55 +12,39 @@ class UserStructuresController < ApplicationController
   private
 
   def check_resources
+    structure = Structure.find_by(unit_name: params[:structure])
     if !current_user.nil?
-          choice = params[:structure].to_sym
-          user_resources = current_user.user_resources
-          stuctures = idtoname
-
-          if stuctures[choice].nil?
-            flash[:alert] = "Try again"
-            redirect_to new_user_unit_path
-            return
-          end
-          if !user_resources.where(resource_id: stuctures[choice])[0].nil?
-            # binding.pry
-            user_stuctures = user_resources.where(resource_id: stuctures[choice])[0].amount
-          else
-            flash[:alert] = "Sorry, you don't have enough resources"
-            redirect_to new_user_unit_path
-            return
-            # render json: {msg: "Sorry, you don't have enough resources",bought: false}
-          end
-          # binding.pry
-          if stuctures[choice].exchange * 10 <= user_stuctures
-            user_minus = user_resources.find_by(resource_id: stuctures[choice].id)
-            user_minus.amount -= stuctures[choice].exchange * 10
-            user_minus.save!
-
-            flash[:alert] = "Successfully bought 10 Gems!"
-            redirect_to new_user_unit_path
-            # render json: {msg: "Successfully bought 10 Gems!",bought: true}
-          else
-            redirect_to new_user_session_path
-            # render json: {msg: "Please log in!",bought: false}
-          end
-        end
-      end
-
-      def buystructures
-        if !current_user.nil?
+      if structure.nil?
+        render json: {msg: 'error dosent exist'}
+      else
+        if buystructures(structure)
+          render json: {structure: structure, ok: true}
         else
-          render json: {msg: "Please log in!"}
+          render json: {ok: false}
         end
       end
+    end
+  end
 
-
-      def idtoname
-        barrack = Structure.find_by(name: 'barrack')
-        wheel = Structure.find_by(name: 'wheel')
-        wall = Structure.find_by(name: 'wall')
-        boat = Structure.find_by(name: 'boat')
-        return {barrack: barrack, wheel: wheel, wall: wall, boat: boat}
+  def buystructures(structure)
+    bool = true
+    resources = current_user.user_resources
+    structures = current_user.user_structures
+    structure.attributes.each do |attr_name, attr_value|
+      if attr_name == 'water' || attr_name == 'wood'  ||  attr_name == 'gold' || attr_name == 'iron'
+        user_amount = resources.find_by(resource_id: Resource.find_by(name: attr_name).id).amount
+        bool = false if !(user_amount >= attr_value)
       end
+    end
+    if structures.where(structure_id: structure.id)
+      structures.find_by(structure_id: structure.id).amount += 1
+      structures.find_by(structure_id: structure_id).save!
+    else
+      structures.create!(structure_id: structure.id, amount: 1, placed: 0)
+    end
+    bool
   end
 end
+
+
+

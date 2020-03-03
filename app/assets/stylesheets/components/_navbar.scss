@@ -12,11 +12,14 @@
 }
 
 .res-bar {
+  background: linear-gradient(
+      #402e25, #7b5638
+    );
   justify-content: center;
   display: flex;
   width:100%;
-  margin-top: 45px;
-  margin-right: 10px;
+  position: absolute;
+  bottom: 0px;
   div {
     height: 65px;
     width: 65px;

@@ -94,145 +94,152 @@
   </div>
 
   <div class="tab-pane fade" id="structures" role="tabpanel">
-    <div class="structures">
-      <div class="structure-cards">
-        <div class="structure-card-item">
-          <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
-          <div class="structure-card-item-infos">
-            <div class="structure-card-row">
-              <div class="structure-card-flex-item">
+      <div class="structures">
+        <%= form_tag structures_buy_path do %>
+        <div class="first-row-structure">
+          <div class="structure-barrack structure-selector" data-structure="Barracks">
+            <a href="#" class="structure-selector" data-structure="barrack"></a>
+            <div class="card-structure">
+              <div class='p-2'>
+                <img src="<%= asset_path( 'Barrack.png' ) %>" height="160px" width="160px" />
+              </div>
+
+
+              <div class="card-structure-infos">
                 <h2>Barrack</h2>
-              </div>
-              <div class="structure-card-flex-item">
-                <div class="resource-price-bar">
-                  <div class="resource-price">
+                <div class="structure-resource-price-bar">
+                   <div class="structure-resource-price">
                     <p>20</p>
                     <img src="<%= asset_path( 'gold_new.svg' ) %>" height="24px" width="16px" />
                   </div>
-                  <div class="resource-price">
+                  <div class="structure-resource-price">
                     <p>20</p>
                     <img src="<%= asset_path( 'wood_new.svg' ) %>" height="24px" width="16px" />
                   </div>
-                  <div class="resource-price">
+                  <div class="structure-resource-price">
                     <p>20</p>
                     <img src="<%= asset_path( 'iron_new.svg' ) %>" height="24px" width="16px" />
                   </div>
-                  <div class="resource-price">
+                  <div class="structure-resource-price">
                     <p>20</p>
                     <img src="<%= asset_path( 'water_new.svg' ) %>" height="24px" width="16px" />
                   </div>
                 </div>
               </div>
-              <div class="structure-card-flex-item">
-                <a class="structure-buy-btn" href="#" id="barrack" data-structure="barrack" >Buy Now!</a>
+            </div>
+
+
+          </div>
+          <div class="structure-boat structure-selector" data-structure="Boat">
+             <div class="card-structure">
+              <div class='p-2'>
+                <img src="<%= asset_path( 'boat.png' ) %>" height="160px" width="160px" />
+              </div>
+
+
+              <div class="card-structure-infos">
+                <h2>Boat</h2>
+                <div class="structure-resource-price-bar">
+                   <div class="structure-resource-price">
+                    <p>20</p>
+                    <img src="<%= asset_path( 'gold_new.svg' ) %>" height="24px" width="16px" />
+                  </div>
+                  <div class="structure-resource-price">
+                    <p>20</p>
+                    <img src="<%= asset_path( 'wood_new.svg' ) %>" height="24px" width="16px" />
+                  </div>
+                  <div class="structure-resource-price">
+                    <p>20</p>
+                    <img src="<%= asset_path( 'iron_new.svg' ) %>" height="24px" width="16px" />
+                  </div>
+                  <div class="structure-resource-price">
+                    <p>20</p>
+                    <img src="<%= asset_path( 'water_new.svg' ) %>" height="24px" width="16px" />
+                  </div>
+                </div>
               </div>
             </div>
+
+          </div>
+        </div>
+        <div class="second-row-structure">
+          <div class="structure-medic structure-selector" data-structure="Medic">
+             <div class="card-structure">
+              <div class='p-2'>
+                <img src="<%= asset_path( 'House1.png' ) %>" height="160px" width="160px" />
+              </div>
+
+
+              <div class="card-structure-infos">
+                <h2>Medical Center</h2>
+                <div class="structure-resource-price-bar">
+                   <div class="structure-resource-price">
+                    <p>20</p>
+                    <img src="<%= asset_path( 'gold_new.svg' ) %>" height="24px" width="16px" />
+                  </div>
+                  <div class="structure-resource-price">
+                    <p>20</p>
+                    <img src="<%= asset_path( 'wood_new.svg' ) %>" height="24px" width="16px" />
+                  </div>
+                  <div class="structure-resource-price">
+                    <p>20</p>
+                    <img src="<%= asset_path( 'iron_new.svg' ) %>" height="24px" width="16px" />
+                  </div>
+                  <div class="structure-resource-price">
+                    <p>20</p>
+                    <img src="<%= asset_path( 'water_new.svg' ) %>" height="24px" width="16px" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <div class="structure-wheel structure-selector" data-structure="Wheel">
+             <div class="card-structure">
+              <div class='p-2'>
+                <img src="<%= asset_path( 'House2.png' ) %>" height="160px" width="160px" />
+              </div>
+
+
+              <div class="card-structure-infos">
+                <h2>Water Well</h2>
+                <div class="structure-resource-price-bar">
+                   <div class="structure-resource-price">
+                    <p>20</p>
+                    <img src="<%= asset_path( 'gold_new.svg' ) %>" height="24px" width="16px" />
+                  </div>
+                  <div class="structure-resource-price">
+                    <p>20</p>
+                    <img src="<%= asset_path( 'wood_new.svg' ) %>" height="24px" width="16px" />
+                  </div>
+                  <div class="structure-resource-price">
+                    <p>20</p>
+                    <img src="<%= asset_path( 'iron_new.svg' ) %>" height="24px" width="16px" />
+                  </div>
+                  <div class="structure-resource-price">
+                    <p>20</p>
+                    <img src="<%= asset_path( 'water_new.svg' ) %>" height="24px" width="16px" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
 
-        <div class="structure-card-item">
-          <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
-          <div class="structure-card-item-infos">
-            <div class="structure-card-row">
-              <div class="structure-card-flex-item">
-                <h2>Wheel</h2>
-              </div>
-              <div class="structure-card-flex-item">
-                <div class="resource-price-bar">
-                  <div class="resource-price">
-                    <p>20</p>
-                    <img src="<%= asset_path( 'gold_new.svg' ) %>" height="24px" width="16px" />
-                  </div>
-                  <div class="resource-price">
-                    <p>20</p>
-                    <img src="<%= asset_path( 'wood_new.svg' ) %>" height="24px" width="16px" />
-                  </div>
-                  <div class="resource-price">
-                    <p>20</p>
-                    <img src="<%= asset_path( 'iron_new.svg' ) %>" height="24px" width="16px" />
-                  </div>
-                  <div class="resource-price">
-                    <p>20</p>
-                    <img src="<%= asset_path( 'water_new.svg' ) %>" height="24px" width="16px" />
-                  </div>
-                </div>
-              </div>
-              <div class="structure-card-flex-item">
-                <a class="structure-buy-btn" href="#" id="wheel" data-structure="wheel" >Buy Now!</a>
-              </div>
-            </div>
-          </div>
+        <div class="buy-bar">
+          <%= hidden_field_tag 'structure', :structure %>
+          <%= button_tag(type: "submit", class: "exchange-btn") do %>
+              Buy Now
+          <% end %>
+        <% end %>
         </div>
-        <div class="structure-card-item">
-          <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
-          <div class="structure-card-item-infos">
-           <div class="structure-card-row">
-             <div class="structure-card-flex-item">
-               <h2>Boat</h2>
-             </div>
-             <div class="structure-card-flex-item">
-               <div class="resource-price-bar">
-                   <div class="resource-price">
-                    <p>20</p>
-                    <img src="<%= asset_path( 'gold_new.svg' ) %>" height="24px" width="16px" />
-                  </div>
-                  <div class="resource-price">
-                    <p>20</p>
-                    <img src="<%= asset_path( 'wood_new.svg' ) %>" height="24px" width="16px" />
-                  </div>
-                  <div class="resource-price">
-                    <p>20</p>
-                    <img src="<%= asset_path( 'iron_new.svg' ) %>" height="24px" width="16px" />
-                  </div>
-                  <div class="resource-price">
-                    <p>20</p>
-                    <img src="<%= asset_path( 'water_new.svg' ) %>" height="24px" width="16px" />
-                  </div>
-               </div>
-             </div>
-             <div class="structure-card-flex-item">
-               <a class="structure-buy-btn" href="#" id="boat" data-structure="boat" >Buy Now!</a>
-             </div>
-           </div>
-          </div>
-        </div>
-        <div class="structure-card-item">
-          <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
-          <div class="structure-card-item-infos">
-            <div class="structure-card-row">
-              <div class="structure-card-flex-item">
-                <h2>Wall</h2>
-              </div>
-              <div class="structure-card-flex-item">
-                <div class="resource-price-bar">
-                   <div class="resource-price">
-                    <p>20</p>
-                    <img src="<%= asset_path( 'gold_new.svg' ) %>" height="24px" width="16px" />
-                  </div>
-                  <div class="resource-price">
-                    <p>20</p>
-                    <img src="<%= asset_path( 'wood_new.svg' ) %>" height="24px" width="16px" />
-                  </div>
-                  <div class="resource-price">
-                    <p>20</p>
-                    <img src="<%= asset_path( 'iron_new.svg' ) %>" height="24px" width="16px" />
-                  </div>
-                  <div class="resource-price">
-                    <p>20</p>
-                    <img src="<%= asset_path( 'water_new.svg' ) %>" height="24px" width="16px" />
-                  </div>
-                </div>
-              </div>
-              <div class="structure-card-flex-item">
-                <a class="structure-buy-btn" href="#" id="wall" data-structure="wall" >Buy Now!</a>
-              </div>
-            </div>
-        </div>
+
       </div>
-    </div>
-
-
   </div>
+
+
 </div>
 <div class="bar-container" style="background-color: black">
   <div class="bd-highlight res-bar">
@@ -265,3 +272,74 @@
    </div>
  </div>
 
+<!--
+ <div class="tab-pane fade" id="structures" role="tabpanel">
+    <div class="structures">
+      <%= form_tag structures_buy_path do %>
+      <div class="first-row-structure">
+        <div class="structure-barrack">
+          <a href="#" class="structure-selector" data-structure="barrack"></a>
+          <div class="card-trip-structure">
+            <img src="https://image.flaticon.com/icons/svg/395/395005.svg" />
+
+
+            <div class="card-trip-infos">
+            <h2>Wood</h2>
+            </div>
+          </div>
+
+
+        </div>
+        <div class="structure-boat">
+          <a href="#" class="structure-selector" data-structure="boat"></a>
+          <div class="card-trip-structure">
+            <img src="https://image.flaticon.com/icons/svg/395/395005.svg" />
+
+            <div class="card-trip-infos">
+            <h2>Wood</h2>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="second-row-structure">
+        <div class="structure-medic">
+          <a href="#" class="structure-selector" data-structure="medic"></a>
+          <div class="card-trip-structure">
+            <img src="https://image.flaticon.com/icons/svg/395/395005.svg" />
+
+            <div class="card-trip-infos">
+            <h2>Wood</h2>
+            </div>
+          </div>
+
+
+        </div>
+        <div class="structure-wheel">
+          <a href="#" class="structure-selector" data-structure="wheel"></a>
+          <div class="card-trip-structure">
+            <img src="https://image.flaticon.com/icons/svg/395/395005.svg" />
+
+            <div class="card-trip-infos">
+            <h2>Wood</h2>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+      <%= hidden_field_tag 'material', :wood %>
+      <%= button_tag(type: "submit", class: "structure-btn") do %>
+          Exchange <i class="fas fa-exchange-alt"></i>
+      <% end %>
+    <% end %>
+    </div>
+</div> -->
+
+
+<!-- <div class = 'btn-base'>
+  <a href="<%= games_main_path %>">
+  </a>
+</div>
+ -->
