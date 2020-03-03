@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :user_resources
   has_many :cache_resources
   has_many :user_units
+  has_many :user_structures
   validates :nickname, uniqueness: true
 
   def generate_random_resource

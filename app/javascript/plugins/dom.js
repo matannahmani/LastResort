@@ -3,7 +3,7 @@ let switchBTN = document.querySelector('#switch');
 let mapbox = document.querySelector('.mapboxgl-map');
 let gamemap = document.querySelectorAll('canvas');
 let gamemap1 = document.querySelectorAll('.mapboxgl-canvas');
-let ismap = false;
+let ismap = true;
 setTimeout(function(){
     gamemap = document.querySelectorAll('canvas');
     gamemap[1].style.position = 'absolute';
