@@ -39,7 +39,6 @@ class UserUnitsController < ApplicationController
   end
 
   def new
-    @resources = Structure.all
   end
 
   private
