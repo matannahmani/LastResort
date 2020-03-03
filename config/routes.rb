@@ -11,6 +11,6 @@ Rails.application.routes.draw do
   get 'base/checkupdate', to: "games#getupdate"
   patch 'base', to: "games#update"
   post 'games/extract', to: "extracts#pick_up"
-  # get 'games/null', to: "games#null"
+  post 'inventory/exchange', to: "user_resources#exchange"
   get 'story', to: "stories#show"
 end
