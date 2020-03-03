@@ -9,7 +9,10 @@
     "jquery": "^3.4.1",
     "mapbox": "^1.0.0-beta10",
     "mapbox-gl": "^1.8.0",
+    "npm": "^6.14.1",
+    "phaser3-rex-plugins": "^1.1.8",
     "popper.js": "^1.16.1",
+    "sweetalert": "^2.1.2",
     "typed.js": "^2.0.11"
   },
   "devDependencies": {

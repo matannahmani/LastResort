@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_26_101628) do
+ActiveRecord::Schema.define(version: 2020_03_02_095005) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 2020_02_26_101628) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "amount"
+    t.string "image_url"
     t.index ["resource_id"], name: "index_cache_resources_on_resource_id"
     t.index ["user_id"], name: "index_cache_resources_on_user_id"
   end
@@ -54,6 +55,7 @@ ActiveRecord::Schema.define(version: 2020_02_26_101628) do
     t.integer "exchange"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image_url"
   end
 
   create_table "structures", force: :cascade do |t|
@@ -91,6 +93,17 @@ ActiveRecord::Schema.define(version: 2020_02_26_101628) do
     t.index ["user_id"], name: "index_user_resources_on_user_id"
   end
 
+  create_table "user_structures", force: :cascade do |t|
+    t.integer "amount"
+    t.integer "placed"
+    t.bigint "structure_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["structure_id"], name: "index_user_structures_on_structure_id"
+    t.index ["user_id"], name: "index_user_structures_on_user_id"
+  end
+
   create_table "user_units", force: :cascade do |t|
     t.bigint "unit_id"
     t.bigint "user_id"
@@ -110,7 +123,7 @@ ActiveRecord::Schema.define(version: 2020_02_26_101628) do
     t.datetime "updated_at", null: false
     t.string "nickname"
     t.integer "gems", default: 0
-    t.json "base"
+    t.string "base", default: [], array: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -120,6 +133,8 @@ ActiveRecord::Schema.define(version: 2020_02_26_101628) do
   add_foreign_key "cache_resources", "users"
   add_foreign_key "user_resources", "resources"
   add_foreign_key "user_resources", "users"
+  add_foreign_key "user_structures", "structures"
+  add_foreign_key "user_structures", "users"
   add_foreign_key "user_units", "units"
   add_foreign_key "user_units", "users"
 end

@@ -1,4 +1,6 @@
 import mapboxgl from 'mapbox-gl';
+import { initSweetalert } from '../plugins/init_sweetalert';
+
 let allmarkers = []
 let map;
 let newMarker;
@@ -6,25 +8,25 @@ let markersToShow;
     function cleaner(markers) {
     if (markers.length > 0 ) {
       markers.forEach(marker => {
-        // if (marker["_update"]!==null) {
-
           marker.remove();
-        // }
       })
-      // for (var i = markers.length - 1; i >= 0; i--) {
-      //   markers[i].remove();
-      // }
     }
   }
 const fitMapToMarkers = (map, markers) => {
   const bounds = new mapboxgl.LngLatBounds();
   markers.forEach(marker => {
     bounds.extend([ marker.longitude, marker.latitude ])
-    // allmarkers.push(marker);
-    // console.log(markers);
   });
   map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 });
 };
+
+const createCustomMarkers = (element, marker) => {
+  element.className = 'marker';
+  element.style.backgroundImage = `url('${marker.image_url}')`;
+  element.style.backgroundSize = 'contain';
+  element.style.width = '25px';
+  element.style.height = '25px';
+}
 
 const initMapbox = () => {
   const mapElement = document.getElementById('map');
@@ -104,26 +106,30 @@ const initMapbox = () => {
 
     // const markerCreator = () => {
     // }
-      const markers = JSON.parse(mapElement.dataset.markers);
-      markers.forEach((marker) => {
-      newMarker = new mapboxgl.Marker()
+
+    const markers = JSON.parse(mapElement.dataset.markers);
+    markers.forEach((marker) => {
+      const element = document.createElement('div');
+      createCustomMarkers(element, marker)
+      newMarker = new mapboxgl.Marker(element)
         .setLngLat([ marker.longitude, marker.latitude ])
         .addTo(map);
         if (marker)
       allmarkers.push(newMarker)
-      });
+    });
 
 
-      fitMapToMarkers(map, markers);
+    fitMapToMarkers(map, markers);
 
 
-    const extractHTML = "<a href=''>Extract</a>"
+    const extractHTML = "<button id='btn-extract-resource' class=''>Extract</button>"
 
     class MyCustomControl {
+
       onAdd(map){
         this.map = map;
         this.container = document.createElement('div');
-        this.container.className = 'my-custom-control mapboxgl-ctrl';
+        this.container.className = 'extract-button mapboxgl-ctrl';
         this.container.innerHTML = extractHTML;
         return this.container;
       }
@@ -140,48 +146,21 @@ const initMapbox = () => {
 
 
 
-    const buttonDiv = document.querySelector('.my-custom-control')
+    const buttonDiv = document.querySelector('.extract-button')
     buttonDiv.addEventListener('click', (event) => {
       event.preventDefault()
       navigator.geolocation.getCurrentPosition(function(position) {
         let lat = position.coords.latitude;
         let lng = position.coords.longitude;
 
-        postData('extract', {latitude: lat, longitude: lng })
-          // .then((data) => {
-          //   console.log(data); // JSON data parsed by `response.json()` call
-          //     fetch('extract')
-          // .then((response) => {
-          //   return response.json();
-          //   console.log(response);
-          // })
-          // .then((cache_resources) => {
-          //   console.log(cache_resources);
-          //   // console.log(markers);
-          //   // console.log('test');
-          //   // console.log(allmarkers);
-          //   cleaner(allmarkers);
-          //     // debugger;
-          //   cache_resources.forEach((resource) => {
-          //   if resource.longitude && resource.latitude
-          //   console.log(resource)
-          //   newMarker = new mapboxgl.Marker()
-          //     .setLngLat([ resource.longitude, resource.latitude ])
-          //     .addTo(map);
-          //   markersToShow.push(newMarker);
-          //   });
-          //   fitMapToMarkers(map, cache_resources);
-          // })
-          // });
-
-      // postData('extract', {latitude: lat, longitude: lng})
-      //   .then((data) => {
-      // get
+        postData('extract', {latitude: lat, longitude: lng });
 
 
       });
-      async function postData(url , data ) {
+     const postData = async (url , data ) => {
         // Default options are marked with *
+        let answer = null;
+
         const response = await fetch(url, {
           method: 'POST', // *GET, POST, PUT, DELETE, etc.
           mode: 'cors', // no-cors, *cors, same-origin
@@ -194,13 +173,49 @@ const initMapbox = () => {
           redirect: 'follow', // manual, *follow, error
           referrerPolicy: 'no-referrer', // no-referrer, *client
           body: JSON.stringify(data) // body data type must match "Content-Type" header
+        }).then((response) => {
+             response.json().then((data) => {
+              console.log(data.allResources)
+              console.log(data.pickedResources)
+              cleaner(allmarkers);
+              data.allResources.forEach((resource) => {
+                const element = document.createElement('div');
+                createCustomMarkers(element, resource)
+                newMarker = new mapboxgl.Marker(element)
+                  .setLngLat([ resource.longitude, resource.latitude ])
+                  .addTo(map);
+              });
+              fitMapToMarkers(map, data.allResources);
+              if (data.pickedResources.length === 0) {
+                initSweetalert('#map', 'btn-extract-resource', {
+                          title: "Get closer!",
+                            text: `You're not close enough to any resource.`,
+                            icon: "error"
+                          }, (value) => {
+                            console.log(data)
+                          });
+
+              } else {
+                initSweetalert('#map', 'btn-extract-resource', {
+                          title: "Extracted!",
+                            text: `${data.pickedResources[0].resource.amount} ${data.pickedResources[0].resource_name} units have been added to your inventory.`,
+                            icon: "success"
+                          }, (value) => {
+                            console.log(data)
+                          });
+              }
+
+            }).catch((err) => {
+                console.log(err);
+            })
         });
-        return await response.json(); // parses JSON response into native JavaScript objects
       }
 
     });
 
   }
 };
+
+
 
 export {initMapbox}
