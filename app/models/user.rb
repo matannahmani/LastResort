@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  after_create :generate_random_resource
+  after_create :generate_random_resource, :generate_structures
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :user_resources
@@ -27,4 +27,6 @@ class User < ApplicationRecord
       )
     end
   end
+
+
 end
