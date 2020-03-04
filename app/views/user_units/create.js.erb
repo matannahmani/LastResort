@@ -21,7 +21,7 @@ document.querySelector('[data-resource="gold"]').dataset.amountt = "<%= @resourc
     <% names += " and #{@units.count - 2} other soldiers" %>
     swal({
       title: "Congratulations!",
-      text: "<%= @names %> have joined your army.",
+      text: "<%= names %> have joined your army.",
       icon: "success"
     })
   <% else %>
