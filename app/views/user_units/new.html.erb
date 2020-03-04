@@ -198,7 +198,7 @@
                 <h2>Barrack</h2>
                 <div class="structure-resource-price-bar">
                    <div class="structure-resource-price">
-                    <p>20</p>
+                    <p>40</p>
                     <img src="<%= asset_path( 'gold_new.svg' ) %>" height="24px" width="16px" />
                   </div>
                   <div class="structure-resource-price">
@@ -206,7 +206,7 @@
                     <img src="<%= asset_path( 'wood_new.svg' ) %>" height="24px" width="16px" />
                   </div>
                   <div class="structure-resource-price">
-                    <p>20</p>
+                    <p>10</p>
                     <img src="<%= asset_path( 'iron_new.svg' ) %>" height="24px" width="16px" />
                   </div>
                   <div class="structure-resource-price">
@@ -230,19 +230,19 @@
                 <h2>Boat</h2>
                 <div class="structure-resource-price-bar">
                    <div class="structure-resource-price">
-                    <p>20</p>
+                    <p>40</p>
                     <img src="<%= asset_path( 'gold_new.svg' ) %>" height="24px" width="16px" />
                   </div>
                   <div class="structure-resource-price">
-                    <p>20</p>
+                    <p>10</p>
                     <img src="<%= asset_path( 'wood_new.svg' ) %>" height="24px" width="16px" />
                   </div>
                   <div class="structure-resource-price">
-                    <p>20</p>
+                    <p>0</p>
                     <img src="<%= asset_path( 'iron_new.svg' ) %>" height="24px" width="16px" />
                   </div>
                   <div class="structure-resource-price">
-                    <p>20</p>
+                    <p>0</p>
                     <img src="<%= asset_path( 'water_new.svg' ) %>" height="24px" width="16px" />
                   </div>
                 </div>
@@ -263,15 +263,15 @@
                 <h2>Medical Center</h2>
                 <div class="structure-resource-price-bar">
                    <div class="structure-resource-price">
-                    <p>20</p>
+                    <p>40</p>
                     <img src="<%= asset_path( 'gold_new.svg' ) %>" height="24px" width="16px" />
                   </div>
                   <div class="structure-resource-price">
-                    <p>20</p>
+                    <p>80</p>
                     <img src="<%= asset_path( 'wood_new.svg' ) %>" height="24px" width="16px" />
                   </div>
                   <div class="structure-resource-price">
-                    <p>20</p>
+                    <p>40</p>
                     <img src="<%= asset_path( 'iron_new.svg' ) %>" height="24px" width="16px" />
                   </div>
                   <div class="structure-resource-price">
@@ -295,7 +295,7 @@
                 <h2>Water Well</h2>
                 <div class="structure-resource-price-bar">
                    <div class="structure-resource-price">
-                    <p>20</p>
+                    <p>40</p>
                     <img src="<%= asset_path( 'gold_new.svg' ) %>" height="24px" width="16px" />
                   </div>
                   <div class="structure-resource-price">
@@ -303,7 +303,7 @@
                     <img src="<%= asset_path( 'wood_new.svg' ) %>" height="24px" width="16px" />
                   </div>
                   <div class="structure-resource-price">
-                    <p>20</p>
+                    <p>0</p>
                     <img src="<%= asset_path( 'iron_new.svg' ) %>" height="24px" width="16px" />
                   </div>
                   <div class="structure-resource-price">
@@ -319,7 +319,7 @@
 
         <div class="buy-bar mt-4">
           <%= hidden_field_tag 'structure', :structure %>
-          <%= button_tag(type: "submit", class: "exchange-btn") do %>
+          <%= button_tag(type: "submit", class: "exchange-btn", id: "bought-structure") do %>
               Buy Now
           <% end %>
         <% end %>
