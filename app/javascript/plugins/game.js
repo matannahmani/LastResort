@@ -2,12 +2,14 @@ const config = {
   type: Phaser.WEBGL,
   width: 375,
   height: 812,
+  scale: {
+    mode: Phaser.Scale.RESIZE,
+  },
   parent  : 'phaser-app',
   scene: {
     preload: preload,
     create: create,
     update: update,
-
   }
 }
 function preload() {
@@ -34,11 +36,12 @@ function create() {
 
       const tiles = map.addTilesetImage('16x16s', 'tiles');
 
-      const layer1 = map.createStaticLayer(0, tiles);
+      water = map.createStaticLayer(0, tiles);
+      const layer2 = map.createStaticLayer(1, tiles);
 
-      layer2 = map.createStaticLayer(1, tiles);
+      const shore = map.createStaticLayer(2, tiles);
 
-      layer3 = map.createDynamicLayer(2, tiles);
+      layer3 = map.createDynamicLayer(3, tiles);
 
       // Loading base , setting camera , setting up drag screen
       isplacing = [false]
@@ -48,13 +51,13 @@ function create() {
       buttons = this.rexUI.add.buttons({
           anchor: {
               left: 'left+10',
-              centerY: 'bottom-20'
+              centerY: 'bottom-100'
           },
 
           orientation: 'x',
           buttons: [
             createButton(this, 'Barracks'),
-            createButton(this, 'Wall'),
+            createButton(this, 'Medic'),
             createButton(this, 'Boat'),
             createButton(this, 'Weel')
           ],
@@ -66,9 +69,9 @@ function create() {
       buttons.scrollFactorY = 0;
       buttons
           .on('button.click', function (button, index, pointer, event) {
-            placeables.forEach((item) =>{
+            placeables.forEach((item,index) =>{
               if (item[1] === button.text && item[2] !== 0){
-                isplacing = [true,item[1],item[2]];
+                isplacing = [true,item[1],item[2],index];
                 item[2] -= 1;
               }
             });
@@ -77,7 +80,7 @@ function create() {
       buttons.forEachButtton((x,index) => {buttons.hideButton(index)});
       var cam = this.cameras.main;
       cam.centerToSize();
-      cam.setBounds(0, 0, layer1.width, layer1.height);
+      cam.setBounds(0, 0, water.width, water.height);
 
       var dragScale = this.plugins.get('rexpinchplugin').add(this); // SETTING UP DRAG SCREEN
       dragScale
@@ -114,7 +117,7 @@ function update() {
   buttons.forEachButtton((x,index) => {buttons.hideButton(index)});
   placeables.forEach((item,index) => {
     if (item[1] === 'Barracks' && item[2] > 0) buttons.showButton(0);
-    if (item[1] === 'Wall' && item[2] > 0) buttons.showButton(1);
+    if (item[1] === 'Medic' && item[2] > 0) buttons.showButton(1);
     if (item[1] === 'Boat' && item[2] > 0) buttons.showButton(2);
     if (item[1] === 'Weel' && item[2] > 0) buttons.showButton(3);
     buttons.layout();
@@ -125,18 +128,24 @@ function update() {
     // Draw tiles (only within the groundLayer)
     if (this.input.manager.activePointer.isDown) { // check if screen is clicked
       tilePoint = layer3.worldToTileXY(worldPoint.x,worldPoint.y); // get tile grid x + y
-
       // for (let i =0;i< )
-      if (layer2.hasTileAtWorldXY(worldPoint.x, worldPoint.y) === false && layer3.hasTileAtWorldXY(worldPoint.x, worldPoint.y) === false) // check if has tile placed
+      let buildarr = buildings_type[isplacing[1]]
+      let placex = tilePoint.x - Math.round((buildarr[0].length / 3))
+      let placey = tilePoint.y - Math.round((buildarr.length / 3))
+      if (ifhasTilehelp([placex,placey],buildarr.length,buildarr[0].length) === false) // check if has tile placed
       {
       // debugger
-      layer3.putTilesAt(buildings_type[isplacing[1]],tilePoint.x - 2,tilePoint.y - 3);
-      let draw = `layer3.putTilesAt(buildings_type['${isplacing[1]}'],${tilePoint.x - 2},${tilePoint.y - 3});`
+      layer3.putTilesAt(buildings_type[isplacing[1]],placex,placey);
+      let draw = `layer3.putTilesAt(buildings_type['${isplacing[1]}'],${placex},${placey});`
       isplacing[0] = false;
       isplacing[2] -= 1;
       updateBase({base: draw,name: isplacing[1]}); // send the dra+w command to the server
       }
+      else{
+        isplacing[0] = false;
+        placeables[isplacing[3]][2] += 1;
     }
+   }
   }
 }
 
@@ -165,26 +174,24 @@ function resizeApp ()
   canvas.style.height = height + 'px';
 }
 
-// function ifhasTile(type){
+// function ifhasTile(type,cords){
 //   switch (type) {
 //     case 'Barracks':
-
+//     return ifhasTilehelp(cords,6,6);
 //       break;
-//     default:
-//       // statements_def
+//     case 'Medic':
+//       return layer3.hasTileAt(cords[0],cords[1]);
 //       break;
 //   }
 // }
 
-//   function ifhasTilehelp(height,width){
-//     let bool = false;
-//     for(let i=0, i < height, i++ ){
-//       for(let j=0, j < width, j++ ){
-//         bool = layer3.hastile
-//         }
-//       }
-//     }
-
+  function ifhasTilehelp(cords,height,width){
+    let bool = false;
+    for(let i=0;i< height;i++)
+      for(let j=0;j< width;j++)
+        if (layer3.hasTileAt(cords[0]+j,cords[1]+i) || water.hasTileAt(cords[0]+j,cords[1]+i)) return true;
+      return false
+    }
  // Fetching user buildings commands, then drawing
 
 function loadBase() {
@@ -232,17 +239,21 @@ function updateBase(data) {
       referrerPolicy: 'no-referrer', // no-referrer, *client
       body: JSON.stringify(data) // body data type must match "Content-Type" header
     }).then((response) => {
-
-    return response.json(); // parses JSON response into native JavaScript objects
+    return response.json().then((data) => {
+      if(data['error'] == '501')
+        location.reload();
+    }) // parses JSON response into native JavaScript objects
   });
 }
 
 function buildingList() {
   const buildings_type = {} // 0 = barracks , 1 = wall , 2 = boat , 3 = weel
   buildings_type['Barracks'] = [[18509,18510,18511,18512,0],[18649,18650,18651,18652,0],[18789,18790,18791,18792,0],[18929,18930,18931,18932,0],[19069,19070,19071,19072,0],[19209,19210,19211,19212,0]];
-  buildings_type['Wall'] = [8474]; // wall
+  buildings_type['Medic'] = [[16005,16006,16007,16008,16009,16010],[16145,16146,16147,16148,16149,16150],[16285,16286,16287,16288,16289,16290],[16425,16426,16427,16428,16429,16430],[16565,16566,16567,16568,16569,16570],[16705,16706,16707,16708,16709,16710],[16845,16846,16847,16848,16849,16850],[16985,16986,16987,16988,16989,16990]]; // wall
   buildings_type['Boat'] = [[0,0,0,8655,8656,8657,0,0],[8792,8793,8794,8795,8796,8797,8798,8799],[0,8933,8934,8935,8936,8937,8938,8939],[0,0,9074,9075,9076,9077,9078,9079]]
-  buildings_type['Weel'] = [[17389,17390,17391,17392],[17529,17530,17531,17532],[17669,17670,17671,17672],[17809,17810,17811,17812],[17949,17950,17951,17952]]
+  buildings_type['Wheel'] = [[17389,17390,17391,17392],[17529,17530,17531,17532],[17669,17670,17671,17672],[17809,17810,17811,17812],[17949,17950,17951,17952]]
+  // [[],[16004,16005,16006,16007,16008,16009,16010,0],[16144,16145,16146,16147,16148,16149,16150,0],[16284,16285,16286,16287,16288,16289,16290,0],[16424,16425,16426,16427,16428,16429,16430,0],[16564,16565,16566,16567,16568,16569,16570,0],[16704,16705,16706,16707,16708,16709,16710,0],[16844,16845,16846,16847,16848,16849,16850,0],[16984,16985,16986,16987,16988,16989,16990,0]]
+  // [[0,13664,13665,13666,13667,0],[13803,13804,13805,13806,13807,0],[13943,13944,13945,13946,13947,0],[14083,14084,14085,14086,14087,0],[14223,14224,14225,14226,14227,14228],[0,14364,14365,14367,0,0]]
   return buildings_type;
 }
 
