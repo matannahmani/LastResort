@@ -3,6 +3,7 @@ class UserUnitsController < ApplicationController
   TENROLL = 90
   ONEROLL = 10
   def create
+    raise
     if !current_user.nil?
       option = params[:amount].to_i
           if option == 10 || option == 1
@@ -20,7 +21,7 @@ class UserUnitsController < ApplicationController
                   current_user.save!
                 render json: response
               else
-                render json: {error: "not enough gems mising: #{current_user.gems -= TENROLL}"}
+                render json: {error: "not enough gems. missing: #{current_user.gems -= TENROLL}"}
               end
             when 1
               if checkgems(ONEROLL)
@@ -31,7 +32,7 @@ class UserUnitsController < ApplicationController
                   current_user.save!
                 render json: unit.name
               else
-                render json: "not enough gems mising: #{current_user.gems -= ONEROLL}"
+                render json: "not enough gems. missing: #{current_user.gems -= ONEROLL}"
               end
             end
           end

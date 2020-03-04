@@ -20,7 +20,7 @@ User.destroy_all
 bob = Unit.new(
 name: "Cú Chulainn",
 rarity: "s",
-speciality: "lancer",
+speciality: "fighter",
 range: 50,
 hp: 300,
 attack: 60,
@@ -30,7 +30,7 @@ bob.save!
 sue = Unit.new(
 name: "Elizabeth Báthory",
 rarity: "a",
-speciality: "lancer",
+speciality: "fighter",
 range: 35,
 hp: 250,
 attack: 25,
@@ -40,7 +40,7 @@ sue.save!
 tim = Unit.new(
 name: "Musashibō Benkei",
 rarity: "b",
-speciality: "lancer",
+speciality: "fighter",
 range: 35,
 hp: 105,
 attack: 25,
@@ -50,7 +50,7 @@ tim.save!
 al = Unit.new(
 name: "Enkidu",
 rarity: "b",
-speciality: "lancer",
+speciality: "fighter",
 range: 30,
 hp: 100,
 attack: 40,
@@ -70,7 +70,7 @@ kat.save!
 Unit.create(
 name: "Artuhria",
 rarity: "ss",
-speciality: "saber",
+speciality: "figher",
 range: 20,
 hp: 700,
 attack: 120,
