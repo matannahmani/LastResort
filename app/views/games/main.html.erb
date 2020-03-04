@@ -1,12 +1,31 @@
-    <div class="container" style="padding: 0">
-      <button id="switch">Switch</button>
-      <a href="../user_units/new">
-        <img src="https://image.winudf.com/v2/image1/Y29tLkN1dGVHYWNoYS5BbmltZV9pY29uXzE1NjE4MzY4MzlfMDQy/icon.png?w=&fakeurl=1" alt=""
-        style="z-index: 44;position: absolute;bottom: 8px;right: 8px;width: 80px;height: 100px;">
-      </a>
+
+    <div class="container" style="padding: 0 z-index: 60">
+        <button id="switch">Switch</button>
+        <button id="shop" href="../user_units/new">Shop</button>
+      </div>
+    <div class="con" style="padding: 0">
       <div id="map"
         data-markers="<%= @cache_resources.to_json %>"
         data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
       </div>
     </div>
-<div class="phaser-app"></div>
+<!--     <button id="switch">Switch</button>
+ --><div class="phaser-app"></div>
+<div id="phaser-app"></div>
+<div class="dropdown menu">
+  <img src='<%= asset_path('menu.svg') %>'  class="avatar dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" id="switch" href="#">
+      <img class="avatar" src='<%= asset_path('warp.png') %>' alt="">
+      Time Travel
+    </a>
+    <a class="dropdown-item" href="../user_units/new">
+      <img class="avatar" src="<%= asset_path('shop.svg') %>" alt="">
+      Shop
+    </a>
+    <a class="dropdown-item" href="#">
+      <img class="avatar" src="<%= asset_path('sword.svg') %>" alt="">
+      Raid
+    </a>
+  </div>
+</div>

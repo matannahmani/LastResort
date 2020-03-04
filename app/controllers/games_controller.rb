@@ -33,11 +33,17 @@ class GamesController < ApplicationController
       ## here should be checking if has structure
       if !params['base'].nil? && (params['base'].match? (/layer3.putTilesAt\(buildings_type\['.+'\],\d+,\d+\);/))
       structure_id = Structure.find_by(unit_name: params['name']).id
-      user_structure = current_user.user_structures.where(id: structure_id)[0]
-      user_structure.placed += 1
-      user_structure.save!
-      current_user.base << params['base']
-      current_user.save!
+      userstr = current_user.user_structures.where(id: structure_id)[0]
+      if userstr.amount > userstr.placed
+        user_structure = current_user.user_structures.where(id: structure_id)[0]
+        user_structure.placed += 1
+        user_structure.save!
+        current_user.base << params['base']
+        current_user.save!
+        render json: {error: '200'}
+      else
+        render json: {msg: 'you dont have this structure',error: '501'}
+      end
       else
         render json: {msg: 'Invalid data'}
       end
