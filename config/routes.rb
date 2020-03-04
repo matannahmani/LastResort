@@ -13,5 +13,6 @@ Rails.application.routes.draw do
   post 'games/extract', to: "extracts#pick_up"
   post 'inventory/exchange', to: "user_resources#exchange"
   post 'structures/buy', to: "user_structures#build"
+  post 'soldiers/buy', to: "user_units#create"
   get 'story', to: "stories#show"
 end

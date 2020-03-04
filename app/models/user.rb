@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  after_create :generate_random_resource, :generate_structures
+  after_create :generate_random_resource, :generate_user_structures, :generate_user_resources
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :user_resources
@@ -28,15 +28,38 @@ class User < ApplicationRecord
     end
   end
 
-  def generate_structures
-    binding.pry
+  def generate_user_structures
     structure_types = Structure.all
     structure_types.each do |type|
       UserStructure.create!(
         amount: 0,
         user: self,
-        resource: type
+        structure: type
         )
     end
+  end
+
+  def generate_user_resources
+    resources_types = Resource.all
+    resources_types.each do |type|
+      UserResource.create!(
+        amount: 100,
+        resource: type,
+        user: self
+        )
+    end
+  end
+
+  def resources_by_name(name)
+    user_resources.joins(:resource).where('resources.name = ?', name)
+  end
+
+  def resources_amounts
+    {
+      wood: resources_by_name('wood').first.amount,
+      water: resources_by_name('water').first.amount,
+      iron: resources_by_name('iron').first.amount,
+      gold: resources_by_name('gold').first.amount
+    }
   end
 end

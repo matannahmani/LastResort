@@ -5,7 +5,7 @@
     <a class="nav-link active" id="exchange-tab" data-toggle="tab" href="#exchanged" role="tab"><i class="fas fa-exchange-alt fa-2x"></i></a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="dudes-tab" data-toggle="tab" href="#dudes" role="tab"><i class="fas fa-users fa-2x"></i></a>
+    <a class="nav-link" id="soldiers-tab" data-toggle="tab" href="#soldiers" role="tab"><i class="fas fa-users fa-2x"></i></a>
   </li>
   <li class="nav-item">
     <a class="nav-link" id="structures-tab" data-toggle="tab" href="#structures" role="tab"><i class="fas fa-tools fa-2x"></i></a>
@@ -52,7 +52,7 @@
           <div class="second-row-exchange">
 
             <div class="exchange-metal">
-              <a href="#" class="resource-chooser" data-resource="metal" data-amount="100">
+              <a href="#" class="resource-chooser" data-resource="iron" data-amount="100">
                 <div class="card-trip-exchange">
                   <img src="https://image.flaticon.com/icons/svg/605/605702.svg" />
                   <div class="card-trip-infos">
@@ -63,7 +63,7 @@
             </div>
 
             <div class="exchange-gold">
-              <a href="#" class="resource-chooser" data-resource="gold" data-amount="5">
+              <a href="#" class="resource-chooser" data-resource="gold" data-amount="100">
                 <div class="card-trip-exchange">
                   <img src="https://image.flaticon.com/icons/svg/362/362944.svg" />
 
@@ -105,13 +105,10 @@
         </div>
     </div>
   </div>
-  <div class="tab-pane fade" id="dudes" role="tabpanel">
-        <h1>this is the dudes page</h1>
-  </div>
 
   <div class="tab-pane fade" id="structures" role="tabpanel">
       <div class="structures">
-        <%= form_tag structures_buy_path do %>
+        <%= form_tag structures_buy_path, remote: true do %>
         <div class="first-row-structure">
           <div class="structure-barrack structure-selector" data-structure="Barracks">
             <a href="#" class="structure-selector" data-structure="barrack"></a>
@@ -260,28 +257,28 @@
 <div class="bar-container" style="background-color: black">
   <div class="bd-highlight res-bar">
 
-     <div class="d-flex">
-      <p class='white-text'>5</p>
+     <div class="d-flex" id="resources-iron">
+      <p class='white-text'><%= current_user.resources_amounts[:iron] %></p>
      <img src="<%= asset_path( 'iron_new.svg' ) %>" height="32px" width="24px" />
      </div>
 
-     <div class ='d-flex'>
-     <p class='white-text'>5</p>
+     <div class ='d-flex' id="resources-wood">
+     <p class='white-text'><%= current_user.resources_amounts[:wood] %></p>
      <img src="<%= asset_path( 'wood_new.svg' ) %>" height="32px" width="24px" />
      </div>
 
-      <div class ='d-flex'>
-     <p class='white-text'>5</p>
+      <div class ='d-flex' id="resources-water">
+     <p class='white-text'><%= current_user.resources_amounts[:water] %></p>
      <img src="<%= asset_path( 'water_new.svg' ) %>" height="32px" width="24px" />
      </div>
 
-      <div class ='d-flex'>
-     <p class='white-text'>5</p>
+      <div class ='d-flex' id="resources-gold">
+     <p class='white-text'><%= current_user.resources_amounts[:gold] %></p>
      <img src="<%= asset_path( 'gold_new.svg' ) %>" height="40px" width="32px" />
      </div>
 
-      <div class ='d-flex'>
-     <p class='white-text'>5</p>
+      <div class ='d-flex' id="resources-gems">
+     <p class='white-text'><%= current_user.gems %></p>
      <img src="<%= asset_path( 'gem.png' ) %>" height="40px" width="32px" />
      </div>
 
