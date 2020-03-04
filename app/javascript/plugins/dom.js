@@ -1,6 +1,6 @@
 window.onload = function() {
 let switchBTN = document.querySelector('#switch');
-let shopBTH = document.querySelector('#shop')
+// let shopBTH = document.querySelector('#shop')
 let mapbox = document.querySelector('.mapboxgl-map');
 let gamemap = document.querySelectorAll('canvas');
 let gamemap1 = document.querySelectorAll('.mapboxgl-canvas');
