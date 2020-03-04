@@ -10,9 +10,10 @@ puts "here are some seeds"
 
 CacheResource.destroy_all
 UserResource.destroy_all
-User.destroy_all
 Resource.destroy_all
+UserUnit.destroy_all
 Unit.destroy_all
+User.destroy_all
 
 bob = Unit.new(
 name: "Cú Chulainn",
