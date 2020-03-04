@@ -115,7 +115,7 @@
       <%= form_tag soldiers_buy_path, remote: true do %>
        <p>Trade in Gems to gain more units!</p>
        <div class="first-row-soldier">
-         <div class="one-fighter soldier-selector" data-amount="1">
+         <div class="one-fighter soldier-selector" data-soldiers="1">
              <div class="card-trip-soldier">
                <img src="<%= asset_path( 'knight.svg' ) %>" height="160px" width="160px" />
                <div class="card-trip-infos">
@@ -128,7 +128,7 @@
              </div>
           </div>
 
-        <div class="ten-fighters soldier-selector" data-amount="10">
+        <div class="ten-fighters soldier-selector" data-soldiers="10">
            <div class="card-trip-soldier">
             <img src="<%= asset_path( 'knight.svg' ) %>" height="160px" width="160px" />
 
@@ -145,7 +145,7 @@
 
      <div class="second-row-soldier">
 
-       <div class="one-fighter soldier-selector" data-amount="1">
+       <div class="one-fighter soldier-selector" data-soldiers="1">
            <div class="card-trip-soldier">
              <img src="<%= asset_path( 'wizard.svg' ) %>" height="160px" width="160px" />
              <div class="card-trip-infos">
@@ -158,7 +158,7 @@
            </div>
        </div>
 
-       <div class="ten-fighters soldier-selector" data-amount="10">
+       <div class="ten-fighters soldier-selector" data-soldiers="10">
            <div class="card-trip-soldier">
              <img src="<%= asset_path( 'wizard.svg' ) %>" height="160px" width="160px" />
              <div class="card-trip-infos">
@@ -172,7 +172,7 @@
        </div>
      </div>
      <div class="buy-bar mt-4">
-        <%= hidden_field_tag 'amount', :amount %>
+        <%= hidden_field_tag 'amount', :soldiers %>
         <%= button_tag(type: "submit", class: "exchange-btn") do %>
             Buy Soldier
         <% end %>
