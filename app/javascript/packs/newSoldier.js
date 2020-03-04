@@ -16,7 +16,7 @@ const buySoldier = () => {
       markSelected(button);
       const soldierAmount = button.dataset.amount;
       // 3. find hidden form field for resource type
-      const hiddenField = document.getElementById('amount');
+      const hiddenField = document.getElementById('unit_amount');
       // 4. set its value
       hiddenField.value = soldierAmount;
     });
