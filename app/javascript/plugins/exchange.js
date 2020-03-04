@@ -101,10 +101,12 @@ const setupNumberSpinner = () => {
 
 const setupExchangeForm = () => {
   document.addEventListener('DOMContentLoaded', () => {
-    setupResourceSelectorButtons()
-    setupNumberSpinner()
-    setupAmountInput()
-    setResourceAmount(0)
+    if (document.querySelector('.resource-chooser')) {
+      setupResourceSelectorButtons()
+      setupNumberSpinner()
+      setupAmountInput()
+      setResourceAmount(0)
+    }
   })
 }
 

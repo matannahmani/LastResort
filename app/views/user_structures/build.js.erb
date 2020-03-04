@@ -17,13 +17,13 @@ document.querySelector('[data-resource="gold"]').dataset.amountt = "<%= @resourc
 // use @data
 <% if @data[:ok] %>
 swal({
-  title: "New Structure!!!",
+  title: "New Structure!",
   text: "Congratulations, you bought a <%= @data[:structure].unit_name %>",
   icon: "success"
 })
 <% else %>
 swal({
-  title: "Back to the future!!!",
+  title: "Back to the future!",
   text: "Go collect more resources for a <%= @data[:structure].unit_name %>",
   icon: "error"
 })
