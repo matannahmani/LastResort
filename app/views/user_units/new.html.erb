@@ -171,7 +171,7 @@
        </div>
      </div>
      <div class="buy-bar mt-4">
-        <%= hidden_field_tag 'amount', :amount %>
+        <%= hidden_field_tag :unit_amount, 0 %>
         <%= button_tag(type: "submit", class: "exchange-btn") do %>
             Buy Soldier
         <% end %>

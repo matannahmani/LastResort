@@ -1,0 +1,48 @@
+// update resources toolbar
+document.querySelector('#resources-iron .white-text').innerText = "<%= @resources[:iron] %>"
+document.querySelector('#resources-wood .white-text').innerText = "<%= @resources[:wood] %>"
+document.querySelector('#resources-water .white-text').innerText = "<%= @resources[:water] %>"
+document.querySelector('#resources-gold .white-text').innerText = "<%= @resources[:gold] %>"
+document.querySelector('#resources-gems .white-text').innerText = "<%= current_user.gems %>"
+
+// update resources in trade page
+document.querySelector('[data-resource="iron"]').dataset.amount = "<%= @resources[:iron] %>"
+document.querySelector('[data-resource="wood"]').dataset.amount = "<%= @resources[:wood] %>"
+document.querySelector('[data-resource="water"]').dataset.amount = "<%= @resources[:water] %>"
+document.querySelector('[data-resource="gold"]').dataset.amountt = "<%= @resources[:gold] %>"
+
+
+// sweet alert....
+
+// use @data
+<% unless @error %>
+  <% if @units.count > 1 %>
+    <% names = @units.take(2).map { |u| u[:name] }.join(', ') %>
+    <% names += " and #{@units.count - 2} other soldiers" %>
+    swal({
+      title: "Congratulations!",
+      text: "<%= @names %> have joined your army.",
+      icon: "success"
+    })
+  <% else %>
+    swal({
+      title: "Congratulations!",
+      text: "<%= @units.first[:name] %> has joined your army.",
+      icon: "success"
+    })
+
+  <% end %>
+<% else %>
+  swal({
+    title: "Not enough gems!",
+    text: "<%= @error %>",
+    icon: "error"
+  })
+<% end %>
+
+
+// initSweetalert('#sweet-alert-demo', {
+//   title: "A nice alert",
+//   text: "This is a great alert, isn't it?",
+//   icon: "success"
+// });
