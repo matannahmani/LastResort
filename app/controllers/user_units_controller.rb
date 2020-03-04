@@ -3,7 +3,6 @@ class UserUnitsController < ApplicationController
   TENROLL = 90
   ONEROLL = 10
   def create
-    raise
     if !current_user.nil?
       option = params[:amount].to_i
           if option == 10 || option == 1

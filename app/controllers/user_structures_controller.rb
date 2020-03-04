@@ -55,8 +55,8 @@ class UserStructuresController < ApplicationController
     if bool
       deplete_user_resources(structure)
       if structures.where(structure_id: structure.id)
-        structures.find_by(structure_id: structure.id).amount += 1
-        structures.find_by(structure_id: structure.id).save!
+        str = structures.find_by(structure_id: structure.id)
+        str.update(amount: (str.amount + 1))
       else
         structures.create!(structure_id: structure.id, amount: 1, placed: 0)
       end
