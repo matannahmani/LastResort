@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  after_initialize :init
   after_create :generate_random_resource
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
@@ -9,7 +10,7 @@ class User < ApplicationRecord
   has_many :user_units
   has_many :user_structures
   validates :nickname, uniqueness: true
-
+  has_one_attached :photo
   def generate_random_resource
     radius = ENV['CACHE_RESOURCE_RANDOM_RADIUS'].to_f
     resource_count = 100 * radius
@@ -26,5 +27,9 @@ class User < ApplicationRecord
         user: self
       )
     end
+  end
+
+  def init
+    self.raidcount  ||= 0           #will set the default value only if it's nil
   end
 end

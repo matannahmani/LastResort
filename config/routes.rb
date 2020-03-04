@@ -13,5 +13,8 @@ Rails.application.routes.draw do
   post 'games/extract', to: "extracts#pick_up"
   post 'inventory/exchange', to: "user_resources#exchange"
   post 'structures/buy', to: "user_structures#build"
+  post '/upload', to: "games#upload"
   get 'story', to: "stories#show"
+  get 'base/raid', to: "games#raid"
+  get '/raid/:id', to: "games#startraid"
 end

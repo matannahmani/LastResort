@@ -1,4 +1,5 @@
 class GamesController < ApplicationController
+  require 'open-uri'
   skip_before_action :verify_authenticity_token
 
   def main
@@ -52,4 +53,68 @@ class GamesController < ApplicationController
     end
   end
 
+  def upload
+    if !current_user.nil?
+
+      basephoto = params['_json']
+      image = Cloudinary::Uploader.upload(basephoto)
+      file = open(image["url"])
+      current_user.photo.attach(io: file, filename: 'base.jpg', content_type: 'image/png')
+    end
+  end
+  def raid
+    if !current_user.nil?
+      @enemis = []
+      while @enemis.length != 2
+        sample = User.all.sample
+          @enemis << sample if !(@enemis.include?(sample))
+      end
+    end
+  end
+
+  def startraid
+    id = params['id']
+      if !current_user.nil?
+        if current_user.raidcount < 2
+          if !User.find(id).nil?
+            checkwon(User.find(id))
+          else
+            redirect_to games_main_path
+          end
+        end
+      else
+      redirect_to new_user_session_path
+      end
+  end
+
+    private
+
+    def checkwon(enemyuser)
+      myuser = [0,0,0,0] # 0 - power , 1 - defense, 2 - range, 3 - hp
+      enemy  = [0,0,0,0]
+      current_user.user_units.each do |myunit|
+        myuser[0] += myunit.unit.attack
+        myuser[1] += myunit.unit.defense
+        myuser[2] += myunit.unit.range
+        myuser[3] += myunit.unit.hp
+      end
+      enemyuser.user_units.each do |myunit|
+        enemy[0] += myunit.unit.attack
+        enemy[1] += myunit.unit.defense
+        enemy[2] += myunit.unit.range
+        enemy[3] += myunit.unit.hp
+      end
+      if myuser.inject(:+) > enemy.inject(:+)
+        amount = current_user.user_resources.first.amount
+        amountsecond = current_user.user_resources.second.amount
+        current_user.user_resources.first.update(amount: (amount += 20))
+        current_user.user_resources.second.update(amount: (amount += 20))
+      else
+        amount = current_user.user_resources.first.amount
+        amountsecond = current_user.user_resources.second.amount
+        enemyuser.user_resources.first.update(amount: (amount += 20))
+        enemyuser.user_resources.second.update(amount: (amount += 20))
+      end
+      redirect_to games_main_path
+    end
 end
