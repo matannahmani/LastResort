@@ -476,7 +476,7 @@ $pink-shadow: #ffe3e2;
 .card-trip-soldier{
   width: 130px;
   overflow: hidden;
-  background: #9a7c62;
+  background: #6f4b514a;
   border: 2px solid rgba(0,0,0,0.2);
   box-shadow: 0 0 12px rgba(0,0,0,0.4);
   border-radius: 12px;
@@ -540,7 +540,7 @@ $pink-shadow: #ffe3e2;
 
 .card-soldier-infos {
   padding: 4px 8px 0 8px;
-  background-color: rgba(0,0,0,0.2);
+  background-color: rgba(0,0,0,0.4);
 }
 
 .buy-bar {
@@ -559,6 +559,7 @@ $pink-shadow: #ffe3e2;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 5px;
   img {
     padding: 0;
   }
