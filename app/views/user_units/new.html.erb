@@ -113,7 +113,6 @@
   <div class="tab-pane fade" id="soldiers" role="tabpanel">
     <div class="soldiers">
       <%= form_tag soldiers_buy_path, remote: true do %>
-       <p>Trade in Gems to gain more units!</p>
        <div class="first-row-soldier">
          <div class="one-fighter soldier-selector" data-amount="1">
              <div class="card-trip-soldier">
@@ -322,8 +321,8 @@
           <%= button_tag(type: "submit", class: "exchange-btn", id: "bought-structure") do %>
               Buy Now
           <% end %>
+          <center><p id="buy-back-btn" style='color: rgba(255,255,255,0.8); font-size: 14px;'>Back <i class="fas fa-undo-alt ml-1"></i></p></center>
         <% end %>
-        <center><p id="buy-back-btn" style='color: rgba(255,255,255,0.8); font-size: 14px;'>Back <i class="fas fa-undo-alt ml-1"></i></p></center>
         </div>
       </div>
   </div>
