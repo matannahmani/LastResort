@@ -17,7 +17,7 @@ const setResourceAmount = (amount) => {
 
   let gemValue = document.getElementById('gem-value');
   if(gemValue) {
-    gemValue.innerText = (amount / 20);
+    gemValue.innerText = Math.floor(amount / 20);
   }
 }
 

@@ -1,0 +1,42 @@
+// update resources toolbar
+document.querySelector('#resources-iron .white-text').innerText = "<%= @resources[:iron] %>"
+document.querySelector('#resources-wood .white-text').innerText = "<%= @resources[:wood] %>"
+document.querySelector('#resources-water .white-text').innerText = "<%= @resources[:water] %>"
+document.querySelector('#resources-gold .white-text').innerText = "<%= @resources[:gold] %>"
+document.querySelector('#resources-gems .white-text').innerText = "<%= current_user.gems %>"
+
+// update resources in trade page
+document.querySelector('[data-resource="iron"]').dataset.amount = "<%= @resources[:iron] %>"
+document.querySelector('[data-resource="wood"]').dataset.amount = "<%= @resources[:wood] %>"
+document.querySelector('[data-resource="water"]').dataset.amount = "<%= @resources[:water] %>"
+document.querySelector('[data-resource="gold"]').dataset.amountt = "<%= @resources[:gold] %>"
+
+// reset number spinner & trade amount field
+document.getElementById('amount').value = 0
+document.getElementById('gem-value').innerText = "0"
+document.querySelector('.material-amount-spinner .spinner-view').innerText = "0"
+
+// sweet alert....
+
+// use @data
+<% if @gem_amount && @gem_amount > 0 && ! @error %>
+swal({
+  title: "Congratulations!",
+  text: "Successfully bought <%= pluralize(@gem_amount, 'gem') %>.",
+  icon: "success"
+})
+<% end %>
+<% if @error %>
+  swal({
+    title: "Back to the future!",
+    text: "Sorry, you don't have enough resources",
+    icon: "error"
+  })
+<% end %>
+
+
+// initSweetalert('#sweet-alert-demo', {
+//   title: "A nice alert",
+//   text: "This is a great alert, isn't it?",
+//   icon: "success"
+// });
