@@ -41,7 +41,8 @@ const markSelected = (button) => {
 const setupResourceSelectorButtons = () => {
   const buttons = document.querySelectorAll('.resource-chooser')
   buttons.forEach((button) => {
-    button.addEventListener('click', () => {
+    button.addEventListener('click', (e) => {
+      e.preventDefault()
       markSelected(button)
       // 2. get its resource type
       const resourceType = button.dataset.resource
@@ -90,11 +91,13 @@ const setupNumberSpinner = () => {
   const downArrow = document.querySelector(
     '.material-amount-spinner .spinner-arrow-down')
 
-  upArrow.addEventListener('click', () => {
+  upArrow.addEventListener('click', (e) => {
+    e.preventDefault()
     tryAmountSpin(20)
   })
 
-  downArrow.addEventListener('click', () => {
+  downArrow.addEventListener('click', (e) => {
+    e.preventDefault()
     tryAmountSpin(-20)
   })
 }
