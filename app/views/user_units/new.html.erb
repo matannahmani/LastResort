@@ -5,7 +5,7 @@
     <a class="nav-link active" id="exchange-tab" data-toggle="tab" href="#exchanged" role="tab"><i class="fas fa-exchange-alt fa-2x"></i></a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="dudes-tab" data-toggle="tab" href="#dudes" role="tab"><i class="fas fa-users fa-2x"></i></a>
+    <a class="nav-link" id="soldiers-tab" data-toggle="tab" href="#soldiers" role="tab"><i class="fas fa-users fa-2x"></i></a>
   </li>
   <li class="nav-item">
     <a class="nav-link" id="structures-tab" data-toggle="tab" href="#structures" role="tab"><i class="fas fa-tools fa-2x"></i></a>
@@ -26,7 +26,8 @@
         <div class="resources">
           <div class="first-row-exchange">
             <div class="exchange-wood">
-              <a href="#" class="resource-chooser" data-resource="wood" data-amount="100">
+              <a href="#" class="resource-chooser" data-resource="wood"
+                 data-amount="<%= @resources[:wood] %>">
                 <div class="card-trip-exchange">
                   <img src="https://image.flaticon.com/icons/svg/395/395005.svg" />
 
@@ -38,7 +39,8 @@
             </div>
 
             <div class="exchange-water">
-              <a href="#" class="resource-chooser" data-resource="water" data-amount="100">
+              <a href="#" class="resource-chooser" data-resource="water"
+                 data-amount="<%= @resources[:water] %>">
                 <div class="card-trip-exchange">
                   <img src="https://image.flaticon.com/icons/svg/315/315339.svg" />
 
@@ -52,7 +54,8 @@
           <div class="second-row-exchange">
 
             <div class="exchange-metal">
-              <a href="#" class="resource-chooser" data-resource="metal" data-amount="100">
+              <a href="#" class="resource-chooser" data-resource="iron"
+                 data-amount="<%= @resources[:iron] %>">
                 <div class="card-trip-exchange">
                   <img src="https://image.flaticon.com/icons/svg/605/605702.svg" />
                   <div class="card-trip-infos">
@@ -63,7 +66,8 @@
             </div>
 
             <div class="exchange-gold">
-              <a href="#" class="resource-chooser" data-resource="gold" data-amount="5">
+              <a href="#" class="resource-chooser" data-resource="gold"
+                 data-amount="<%= @resources[:gold] %>">
                 <div class="card-trip-exchange">
                   <img src="https://image.flaticon.com/icons/svg/362/362944.svg" />
 
@@ -84,34 +88,103 @@
             <!-- Amount spinner -->
             <div class="material-amount-spinner">
               <a href="#" class="spinner-arrow spinner-arrow-up">
-                <i class="fas fa-caret-up fa-2x"></i>
+                <i class="fas fa-caret-up"></i>
               </a>
               <div class="spinner-view"><strong>0</strong></div>
               <a href="#" class="spinner-arrow spinner-arrow-down">
-                <i class="fas fa-caret-down fa-2x"></i>
+                <i class="fas fa-caret-down"></i>
               </a>
             </div>
             <p id="arrow-right"><i class="fas fa-arrow-right"></i></p>
             <p id='gem-value'></p>
-            <img src="https://pbs.twimg.com/profile_images/531994916181012480/EBap51cO_400x400.png" alt="" style="width: 40px;height: 40px">
+            <img src="https://pbs.twimg.com/profile_images/531994916181012480/EBap51cO_400x400.png" alt="" style="width: 36px;height: 36px">
             </div>
 
             <%= hidden_field_tag 'material', :wood %>
             <%= button_tag(type: "submit", class: "exchange-btn") do %>
                 Exchange <i class="fas fa-exchange-alt"></i>
             <% end %>
-            <center><p style='color: rgba(255,255,255,0.8); font-size: 14px;'>Back <i class="fas fa-undo-alt ml-1"></i></p></center>
+            <center><p id="back-button" style='color: rgba(255,255,255,0.8); font-size: 14px;'>Back <i class="fas fa-undo-alt ml-1"></i></p></center>
           <% end %>
         </div>
     </div>
   </div>
-  <div class="tab-pane fade" id="dudes" role="tabpanel">
-        <h1>this is the dudes page</h1>
+
+  <div class="tab-pane fade" id="soldiers" role="tabpanel">
+    <div class="soldiers">
+      <%= form_tag soldiers_buy_path, remote: true do %>
+       <p>Trade in Gems to gain more units!</p>
+       <div class="first-row-soldier">
+         <div class="one-fighter soldier-selector" data-amount="1">
+             <div class="card-trip-soldier">
+               <img src="<%= asset_path( 'knight.svg' ) %>" height="160px" width="160px" />
+               <div class="card-trip-infos">
+                 <h2>1 Fighter</h2>
+                 <div class="soldier-price">
+                  <p>10</p>
+                  <img src="https://pbs.twimg.com/profile_images/531994916181012480/EBap51cO_400x400.png" alt="" style="width: 20px;height: 16px">
+                </div>
+               </div>
+             </div>
+          </div>
+
+        <div class="ten-fighters soldier-selector" data-amount="10">
+           <div class="card-trip-soldier">
+            <img src="<%= asset_path( 'knight.svg' ) %>" height="160px" width="160px" />
+
+             <div class="card-trip-infos">
+               <h2>10 Fighters</h2>
+               <div class="soldier-price">
+                  <p>90</p>
+                  <img src="https://pbs.twimg.com/profile_images/531994916181012480/EBap51cO_400x400.png" alt="" style="width: 20px;height: 16px">
+                </div>
+             </div>
+           </div>
+        </div>
+      </div>
+
+     <div class="second-row-soldier">
+
+       <div class="one-fighter soldier-selector" data-amount="1">
+           <div class="card-trip-soldier">
+             <img src="<%= asset_path( 'wizard.svg' ) %>" height="160px" width="160px" />
+             <div class="card-trip-infos">
+               <h2>1 Mage</h2>
+               <div class="soldier-price">
+                  <p>10</p>
+                  <img src="https://pbs.twimg.com/profile_images/531994916181012480/EBap51cO_400x400.png" alt="" style="width: 20px;height: 16px">
+                </div>
+             </div>
+           </div>
+       </div>
+
+       <div class="ten-fighters soldier-selector" data-amount="10">
+           <div class="card-trip-soldier">
+             <img src="<%= asset_path( 'wizard.svg' ) %>" height="160px" width="160px" />
+             <div class="card-trip-infos">
+               <h2>10 Mages</h2>
+               <div class="soldier-price">
+                  <p>90</p>
+                  <img src="https://pbs.twimg.com/profile_images/531994916181012480/EBap51cO_400x400.png" alt="" style="width: 20px;height: 16px">
+                </div>
+             </div>
+           </div>
+       </div>
+     </div>
+     <div class="buy-bar mt-4">
+        <%= hidden_field_tag 'amount', :amount %>
+        <%= button_tag(type: "submit", class: "exchange-btn") do %>
+            Buy Soldier
+        <% end %>
+      <% end %>
+      <center><p id="buy-back-btn" style='color: rgba(255,255,255,0.8); font-size: 14px;'>Back <i class="fas fa-undo-alt ml-1"></i></p></center>
+      </div>
+    </div>
   </div>
 
   <div class="tab-pane fade" id="structures" role="tabpanel">
       <div class="structures">
-        <%= form_tag structures_buy_path do %>
+        <%= form_tag structures_buy_path, remote: true do %>
         <div class="first-row-structure">
           <div class="structure-barrack structure-selector" data-structure="Barracks">
             <a href="#" class="structure-selector" data-structure="barrack"></a>
@@ -125,7 +198,7 @@
                 <h2>Barrack</h2>
                 <div class="structure-resource-price-bar">
                    <div class="structure-resource-price">
-                    <p>20</p>
+                    <p>40</p>
                     <img src="<%= asset_path( 'gold_new.svg' ) %>" height="24px" width="16px" />
                   </div>
                   <div class="structure-resource-price">
@@ -133,7 +206,7 @@
                     <img src="<%= asset_path( 'wood_new.svg' ) %>" height="24px" width="16px" />
                   </div>
                   <div class="structure-resource-price">
-                    <p>20</p>
+                    <p>0</p>
                     <img src="<%= asset_path( 'iron_new.svg' ) %>" height="24px" width="16px" />
                   </div>
                   <div class="structure-resource-price">
@@ -157,19 +230,19 @@
                 <h2>Boat</h2>
                 <div class="structure-resource-price-bar">
                    <div class="structure-resource-price">
-                    <p>20</p>
+                    <p>40</p>
                     <img src="<%= asset_path( 'gold_new.svg' ) %>" height="24px" width="16px" />
                   </div>
                   <div class="structure-resource-price">
-                    <p>20</p>
+                    <p>10</p>
                     <img src="<%= asset_path( 'wood_new.svg' ) %>" height="24px" width="16px" />
                   </div>
                   <div class="structure-resource-price">
-                    <p>20</p>
+                    <p>10</p>
                     <img src="<%= asset_path( 'iron_new.svg' ) %>" height="24px" width="16px" />
                   </div>
                   <div class="structure-resource-price">
-                    <p>20</p>
+                    <p>0</p>
                     <img src="<%= asset_path( 'water_new.svg' ) %>" height="24px" width="16px" />
                   </div>
                 </div>
@@ -190,15 +263,15 @@
                 <h2>Medical Center</h2>
                 <div class="structure-resource-price-bar">
                    <div class="structure-resource-price">
-                    <p>20</p>
+                    <p>40</p>
                     <img src="<%= asset_path( 'gold_new.svg' ) %>" height="24px" width="16px" />
                   </div>
                   <div class="structure-resource-price">
-                    <p>20</p>
+                    <p>0</p>
                     <img src="<%= asset_path( 'wood_new.svg' ) %>" height="24px" width="16px" />
                   </div>
                   <div class="structure-resource-price">
-                    <p>20</p>
+                    <p>40</p>
                     <img src="<%= asset_path( 'iron_new.svg' ) %>" height="24px" width="16px" />
                   </div>
                   <div class="structure-resource-price">
@@ -222,7 +295,7 @@
                 <h2>Water Well</h2>
                 <div class="structure-resource-price-bar">
                    <div class="structure-resource-price">
-                    <p>20</p>
+                    <p>10</p>
                     <img src="<%= asset_path( 'gold_new.svg' ) %>" height="24px" width="16px" />
                   </div>
                   <div class="structure-resource-price">
@@ -230,7 +303,7 @@
                     <img src="<%= asset_path( 'wood_new.svg' ) %>" height="24px" width="16px" />
                   </div>
                   <div class="structure-resource-price">
-                    <p>20</p>
+                    <p>0</p>
                     <img src="<%= asset_path( 'iron_new.svg' ) %>" height="24px" width="16px" />
                   </div>
                   <div class="structure-resource-price">
@@ -244,14 +317,14 @@
           </div>
         </div>
 
-        <div class="buy-bar">
+        <div class="buy-bar mt-4">
           <%= hidden_field_tag 'structure', :structure %>
-          <%= button_tag(type: "submit", class: "exchange-btn") do %>
+          <%= button_tag(type: "submit", class: "exchange-btn", id: "bought-structure") do %>
               Buy Now
           <% end %>
         <% end %>
+        <center><p id="buy-back-btn" style='color: rgba(255,255,255,0.8); font-size: 14px;'>Back <i class="fas fa-undo-alt ml-1"></i></p></center>
         </div>
-
       </div>
   </div>
 
@@ -260,31 +333,46 @@
 <div class="bar-container" style="background-color: black">
   <div class="bd-highlight res-bar">
 
-     <div class="d-flex">
-      <p class='white-text'>5</p>
+     <div class="d-flex" id="resources-iron">
+      <p class='white-text'><%= current_user.resources_amounts[:iron] %></p>
      <img src="<%= asset_path( 'iron_new.svg' ) %>" height="32px" width="24px" />
      </div>
 
-     <div class ='d-flex'>
-     <p class='white-text'>5</p>
+     <div class ='d-flex' id="resources-wood">
+     <p class='white-text'><%= current_user.resources_amounts[:wood] %></p>
      <img src="<%= asset_path( 'wood_new.svg' ) %>" height="32px" width="24px" />
      </div>
 
-      <div class ='d-flex'>
-     <p class='white-text'>5</p>
+      <div class ='d-flex' id="resources-water">
+     <p class='white-text'><%= current_user.resources_amounts[:water] %></p>
      <img src="<%= asset_path( 'water_new.svg' ) %>" height="32px" width="24px" />
      </div>
 
-      <div class ='d-flex'>
-     <p class='white-text'>5</p>
+      <div class ='d-flex' id="resources-gold">
+     <p class='white-text'><%= current_user.resources_amounts[:gold] %></p>
      <img src="<%= asset_path( 'gold_new.svg' ) %>" height="40px" width="32px" />
      </div>
 
-      <div class ='d-flex'>
-     <p class='white-text'>5</p>
+      <div class ='d-flex' id="resources-gems">
+     <p class='white-text'><%= current_user.gems %></p>
      <img src="<%= asset_path( 'gem.png' ) %>" height="40px" width="32px" />
      </div>
 
    </div>
  </div>
 
+<script>
+  backBtn = document.getElementById("back-button");
+    backBtn.addEventListener("click", () => {
+      window.location.href = "/games/main";
+    })
+
+  nextBackBtn = document.getElementById("buy-back-btn");
+    nextBackBtn.addEventListener("click", () => {
+      window.location.href = "/games/main";
+    })
+
+  // 1. Get the button by its ID
+  // 2. Add an event to it (react to 'click' event)
+  // 3. When event is triggered, redirect somewhere else
+</script>

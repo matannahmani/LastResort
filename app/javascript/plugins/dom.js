@@ -1,5 +1,6 @@
 window.onload = function() {
 let switchBTN = document.querySelector('#switch');
+let shopBTH = document.querySelector('#shop')
 let mapbox = document.querySelector('.mapboxgl-map');
 let gamemap = document.querySelectorAll('canvas');
 let gamemap1 = document.querySelectorAll('.mapboxgl-canvas');
@@ -15,6 +16,15 @@ setTimeout(function(){
 switchBTN.addEventListener('click', click => {
   checkmap();
   });
+
+shopBTN.addEventListener('click', click => {
+  shop();
+  });
+
+function shop () {
+  //redirect to a user-units page
+}
+
 
 function checkmap() {
   if (ismap === false){

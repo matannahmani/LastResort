@@ -8,16 +8,19 @@
 
 puts "here are some seeds"
 
+UserStructure.destroy_all
+Structure.destroy_all
 CacheResource.destroy_all
 UserResource.destroy_all
-User.destroy_all
 Resource.destroy_all
+UserUnit.destroy_all
 Unit.destroy_all
+User.destroy_all
 
 bob = Unit.new(
 name: "Cú Chulainn",
 rarity: "s",
-speciality: "lancer",
+speciality: "fighter",
 range: 50,
 hp: 300,
 attack: 60,
@@ -27,7 +30,7 @@ bob.save!
 sue = Unit.new(
 name: "Elizabeth Báthory",
 rarity: "a",
-speciality: "lancer",
+speciality: "fighter",
 range: 35,
 hp: 250,
 attack: 25,
@@ -37,7 +40,7 @@ sue.save!
 tim = Unit.new(
 name: "Musashibō Benkei",
 rarity: "b",
-speciality: "lancer",
+speciality: "fighter",
 range: 35,
 hp: 105,
 attack: 25,
@@ -47,7 +50,7 @@ tim.save!
 al = Unit.new(
 name: "Enkidu",
 rarity: "b",
-speciality: "lancer",
+speciality: "fighter",
 range: 30,
 hp: 100,
 attack: 40,
@@ -67,7 +70,7 @@ kat.save!
 Unit.create(
 name: "Artuhria",
 rarity: "ss",
-speciality: "saber",
+speciality: "figher",
 range: 20,
 hp: 700,
 attack: 120,
@@ -118,12 +121,12 @@ Resource.create!(name: 'water', exchange: 20)
 Resource.create!(name: 'iron', exchange: 20)
 Resource.create!(name: 'gold', exchange: 20)
 Structure.create!(unit_name: 'Barracks', wood: 20, water: 20, iron: 0, gold: 40, hp: 200, attack: 200,range: 60)
-Structure.create!(unit_name: 'Wall', wood: 10, water: 0, iron: 0, gold: 40, hp: 200, attack: 200,range: 60)
-Structure.create!(unit_name: 'Medic', wood: 200, water: 20, iron: 0, gold: 40, hp: 200, attack: 200,range: 60)
-Structure.create!(unit_name: 'Wheel', wood: 20, water: 20, iron: 0, gold: 40, hp: 200, attack: 200,range: 60)
+Structure.create!(unit_name: 'Boat', wood: 10, water: 0, iron: 10, gold: 40, hp: 200, attack: 200,range: 60)
+Structure.create!(unit_name: 'Medic', wood: 0, water: 20, iron: 20, gold: 20, hp: 200, attack: 200,range: 60)
+Structure.create!(unit_name: 'Wheel', wood: 20, water: 20, iron: 0, gold: 10, hp: 200, attack: 200,range: 60)
 puts "seeded!"
 puts "Seeded #{Resource.all.count} resources"
 
 
-User.create!(email: 'bob@bob.bob', password: '123456', nickname: 'bobby')
+User.create!(email: 'bob@bob.bob', password: '123456', nickname: 'bobby', gems: 100)
 puts "Created user bob@bob.bob"

@@ -1,7 +1,11 @@
 import "bootstrap";
 import { setupExchangeForm } from '../plugins/exchange'
 import { buyStructure } from './newStructure'
+import { unitsSweetalert } from '../plugins/units_sweetalert';
+import { buySoldier } from './newSoldier'
 
+
+buySoldier()
 buyStructure()
 
 setupExchangeForm()

@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   post 'inventory/exchange', to: "user_resources#exchange"
   post 'structures/buy', to: "user_structures#build"
   post '/upload', to: "games#upload"
+  post 'soldiers/buy', to: "user_units#create"
   get 'story', to: "stories#show"
   get 'base/raid', to: "games#raid"
   get '/raid/:id', to: "games#startraid"
