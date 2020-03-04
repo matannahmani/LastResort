@@ -11,9 +11,30 @@
   width: 40px;
 }
 
+.navbar-lewagon {
+  justify-content: space-between;
+  background: white;
+}
+.navbar-lewagon .navbar-collapse {
+  flex-grow: 0;
+}
+.navbar-lewagon .navbar-brand img {
+  width: 40px;
+}
+.res-bar {
+  background: linear-gradient(
+      #402e25, #7b5638
+    );
+  justify-content: center;
+  display: flex;
+  width:100%;
+  position: absolute;
+  bottom: 0px;
+
 .res-bar {
   justify-content: center;
   display: flex;
+
   div {
     height: 65px;
     width: 65px;
