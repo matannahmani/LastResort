@@ -16,7 +16,6 @@ class User < ApplicationRecord
     center = ENV['CACHE_RESOURCE_RANDOM_CENTER']
     resource_count.to_i.times do
       random_resource = Resource.order(Arel.sql('RANDOM()')).first
-      # binding.pry
       random_amount = rand(1..100)
       location = Geocoder::Calculations.random_point_near(center, radius)
       CacheResource.create!(
