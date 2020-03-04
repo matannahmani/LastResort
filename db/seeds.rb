@@ -120,13 +120,13 @@ Resource.create!(name: 'wood', exchange: 20)
 Resource.create!(name: 'water', exchange: 20)
 Resource.create!(name: 'iron', exchange: 20)
 Resource.create!(name: 'gold', exchange: 20)
-Structure.create!(unit_name: 'Barracks', wood: 20, water: 20, iron: 0, gold: 40, hp: 200, attack: 200,range: 60)
+Structure.create!(unit_name: 'Barracks', wood: 20, water: 20, iron: 10, gold: 40, hp: 200, attack: 200,range: 60)
 Structure.create!(unit_name: 'Boat', wood: 10, water: 0, iron: 0, gold: 40, hp: 200, attack: 200,range: 60)
-Structure.create!(unit_name: 'Medic', wood: 200, water: 20, iron: 0, gold: 40, hp: 200, attack: 200,range: 60)
-Structure.create!(unit_name: 'Wheel', wood: 20, water: 20, iron: 0, gold: 40, hp: 200, attack: 200,range: 60)
+Structure.create!(unit_name: 'Medical Center', wood: 200, water: 20, iron: 0, gold: 40, hp: 200, attack: 200,range: 60)
+Structure.create!(unit_name: 'Water Well', wood: 20, water: 20, iron: 0, gold: 40, hp: 200, attack: 200,range: 60)
 puts "seeded!"
 puts "Seeded #{Resource.all.count} resources"
 
 
-User.create!(email: 'bob@bob.bob', password: '123456', nickname: 'bobby')
+User.create!(email: 'bob@bob.bob', password: '123456', nickname: 'bobby', gems: 100)
 puts "Created user bob@bob.bob"
