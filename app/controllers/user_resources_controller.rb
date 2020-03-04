@@ -24,6 +24,7 @@ class UserResourcesController < ApplicationController
         redirect_to new_user_unit_path
         return
       end
+      exchange_amount = params[:amount].to_i
       if !user_resources.where(resource_id: materials[choice])[0].nil?
         # binding.pry
         user_materials = user_resources.where(resource_id: materials[choice])[0].amount
@@ -34,16 +35,20 @@ class UserResourcesController < ApplicationController
         # render json: {msg: "Sorry, you don't have enough resources",bought: false}
       end
       # binding.pry
-      if materials[choice].exchange * 10 <= user_materials
-        user_minus = user_resources.find_by(resource_id: materials[choice].id)
-        user_minus.amount -= materials[choice].exchange * 10
-        user_minus.save!
+      if exchange_amount <= user_materials
+        user_resource = user_resources.find_by(resource_id: materials[choice].id)
+        user_resource.amount -= exchange_amount
+        user_resource.save!
 
-        flash[:alert] = "Successfully bought 10 Gems!"
+        gem_amount = exchange_amount / materials[choice].exchange
+        current_user.gems += gem_amount
+        current_user.save
+        flash[:alert] = "Successfully bought #{gem_amount} Gems!"
         redirect_to new_user_unit_path
         # render json: {msg: "Successfully bought 10 Gems!",bought: true}
       else
-        redirect_to new_user_session_path
+        flash[:alert] = "Sorry, you don't have enough resources"
+        redirect_to new_user_unit_path
         # render json: {msg: "Please log in!",bought: false}
       end
     end
@@ -60,8 +65,8 @@ class UserResourcesController < ApplicationController
   def idtoname
     wood = Resource.find_by(name: 'wood')
     iron = Resource.find_by(name: 'iron')
-    metal = Resource.find_by(name: 'metal')
+    gold = Resource.find_by(name: 'gold')
     water = Resource.find_by(name: 'water')
-    return {wood: wood, iron: iron,metal: metal,water: water}
+    return {wood: wood, iron: iron, gold: gold, water: water}
   end
 end
