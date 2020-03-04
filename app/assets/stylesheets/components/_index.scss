@@ -3,3 +3,11 @@
 @import "avatar";
 @import "navbar";
 @import "shop";
+@import "spinner";
+
+
+// Hide dotted border on buttons in Firefox
+button::-moz-focus-inner {
+  border: 0 !important;
+}
+
