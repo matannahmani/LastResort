@@ -110,61 +110,76 @@
     </div>
   </div>
 
-  <div class="tab-pane fade" id="dudes" role="tabpanel">
-     <p>Trade in Gems to gain more units!</p>
-     <div class="first-row-exchange">
-     <div class="one-warrior">
-         <a href="#" class="resource-chooser" data-resource="gems" data-amount="10">
-           <div class="card-trip-exchange">
-             <img src="https://pbs.twimg.com/profile_images/531994916181012480/EBap51cO_400x400.png" />
+  <div class="tab-pane fade" id="soldiers" role="tabpanel">
+    <div class="soldiers">
+      <%= form_tag soldiers_buy_path, remote: true do %>
+       <p>Trade in Gems to gain more units!</p>
+       <div class="first-row-soldier">
+         <div class="one-fighter soldier-selector" data-amount="1">
+             <div class="card-trip-soldier">
+               <img src="<%= asset_path( 'knight.svg' ) %>" height="160px" width="160px" />
+               <div class="card-trip-infos">
+                 <h2>1 Fighter</h2>
+                 <div class="soldier-price">
+                  <p>10</p>
+                  <img src="https://pbs.twimg.com/profile_images/531994916181012480/EBap51cO_400x400.png" alt="" style="width: 20px;height: 16px">
+                </div>
+               </div>
+             </div>
+          </div>
+
+        <div class="ten-fighters soldier-selector" data-amount="10">
+           <div class="card-trip-soldier">
+            <img src="<%= asset_path( 'knight.svg' ) %>" height="160px" width="160px" />
+
              <div class="card-trip-infos">
-             <h2>1 Fighter</h2>
-             <h2>10 Gems</h2>
+               <h2>10 Fighters</h2>
+               <div class="soldier-price">
+                  <p>90</p>
+                  <img src="https://pbs.twimg.com/profile_images/531994916181012480/EBap51cO_400x400.png" alt="" style="width: 20px;height: 16px">
+                </div>
              </div>
            </div>
-         </a>
-       </div>
+        </div>
+      </div>
 
-    <div class="ten-warriors">
-         <a href="#" class="resource-chooser" data-resource="gems" data-amount="90">
-           <div class="card-trip-exchange">
-             <img src="https://pbs.twimg.com/profile_images/531994916181012480/EBap51cO_400x400.png">
+     <div class="second-row-soldier">
 
+       <div class="one-fighter soldier-selector" data-amount="1">
+           <div class="card-trip-soldier">
+             <img src="<%= asset_path( 'wizard.svg' ) %>" height="160px" width="160px" />
              <div class="card-trip-infos">
-             <h2>10 Fighters</h2>
-             <h2>90 Gems</h2>
+               <h2>1 Mage</h2>
+               <div class="soldier-price">
+                  <p>10</p>
+                  <img src="https://pbs.twimg.com/profile_images/531994916181012480/EBap51cO_400x400.png" alt="" style="width: 20px;height: 16px">
+                </div>
              </div>
            </div>
-         </a>
        </div>
-   </div>
 
-   <div class="second-row-exchange">
-
-     <div class="one-mage">
-       <a href="#" class="resource-chooser" data-resource="gems" data-amount="10">
-         <div class="card-trip-exchange">
-           <img src="https://pbs.twimg.com/profile_images/531994916181012480/EBap51cO_400x400.png" />
-           <div class="card-trip-infos">
-           <h2>1 Mage</h2>
-           <h2>10 Gems</h2>
+       <div class="ten-fighters soldier-selector" data-amount="10">
+           <div class="card-trip-soldier">
+             <img src="<%= asset_path( 'wizard.svg' ) %>" height="160px" width="160px" />
+             <div class="card-trip-infos">
+               <h2>10 Mages</h2>
+               <div class="soldier-price">
+                  <p>90</p>
+                  <img src="https://pbs.twimg.com/profile_images/531994916181012480/EBap51cO_400x400.png" alt="" style="width: 20px;height: 16px">
+                </div>
+             </div>
            </div>
-         </div>
-       </a>
+       </div>
      </div>
-
-     <div class="ten-mages">
-       <a href="#" class="resource-chooser" data-resource="gems" data-amount="90">
-         <div class="card-trip-exchange">
-           <img src="https://pbs.twimg.com/profile_images/531994916181012480/EBap51cO_400x400.png"/>
-           <div class="card-trip-infos">
-           <h2>10 Mages</h2>
-           <h2>90 Gems</h2>
-           </div>
-         </div>
-       </a>
-     </div>
-   </div>
+     <div class="buy-bar mt-4">
+        <%= hidden_field_tag 'amount', :amount %>
+        <%= button_tag(type: "submit", class: "exchange-btn") do %>
+            Buy Soldier
+        <% end %>
+      <% end %>
+      <center><p id="buy-back-btn" style='color: rgba(255,255,255,0.8); font-size: 14px;'>Back <i class="fas fa-undo-alt ml-1"></i></p></center>
+      </div>
+    </div>
   </div>
 
   <div class="tab-pane fade" id="structures" role="tabpanel">
@@ -302,7 +317,7 @@
           </div>
         </div>
 
-        <div class="buy-bar">
+        <div class="buy-bar mt-4">
           <%= hidden_field_tag 'structure', :structure %>
           <%= button_tag(type: "submit", class: "exchange-btn", id: "bought-structure") do %>
               Buy Now

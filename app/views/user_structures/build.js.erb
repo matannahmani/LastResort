@@ -3,6 +3,7 @@ document.querySelector('#resources-iron .white-text').innerText = "<%= @resource
 document.querySelector('#resources-wood .white-text').innerText = "<%= @resources[:wood] %>"
 document.querySelector('#resources-water .white-text').innerText = "<%= @resources[:water] %>"
 document.querySelector('#resources-gold .white-text').innerText = "<%= @resources[:gold] %>"
+document.querySelector('#resources-gems .white-text').innerText = "<%= current_user.gems %>"
 
 // update resources in trade page
 document.querySelector('[data-resource="iron"]').dataset.amount = "<%= @resources[:iron] %>"
