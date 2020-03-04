@@ -28,15 +28,19 @@
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .quant-exchanged{
-  margin-bottom: 30px;
+  margin-bottom: 28px;
+  margin-top: 14px;
+  padding-left: 30px;
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
   align-items: center;
+  background:
+  rgba(255,255,255,0.2);
+  border-radius: 12px;
+  padding-right: 14px;
   input {
     height: 50px;
     width: 70px;
@@ -47,26 +51,26 @@
   flex-direction: column;
   align-items: center;
   .spinner-arrow-up{
-    font-size: 20px;
+    font-size: 26px;
     color: black;
   }
   .spinner-arrow-down{
-    font-size: 20px;
+    font-size: 26px;
     color: black;
   }
   .spinner-view{
-    font-size: 20px;
-    color: white;
+    color: #000;
+    font-size: 26px;
+    padding-top: 7px;
   }
-  .arrow-right{
-    color: black;
-    font-size: 20px;
-  }
-  // .fa-arrow-right{
-  //   color: black;
-  //   font-size: 30px;
-  // }
 }
+
+  #arrow-right{
+    color: #000;
+    font-size: 20px;
+    margin: 0 18px 0 46px;
+  }
+
 .submitted-exchange-fields{
   display: flex;
   flex-direction: column;
@@ -218,6 +222,9 @@ p{
   display: flex;
   flex-direction: column-reverse;
   p {
+    color: rgba(255,255,255,0.7);
+    font-size: 16px;
+    font-weight: bold;
     margin-top: 8px;
     margin-bottom: 8px;
   }
@@ -243,8 +250,9 @@ p{
     padding: 0 16px;
   }
   #gem-value{
-    color: white;
-    font-size: 28px;
+    color: #000;
+    font-size: 26px;
+    margin-bottom: 26px;
     }
 }
 .material-amount-spinner{
@@ -345,8 +353,8 @@ $pink-shadow: #ffe3e2;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  margin-top: 30px;
-  margin-bottom: 16px;
+  margin-top: 24px;
+  margin-bottom: 18px;
 }
 
 .second-row-structure{
@@ -394,16 +402,25 @@ $pink-shadow: #ffe3e2;
   width: 180px;
   overflow: hidden;
   background: #9a7c62;
-  border: 2px solid rgba(0,0,0,0.2);
-  box-shadow: 0 0 12px rgba(0,0,0,0.4);
+  border: 1px solid rgba(0,0,0,0.2);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
   border-radius: 12px;
-  text-decoration: none;
+  text-decoration: none;;
   h2 {
     margin-top: 2px;
     text-align: center;
     color: white;
     font-size: 16px;
     font-weight: bold;
+  }
+  .p-2 {
+    display: flex;
+    justify-content: center;
+    img {
+      object-fit: contain;
+      height: 140px !important;
+      width: 140px !important;
+    }
   }
 }
 
@@ -415,6 +432,7 @@ $pink-shadow: #ffe3e2;
 .buy-bar {
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
 }
 

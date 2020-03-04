@@ -84,23 +84,23 @@
             <!-- Amount spinner -->
             <div class="material-amount-spinner">
               <a href="#" class="spinner-arrow spinner-arrow-up">
-                <i class="fas fa-caret-up fa-2x"></i>
+                <i class="fas fa-caret-up"></i>
               </a>
               <div class="spinner-view"><strong>0</strong></div>
               <a href="#" class="spinner-arrow spinner-arrow-down">
-                <i class="fas fa-caret-down fa-2x"></i>
+                <i class="fas fa-caret-down"></i>
               </a>
             </div>
             <p id="arrow-right"><i class="fas fa-arrow-right"></i></p>
             <p id='gem-value'></p>
-            <img src="https://pbs.twimg.com/profile_images/531994916181012480/EBap51cO_400x400.png" alt="" style="width: 40px;height: 40px">
+            <img src="https://pbs.twimg.com/profile_images/531994916181012480/EBap51cO_400x400.png" alt="" style="width: 36px;height: 36px">
             </div>
 
             <%= hidden_field_tag 'material', :wood %>
             <%= button_tag(type: "submit", class: "exchange-btn") do %>
                 Exchange <i class="fas fa-exchange-alt"></i>
             <% end %>
-            <center><p style='color: rgba(255,255,255,0.8); font-size: 14px;'>Back <i class="fas fa-undo-alt ml-1"></i></p></center>
+            <center><p id="back-button" style='color: rgba(255,255,255,0.8); font-size: 14px;'>Back <i class="fas fa-undo-alt ml-1"></i></p></center>
           <% end %>
         </div>
     </div>
@@ -250,8 +250,8 @@
               Buy Now
           <% end %>
         <% end %>
+        <center><p id="back-button" style='color: rgba(255,255,255,0.8); font-size: 14px;'>Back <i class="fas fa-undo-alt ml-1"></i></p></center>
         </div>
-
       </div>
   </div>
 
@@ -288,3 +288,12 @@
    </div>
  </div>
 
+<script>
+  backBtn = document.getElementById("back-button");
+    backBtn.addEventListener("click", () => {
+      window.location.href = "/games/main";
+    })
+  // 1. Get the button by its ID
+  // 2. Add an event to it (react to 'click' event)
+  // 3. When event is triggered, redirect somewhere else
+</script>
