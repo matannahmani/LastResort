@@ -1,30 +1,15 @@
-.drop_down{
-  background: url('https://api.iconify.design/logos:treehouse.svg') no-repeat center center / contain;
+.container,#phaser-app {
   position: absolute;
-  width: 48px;
-  height: 48px;
-  left: 0px;
-  top: 1px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.761458) 85.94%, rgba(255, 255, 255, 0) 100%);
-}
-#switch {
-  position: absolute;
-  width: 100px;
-  height: 50px;
-  left: 25px;
-  top: 10px;
-  z-index: 1;
-}
-.container {
-  position: absolute;
-  width: 375px;
-  height: 812px;
+  width: 100vw;
+  height: 100vh;
   top:0;
   right: 0;
+  margin: 0;
+  padding: 0;
 }
-#map {
-  width: 375px;
-  height: 812px;
+#map,canvas {
+  width: 100vw;
+  height: 100vh;
 }
 
 .extract-button button {
@@ -40,4 +25,7 @@
 .extract-button button:hover {
   background: linear-gradient(#147EFF, #0F67DA);
   color: white;
+}
+*{
+  padding:0;
 }
