@@ -28,5 +28,15 @@ class User < ApplicationRecord
     end
   end
 
-
+  def generate_structures
+    binding.pry
+    structure_types = Structure.all
+    structure_types.each do |type|
+      UserStructure.create!(
+        amount: 0,
+        user: self,
+        resource: type
+        )
+    end
+  end
 end
