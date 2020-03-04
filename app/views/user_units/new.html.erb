@@ -250,7 +250,7 @@
               Buy Now
           <% end %>
         <% end %>
-        <center><p id="back-button" style='color: rgba(255,255,255,0.8); font-size: 14px;'>Back <i class="fas fa-undo-alt ml-1"></i></p></center>
+        <center><p id="buy-back-btn" style='color: rgba(255,255,255,0.8); font-size: 14px;'>Back <i class="fas fa-undo-alt ml-1"></i></p></center>
         </div>
       </div>
   </div>
@@ -293,6 +293,12 @@
     backBtn.addEventListener("click", () => {
       window.location.href = "/games/main";
     })
+
+  nextBackBtn = document.getElementById("buy-back-btn");
+    nextBackBtn.addEventListener("click", () => {
+      window.location.href = "/games/main";
+    })
+
   // 1. Get the button by its ID
   // 2. Add an event to it (react to 'click' event)
   // 3. When event is triggered, redirect somewhere else
