@@ -1,0 +1,20 @@
+// update resources toolbar
+document.querySelector('#resources-iron .white-text').innerText = "<%= @resources[:iron] %>"
+document.querySelector('#resources-wood .white-text').innerText = "<%= @resources[:wood] %>"
+document.querySelector('#resources-water .white-text').innerText = "<%= @resources[:water] %>"
+document.querySelector('#resources-gold .white-text').innerText = "<%= @resources[:gold] %>"
+
+// update resources in trade page
+document.querySelector('[data-resource="iron"]').dataset.amount = "<%= @resources[:iron] %>"
+document.querySelector('[data-resource="wood"]').dataset.amount = "<%= @resources[:wood] %>"
+document.querySelector('[data-resource="water"]').dataset.amount = "<%= @resources[:water] %>"
+document.querySelector('[data-resource="gold"]').dataset.amountt = "<%= @resources[:gold] %>"
+
+
+// sweet alert....
+// use @data
+<% if @data[:ok] %>
+  alert('You bought a <%= @data[:structure].unit_name %>')
+<% else %>
+  alert("You don't have enough resources to buy a <%= @data[:structure].unit_name %>")
+<% end %>
