@@ -1,5 +1,8 @@
 import "bootstrap";
 import { setupExchangeForm } from '../plugins/exchange'
+import { buyStructure } from './newStructure'
+
+buyStructure()
 
 setupExchangeForm()
 
