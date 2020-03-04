@@ -21,8 +21,8 @@
 <div class="tab-content" id="myTabContent">
   <div class="tab-pane fade show active" id="exchanged" role="tabpanel">
     <div class="pg-exchange">
-      <p>Trade 20 units of any resource into 1 <img src="https://pbs.twimg.com/profile_images/531994916181012480/EBap51cO_400x400.png" alt="" style="width:25px;height: 25px"></p>
-      <%= form_tag inventory_exchange_path do %>
+      <p>Trade resources for gems</p>
+      <%= form_tag inventory_exchange_path, autocomplete: :off do %>
         <div class="resources">
           <div class="first-row-exchange">
             <div class="exchange-wood">
@@ -78,13 +78,29 @@
 
         <div class="submitted-exchange-fields">
             <div class="quant-exchanged">
-            <%= number_field_tag :amount, 0, min: 0, step: 20 %>
+            <%#= number_field_tag :amount, 0, min: 0, step: 20, onchange: "handleGemChange(this)" %>
+            <%= hidden_field_tag :amount, 0 %>
+
+            <!-- Amount spinner -->
+            <div class="material-amount-spinner">
+              <a href="#" class="spinner-arrow spinner-arrow-up">
+                <i class="fas fa-caret-up fa-2x"></i>
+              </a>
+              <div class="spinner-view"><strong>0</strong></div>
+              <a href="#" class="spinner-arrow spinner-arrow-down">
+                <i class="fas fa-caret-down fa-2x"></i>
+              </a>
+            </div>
+            <p id="arrow-right"><i class="fas fa-arrow-right"></i></p>
+            <p id='gem-value'></p>
+            <img src="https://pbs.twimg.com/profile_images/531994916181012480/EBap51cO_400x400.png" alt="" style="width: 40px;height: 40px">
             </div>
 
             <%= hidden_field_tag 'material', :wood %>
             <%= button_tag(type: "submit", class: "exchange-btn") do %>
                 Exchange <i class="fas fa-exchange-alt"></i>
             <% end %>
+            <center><p style='color: rgba(255,255,255,0.8); font-size: 14px;'>Back <i class="fas fa-undo-alt ml-1"></i></p></center>
           <% end %>
         </div>
     </div>
@@ -272,74 +288,3 @@
    </div>
  </div>
 
-<!--
- <div class="tab-pane fade" id="structures" role="tabpanel">
-    <div class="structures">
-      <%= form_tag structures_buy_path do %>
-      <div class="first-row-structure">
-        <div class="structure-barrack">
-          <a href="#" class="structure-selector" data-structure="barrack"></a>
-          <div class="card-trip-structure">
-            <img src="https://image.flaticon.com/icons/svg/395/395005.svg" />
-
-
-            <div class="card-trip-infos">
-            <h2>Wood</h2>
-            </div>
-          </div>
-
-
-        </div>
-        <div class="structure-boat">
-          <a href="#" class="structure-selector" data-structure="boat"></a>
-          <div class="card-trip-structure">
-            <img src="https://image.flaticon.com/icons/svg/395/395005.svg" />
-
-            <div class="card-trip-infos">
-            <h2>Wood</h2>
-            </div>
-          </div>
-
-        </div>
-      </div>
-      <div class="second-row-structure">
-        <div class="structure-medic">
-          <a href="#" class="structure-selector" data-structure="medic"></a>
-          <div class="card-trip-structure">
-            <img src="https://image.flaticon.com/icons/svg/395/395005.svg" />
-
-            <div class="card-trip-infos">
-            <h2>Wood</h2>
-            </div>
-          </div>
-
-
-        </div>
-        <div class="structure-wheel">
-          <a href="#" class="structure-selector" data-structure="wheel"></a>
-          <div class="card-trip-structure">
-            <img src="https://image.flaticon.com/icons/svg/395/395005.svg" />
-
-            <div class="card-trip-infos">
-            <h2>Wood</h2>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-
-      <%= hidden_field_tag 'material', :wood %>
-      <%= button_tag(type: "submit", class: "structure-btn") do %>
-          Exchange <i class="fas fa-exchange-alt"></i>
-      <% end %>
-    <% end %>
-    </div>
-</div> -->
-
-
-<!-- <div class = 'btn-base'>
-  <a href="<%= games_main_path %>">
-  </a>
-</div>
- -->
