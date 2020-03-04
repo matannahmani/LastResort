@@ -176,7 +176,7 @@
             Buy Soldier
         <% end %>
       <% end %>
-      <center><p id="buy-back-btn" style='color: rgba(255,255,255,0.8); font-size: 14px;'>Back <i class="fas fa-undo-alt ml-1"></i></p></center>
+      <center><p id="buy-back-btn" class="buy-back-btn" style='color: rgba(255,255,255,0.8); font-size: 14px;'>Back <i class="fas fa-undo-alt ml-1"></i></p></center>
       </div>
     </div>
   </div>
@@ -321,7 +321,7 @@
           <%= button_tag(type: "submit", class: "exchange-btn", id: "bought-structure") do %>
               Buy Now
           <% end %>
-          <center><p id="buy-back-btn" style='color: rgba(255,255,255,0.8); font-size: 14px;'>Back <i class="fas fa-undo-alt ml-1"></i></p></center>
+          <center><p id="buy-back-btn" class="buy-back-btn" style='color: rgba(255,255,255,0.8); font-size: 14px;'>Back <i class="fas fa-undo-alt ml-1"></i></p></center>
         <% end %>
         </div>
       </div>
@@ -366,10 +366,11 @@
       window.location.href = "/games/main";
     })
 
-  nextBackBtn = document.getElementById("buy-back-btn");
-    nextBackBtn.addEventListener("click", () => {
+  document.querySelectorAll(".buy-back-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
       window.location.href = "/games/main";
     })
+  })
 
   // 1. Get the button by its ID
   // 2. Add an event to it (react to 'click' event)
