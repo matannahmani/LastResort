@@ -1,3 +1,8 @@
+#myTab {
+  background: rgba(255,255,255,0.2);
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
 .navbar-lewagon {
   justify-content: space-between;
   background: white;
@@ -22,16 +27,14 @@
   width: 40px;
 }
 .res-bar {
-  background: linear-gradient(
-      #402e25, #7b5638
-    );
+  background: linear-gradient(#2f3448cc, #6d88a67d);
   justify-content: center;
   display: flex;
   width:100%;
-  position: absolute;
-  bottom: -10px;
+  position: fixed;
+  bottom: 0;
   div {
-    height: 65px;
+    height: 55px;
     width: 65px;
     margin: 6px;
     img {

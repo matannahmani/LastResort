@@ -8,8 +8,12 @@
 }
 
 .carousel-caption{
-  bottom: 0;
-  top: 32%;
+  top: 39%;
+  p {
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 26px;
+  }
 }
 
 
@@ -22,7 +26,6 @@
   transition: opacity 0.3s ease;
   border-radius: 5px;
   margin-top: 10px;
-  margin-left: 228px;
 }
 
 .btn-skip:hover{
@@ -34,15 +37,18 @@
   background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(asset-path("photo-1506335453669-7e36607f95d5.png"));
   background-size: cover;
   background-position: center;
-  // background-repeat:
 }
 
 #image2{
   background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(asset-path("photo-1451187580459-43490279c0fa.png"));
+  background-size: cover;
+  background-position: center;
 }
 
 #img3{
-  background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(asset-path("photo-1577915435603-24d8e3b66d71.png"));
+  background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1582721691120-d1db3852893e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80');
+  background-size: cover;
+  background-position: center;
 }
 
 .carousel-item{
