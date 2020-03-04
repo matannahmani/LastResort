@@ -239,8 +239,10 @@ function updateBase(data) {
       referrerPolicy: 'no-referrer', // no-referrer, *client
       body: JSON.stringify(data) // body data type must match "Content-Type" header
     }).then((response) => {
-
-    // return response.json(); // parses JSON response into native JavaScript objects
+    return response.json().then((data) => {
+      if(data['error'] == '501')
+        location.reload();
+    }) // parses JSON response into native JavaScript objects
   });
 }
 
