@@ -39,7 +39,6 @@ class UserUnitsController < ApplicationController
   end
 
   def new
-
   end
 
   private

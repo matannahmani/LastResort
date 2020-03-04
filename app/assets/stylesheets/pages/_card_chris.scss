@@ -1,0 +1,171 @@
+.cardbox {
+  margin-top: 300px;
+  justify-content: space-around;
+  align-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  padding-left: 25%;
+  // padding-right: 25%;
+}
+$host:'https://s3-us-west-2.amazonaws.com/s.cdpn.io/397014/';
+@font-face {
+  font-family: "Grotesque";
+  src: url('#{$host}BrandonGrotesque-Regular.eot'),
+       url('#{$host}BrandonGrotesque-Regular.ttf'),
+       url('#{$host}BrandonGrotesque-Regular.woff');
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Grotesque Black";
+  src: url('#{$host}BrandonGrotesque-Black.eot'),
+       url('#{$host}BrandonGrotesque-Black.ttf'),
+       url('#{$host}BrandonGrotesque-Black.woff');
+  font-weight: bold;
+}
+$big-stone:#152536;
+$white:#fff;
+$smalt-blue:#4e958b;
+$maroon-flush:#C32361;
+$black:#000;
+$lite-grey:rgba($black, .2);
+$lite-big-stone:rgba($big-stone, .7);
+$card-width:350px;
+$card-height:350px;
+$thumb-height:260px;
+$border-radius:3px;
+$box-shadow:0 1px 4px rgba($black, .3);
+$transition: cubic-bezier(.17,.67,.5,1.03);
+$timing-1:.4s .15s;
+$timing-2:.5s .25s;
+$grotesque-black:'Grotesque Black', sans-serif;
+$grotesque-regular:'Grotesque', sans-serif;
+$merriweather:'Merriweather', sans-serif;
+$new-york-city:'#{$host}new-york-city.png';
+$flag:'#{$host}flag.png';
+@mixin pos($pos, $left:null, $top:null, $right:null, $bottom:null) {
+  position:$pos;
+  left:$left;
+  @if $top { top: $top; }
+  @if $left { left: $left; }
+  @if $right { right: $right; }
+  @if $bottom { bottom: $bottom; }
+}
+@mixin size($width, $height) {
+  width:$width;
+  height:$height;
+}
+.note {
+  margin-top: 30px;
+  color:$white;
+  font-size: 1rem;
+  font-family: $merriweather;
+  line-height: 1.5;
+  text-align: center;
+}
+.card {
+  margin: 16px;
+  display: flex;
+  @include size($card-width, $card-height);
+  transform:translate(-50%, -50%) translateZ(0);
+  border-radius:$border-radius;
+  box-shadow:$box-shadow;
+  overflow:hidden;
+  .thumb img{
+    @include size(100%, $thumb-height);
+    // background: url($new-york-city) no-repeat center;
+    object-fit: cover;
+    object-position: center;
+    border-radius:$border-radius;
+  }
+  .infos {
+    @include size(auto, $card-height);
+    position:relative;
+    padding:14px 24px;
+    background:$white;
+    transition:$timing-1 $transition;
+    .title {
+      position:relative;
+      margin: 0 0;
+      letter-spacing: 3px;
+      color:$big-stone;
+      font-family: $grotesque-black;
+      font-size: 1rem;
+      text-transform: uppercase;
+      text-shadow: 0 0 0px lighten($big-stone, 20);
+      line-height: 1.4;
+    }
+    .flag {
+      @include pos(absolute, $top:25%, $right: 0);
+      transform:translateY(-50%);
+      @include size(60px, 60px);
+      background: no-repeat top right;
+      background-size:100% auto;
+      display:inline-block;
+    }
+    .date, .seats {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      font-size: .85rem;
+      color:$lite-big-stone;
+      font-family: $grotesque-regular;
+      margin-top: 20px;
+      line-height: 1.2;
+    }
+    .seats {
+      display:inline-block;
+      margin-bottom: 24px;
+      padding-bottom:24px;
+      border-bottom:1px solid $lite-grey;
+      opacity:0;
+      transition:$timing-2 $transition;
+    }
+    .txt {
+      font-family: $merriweather;
+      line-height: 1.4;
+      font-size: .95rem;
+      color:$lite-big-stone;
+      opacity:0;
+      transition:$timing-2 $transition;
+    }
+    .details {
+      @include pos(absolute, $left:0, $bottom:10px);
+      margin: 10px 10px;
+      padding:20px 24px;
+      letter-spacing: 1px;
+      color:$smalt-blue;
+      font-family: $grotesque-black;
+      font-size: .9rem;
+      text-transform: uppercase;
+      cursor:pointer;
+      opacity:0;
+      transition:$timing-2 $transition;
+    }
+  }
+  &:hover .infos {
+    transform:translateY(-$thumb-height);
+    .seats, .txt, .details {
+      opacity:1;
+    }
+  }
+}
+@import url('https://fonts.googleapis.com/css?family=Advent+Pro&display=swap');
+.category {
+  display: flex;
+  background:  linear-gradient(to bottom, transparent, white), url('https://images.squarespace-cdn.com/content/v1/5516df24e4b01178dd821724/1436737607498-L67YANQKFQNKK7IS1NNW/ke17ZwdGBToddI8pDm48kG4VaGK2BDoypcV72v3WXxkUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKcQ7p8169p8qxgXVKEB23rQXgFGdd18FgKgV2HQBaPNGG3yBSUmSgz7kzVX4TWod5R/soccerbanner.jpg?format=2500w') no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 400px;
+  padding: 0;
+  margin-top: 95px;
+  justify-content: center;
+  align-content: center;
+  h1{
+    text-align: center;
+    margin-top: 16vh;
+    font-size: 64px;
+    font-family: 'Advent Pro', sans-serif;
+  }
+}
