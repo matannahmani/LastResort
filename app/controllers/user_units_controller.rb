@@ -39,6 +39,7 @@ class UserUnitsController < ApplicationController
   end
 
   def new
+    @resources = current_user.resources_amounts
   end
 
   private
