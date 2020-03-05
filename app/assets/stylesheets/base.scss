@@ -11,7 +11,9 @@
   width: 100vw;
   height: 100vh;
 }
-
+#raid {
+  background-color: gray;
+}
 .extract-button button {
   color: white;
   padding: 8px 24px;
@@ -35,4 +37,8 @@
   border: 2px solid white;
   background: white;
   margin: 6px;
+}
+
+.dropdown-menu{
+  padding-bottom: 0;
 }
