@@ -82,6 +82,9 @@ function create() {
           });
       // }
       buttons.forEachButtton((x,index) => {buttons.hideButton(index)});
+      cam = this.cameras.main;
+      cam.setBounds(0, 0, water.width, water.height);
+      cam.centerToBounds();
 
       var dragScale = this.plugins.get('rexpinchplugin').add(this); // SETTING UP DRAG SCREEN
       dragScale
@@ -93,6 +96,7 @@ function create() {
           })
           .on('pinch', function (dragScale) {
               var scaleFactor = dragScale.scaleFactor;
+
               if (cam.zoom > 0.5){
               cam.zoom *= scaleFactor;
             }

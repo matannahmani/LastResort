@@ -22,7 +22,7 @@
   <div class="tab-pane fade show active" id="exchanged" role="tabpanel">
     <div class="pg-exchange">
       <p>Trade resources for gems</p>
-      <%= form_tag inventory_exchange_path, autocomplete: :off do %>
+      <%= form_tag inventory_exchange_path, remote: true, autocomplete: :off do %>
         <div class="resources">
           <div class="first-row-exchange">
             <div class="exchange-wood">
@@ -95,7 +95,7 @@
                 <i class="fas fa-caret-down"></i>
               </a>
             </div>
-            <p id="arrow-right"><i class="fas fa-arrow-right"></i></p>
+            <p id="arrow-right"><i class="fas fa-long-arrow-alt-right"></i></p>
             <p id='gem-value'></p>
             <img src="https://pbs.twimg.com/profile_images/531994916181012480/EBap51cO_400x400.png" alt="" style="width: 36px;height: 36px">
             </div>
@@ -113,7 +113,6 @@
   <div class="tab-pane fade" id="soldiers" role="tabpanel">
     <div class="soldiers">
       <%= form_tag soldiers_buy_path, remote: true do %>
-       <p>Trade in Gems to gain more units!</p>
        <div class="first-row-soldier">
          <div class="one-fighter soldier-selector" data-soldiers="1">
              <div class="card-trip-soldier">
@@ -149,7 +148,7 @@
            <div class="card-trip-soldier">
              <img src="<%= asset_path( 'wizard.svg' ) %>" height="160px" width="160px" />
              <div class="card-trip-infos">
-               <h2>1 Mage</h2>
+               <h2>1 Wizard</h2>
                <div class="soldier-price">
                   <p>10</p>
                   <img src="https://pbs.twimg.com/profile_images/531994916181012480/EBap51cO_400x400.png" alt="" style="width: 20px;height: 16px">
@@ -162,7 +161,7 @@
            <div class="card-trip-soldier">
              <img src="<%= asset_path( 'wizard.svg' ) %>" height="160px" width="160px" />
              <div class="card-trip-infos">
-               <h2>10 Mages</h2>
+               <h2>10 Wizards</h2>
                <div class="soldier-price">
                   <p>90</p>
                   <img src="https://pbs.twimg.com/profile_images/531994916181012480/EBap51cO_400x400.png" alt="" style="width: 20px;height: 16px">
@@ -172,12 +171,12 @@
        </div>
      </div>
      <div class="buy-bar mt-4">
-        <%= hidden_field_tag 'amount', :soldiers %>
+        <%= hidden_field_tag :unit_amount, 0 %>
         <%= button_tag(type: "submit", class: "exchange-btn") do %>
             Buy Soldier
         <% end %>
       <% end %>
-      <center><p id="buy-back-btn" style='color: rgba(255,255,255,0.8); font-size: 14px;'>Back <i class="fas fa-undo-alt ml-1"></i></p></center>
+      <center><p id="buy-back-btn" class="buy-back-btn" style='color: rgba(255,255,255,0.8); font-size: 14px;'>Back <i class="fas fa-undo-alt ml-1"></i></p></center>
       </div>
     </div>
   </div>
@@ -322,8 +321,8 @@
           <%= button_tag(type: "submit", class: "exchange-btn", id: "bought-structure") do %>
               Buy Now
           <% end %>
+          <center><p id="buy-back-btn" class="buy-back-btn" style='color: rgba(255,255,255,0.8); font-size: 14px;'>Back <i class="fas fa-undo-alt ml-1"></i></p></center>
         <% end %>
-        <center><p id="buy-back-btn" style='color: rgba(255,255,255,0.8); font-size: 14px;'>Back <i class="fas fa-undo-alt ml-1"></i></p></center>
         </div>
       </div>
   </div>
@@ -367,10 +366,11 @@
       window.location.href = "/games/main";
     })
 
-  nextBackBtn = document.getElementById("buy-back-btn");
-    nextBackBtn.addEventListener("click", () => {
+  document.querySelectorAll(".buy-back-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
       window.location.href = "/games/main";
     })
+  })
 
   // 1. Get the button by its ID
   // 2. Add an event to it (react to 'click' event)

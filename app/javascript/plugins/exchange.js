@@ -17,7 +17,7 @@ const setResourceAmount = (amount) => {
 
   let gemValue = document.getElementById('gem-value');
   if(gemValue) {
-    gemValue.innerText = (amount / 20);
+    gemValue.innerText = Math.floor(amount / 20);
   }
 }
 
@@ -41,7 +41,8 @@ const markSelected = (button) => {
 const setupResourceSelectorButtons = () => {
   const buttons = document.querySelectorAll('.resource-chooser')
   buttons.forEach((button) => {
-    button.addEventListener('click', () => {
+    button.addEventListener('click', (e) => {
+      e.preventDefault()
       markSelected(button)
       // 2. get its resource type
       const resourceType = button.dataset.resource
@@ -90,21 +91,25 @@ const setupNumberSpinner = () => {
   const downArrow = document.querySelector(
     '.material-amount-spinner .spinner-arrow-down')
 
-  upArrow.addEventListener('click', () => {
+  upArrow.addEventListener('click', (e) => {
+    e.preventDefault()
     tryAmountSpin(20)
   })
 
-  downArrow.addEventListener('click', () => {
+  downArrow.addEventListener('click', (e) => {
+    e.preventDefault()
     tryAmountSpin(-20)
   })
 }
 
 const setupExchangeForm = () => {
   document.addEventListener('DOMContentLoaded', () => {
-    setupResourceSelectorButtons()
-    setupNumberSpinner()
-    setupAmountInput()
-    setResourceAmount(0)
+    if (document.querySelector('.resource-chooser')) {
+      setupResourceSelectorButtons()
+      setupNumberSpinner()
+      setupAmountInput()
+      setResourceAmount(0)
+    }
   })
 }
 

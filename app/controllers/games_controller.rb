@@ -15,12 +15,12 @@ class GamesController < ApplicationController
 
   def getupdate
     if !current_user.nil?
-      user = current_user.user_structures
-      list = user.where.not("amount = placed") # check if there is building the has been bought and not placed
+      user_structures = current_user.user_structures
+      unplaced = user_structures.where.not("amount = placed") # check if there is building the has been bought and not placed
       returnlist = []
-      list.each do |structure|
-        amount = structure.amount - structure.placed
-        strname = Structure.find(structure.id).unit_name
+      unplaced.each do |user_structure|
+        amount = user_structure.amount - user_structure.placed
+        strname = user_structure.structure.unit_name
         returnlist << {strname => amount}
       end
       (returnlist.count.zero?) ? (render json: {result: false}) : (render json: {msg: returnlist, result: true})
@@ -33,10 +33,9 @@ class GamesController < ApplicationController
     if !current_user.nil?
       ## here should be checking if has structure
       if !params['base'].nil? && (params['base'].match? (/layer3.putTilesAt\(buildings_type\['.+'\],\d+,\d+\);/))
-      structure_id = Structure.find_by(unit_name: params['name']).id
-      userstr = current_user.user_structures.where(id: structure_id)[0]
-      if userstr.amount > userstr.placed
-        user_structure = current_user.user_structures.where(id: structure_id)[0]
+      structure = Structure.find_by(unit_name: params['name'])
+      user_structure = current_user.user_structures.find_by(structure: structure)
+      if user_structure.amount > user_structure.placed
         user_structure.placed += 1
         user_structure.save!
         current_user.base << params['base']

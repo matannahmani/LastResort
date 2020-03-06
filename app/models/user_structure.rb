@@ -4,7 +4,8 @@ class UserStructure < ApplicationRecord
   belongs_to :user
 
   private
+  
   def init
-    self.placed  ||= 0           #will set the default value only if it's nil
+    self.placed  ||= 0
   end
 end

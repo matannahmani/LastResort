@@ -55,7 +55,6 @@ class UserStructuresController < ApplicationController
     if bool
       deplete_user_resources(structure)
       if structures.where(structure_id: structure.id)
-        # binding.pry
         str = structures.find_by(structure_id: structure.id)
         str.update(amount: (str.amount + 1))
       else
