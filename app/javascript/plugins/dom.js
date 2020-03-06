@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', () => {
   let switchBTN = document.querySelector('#switch');
   // let shopBTN = document.querySelector('#shop')

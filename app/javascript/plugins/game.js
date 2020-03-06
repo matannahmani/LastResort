@@ -29,7 +29,6 @@ function create() {
 
       // resizeApp();
       buildings_type = buildingList();
-
       this.add.image(0, 0, 'map').setOrigin(0);
 
       const map = this.make.tilemap({ key: 'tilemap' });
@@ -44,14 +43,19 @@ function create() {
       layer3 = map.createDynamicLayer(3, tiles);
 
       // Loading base , setting camera , setting up drag screen
+      const cam = this.cameras.main;
+      cam.zoom = 0.7
+      cam.setBounds(0, 0, water.width, water.height);
+      cam.centerToBounds();
       isplacing = [false]
       loadBase();
+
       const checkuser = checkUser();
       placeables = checkuser; // [true/false,name,amountLeft]
       buttons = this.rexUI.add.buttons({
           anchor: {
-              left: 'left+10',
-              centerY: 'bottom-100'
+              left: 'left-20',
+              centerY: 'bottom+40'
           },
 
           orientation: 'x',
@@ -92,7 +96,8 @@ function create() {
           })
           .on('pinch', function (dragScale) {
               var scaleFactor = dragScale.scaleFactor;
-              if (cam.zoom < 0.6){
+
+              if (cam.zoom > 0.5){
               cam.zoom *= scaleFactor;
             }
           }, this);
@@ -100,11 +105,11 @@ function create() {
 
 var createButton = function (scene, text) {
     return scene.rexUI.add.label({
-        width: 60,
-        height: 40,
+        width: 80,
+        height: 60,
         background: scene.rexUI.add.roundRectangle(0, 0, 0, 0, 20, 0x7b5e57),
         text: scene.add.text(0, 0, text, {
-            fontSize: 18
+            fontSize: 32
         }),
         space: {
             left: 10,
@@ -203,6 +208,22 @@ function loadBase() {
       commands.msg.forEach((command) =>{
         eval(command);
       })
+        // game.renderer.snapshot(function (image) {
+        //     fetch('../upload', {
+        //       method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        //       mode: 'cors', // no-cors, *cors, same-origin
+        //       cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        //       credentials: 'same-origin', // include, *same-origin, omit
+        //       headers: {
+        //         'Content-Type': 'application/json'
+        //         // 'Content-Type': 'application/x-www-form-urlencoded',
+        //       },
+        //       redirect: 'follow', // manual, *follow, error
+        //       referrerPolicy: 'no-referrer', // no-referrer, *client
+        //       body: JSON.stringify(image.currentSrc) // body data type must match "Content-Type" header
+        //     })
+        // });
+
     });
 }
 

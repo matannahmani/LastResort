@@ -58,6 +58,7 @@ class UserStructuresController < ApplicationController
         str = structures.find_by(structure_id: structure.id)
         str.update(amount: (str.amount + 1))
       else
+        # binding.pry
         structures.create!(structure_id: structure.id, amount: 1, placed: 0)
       end
     end

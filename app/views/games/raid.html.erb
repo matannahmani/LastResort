@@ -1,0 +1,28 @@
+<div class="container" style="padding:0">
+  <div class="banner" style="margin-top: 40px;margin-bottom: 16px;">
+    <h1>Select your Opponent</h1>
+  </div>
+  <div class="cards">
+    <% @enemis.each do |enemy| %>
+    <% resource = current_user.user_resources.sample %>
+      <div class="card-trip">
+        <% if enemy.photo.attached? %>
+          <%= cl_image_tag enemy.photo.key, crop: :fit %>
+        <% else %>
+          <img src="https://res.cloudinary.com/dgq92f6st/image/upload/c_fit/CCcqtKKBK1sX4JwFdYbUt9DN.png" alt="">
+        <% end %>
+        <!-- <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" /> -->
+        <div class="card-trip-infos">
+          <div>
+            <h2>IGN: <%= enemy.nickname %></h2>
+            <p><br>Units : <%= enemy.user_units.count %>
+              <br>Gems : <%= enemy.gems %>
+              <br><%= resource.resource.name %> : <%= resource.amount %>
+          </p>
+          <a href="../raid/<%= enemy.id %>" class="btn btn-danger"style="text-align: center;margin-right: 40%;margin-left: 40%;margin-top:8px;opacity: 0.7">RAID</a>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
