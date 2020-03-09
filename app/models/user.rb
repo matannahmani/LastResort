@@ -19,7 +19,7 @@ class User < ApplicationRecord
       mycache.each do |loc|
         distance = Geocoder::Calculations.distance_between([location[0],location[1]], [loc.latitude, loc.longitude], options = { unit: :km} )
         # binding.pry
-        if distance >= 0.15
+        if distance <= 0.15
           gennewbool = false
         end
       end
@@ -40,6 +40,8 @@ class User < ApplicationRecord
               user: self
             )
           end
+        else
+          render json: {response: 500}
         end
       end
   end
