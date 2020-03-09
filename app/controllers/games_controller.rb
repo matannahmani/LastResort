@@ -64,7 +64,7 @@ class GamesController < ApplicationController
   def raid
     if !current_user.nil?
       @enemis = []
-      while @enemis.length != 2
+      while @enemis.length != 1
         sample = User.all.sample
           @enemis << sample if !(@enemis.include?(sample)) && sample != current_user
       end
@@ -77,9 +77,15 @@ class GamesController < ApplicationController
         if current_user.raidcount < 2
           if !User.find(id).nil?
             checkwon(User.find(id))
+            current_user.raidcount += 1
+            current_user.save!
           else
+            flash[:notice] = 'invalid user'
             redirect_to games_main_path
           end
+        else
+          flash[:notice] = 'You have exceeded 2 raids for today :('
+          redirect_to games_main_path
         end
       else
       redirect_to new_user_session_path
