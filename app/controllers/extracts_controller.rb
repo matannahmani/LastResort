@@ -42,4 +42,13 @@ class ExtractsController < ApplicationController
       UserResource.create!(user_id: current_user.id, resource_id: resource.resource_id, amount: resource.amount)
     end
   end
+
+  def updateresource
+    if !current_user.nil? && !params[:latitude].nil? && !params[:longitude].nil?
+      current_user.generate_random_resource([params[:latitude],params[:longitude]])
+      render json: {response: 200}
+    else
+      render json: {response: 500}
+    end
+  end
 end

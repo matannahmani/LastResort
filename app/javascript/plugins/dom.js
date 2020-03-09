@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let mapbox = document.querySelector('.mapboxgl-map');
   let gamemap = document.querySelectorAll('canvas');
   let gamemap1 = document.querySelectorAll('.mapboxgl-canvas');
+  let geomap = document.querySelector('.con');
+  let base = document.querySelector('#phaser-app');
   let ismap = true;
   setTimeout(function(){
       gamemap = document.querySelectorAll('canvas');
@@ -18,24 +20,16 @@ document.addEventListener('DOMContentLoaded', () => {
     checkmap();
     });
 
-  // shopBTN.addEventListener('click', click => {
-  //   shop();
-  //   });
-
-  // function shop () {
-  //   //redirect to a user-units page
-  // }
-
 
   function checkmap() {
     if (ismap === false){
-      gamemap[1].style.display = 'none';
-      mapbox.style.display = 'block';
+      base.style.zIndex = 1;
+      mapbox.style.zIndex = 2;
       ismap = true;
     }
     else{
-      mapbox.style.display = 'none';
-      gamemap[1].style.display = 'block';
+      mapbox.style.zIndex = 1;
+      base.style.zIndex = 2;
       ismap = false;
     }
   }

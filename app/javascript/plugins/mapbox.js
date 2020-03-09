@@ -17,15 +17,15 @@ const fitMapToMarkers = (map, markers) => {
   markers.forEach(marker => {
     bounds.extend([ marker.longitude, marker.latitude ])
   });
-  map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 });
+  map.fitBounds(bounds, { padding: 80, maxZoom: 20, duration: 1});
 };
 
 const createCustomMarkers = (element, marker) => {
   element.className = 'marker';
   element.style.backgroundImage = `url('${marker.image_url}')`;
   element.style.backgroundSize = 'contain';
-  element.style.width = '25px';
-  element.style.height = '25px';
+  element.style.width = '10px';
+  element.style.height = '10px';
 }
 
 const initMapbox = () => {
@@ -49,6 +49,26 @@ const initMapbox = () => {
     // data from OpenStreetMap.
     map.on('load', function() {
     // Insert the layer beneath any symbol layer.
+    document.querySelector('.mapboxgl-ctrl-icon').addEventListener('click', (click) =>{
+      navigator.geolocation.getCurrentPosition(function(position) {
+        let lat = position.coords.latitude;
+        let lng = position.coords.longitude;
+        console.log(lat + "|" + lng);
+        fetch('./mylocation', {
+          method: 'POST', // *GET, POST, PUT, DELETE, etc.
+          mode: 'cors', // no-cors, *cors, same-origin
+          cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+          credentials: 'same-origin', // include, *same-origin, omit
+          headers: {
+            'Content-Type': 'application/json'
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          redirect: 'follow', // manual, *follow, error
+          referrerPolicy: 'no-referrer', // no-referrer, *client
+          body: JSON.stringify({latitude: lat,longitude: lng }) // body data type must match "Content-Type" header
+        });
+      });
+    });
     let layers = map.getStyle().layers;
 
     let labelLayerId;
@@ -123,6 +143,8 @@ const initMapbox = () => {
 
 
     const extractHTML = "<button id='btn-extract-resource' class=''>Extract</button>"
+
+    // check if find my location is clicked
 
     class MyCustomControl {
 

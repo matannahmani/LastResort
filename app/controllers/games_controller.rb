@@ -66,7 +66,7 @@ class GamesController < ApplicationController
       @enemis = []
       while @enemis.length != 2
         sample = User.all.sample
-          @enemis << sample if !(@enemis.include?(sample))
+          @enemis << sample if !(@enemis.include?(sample)) && sample != current_user
       end
     end
   end
