@@ -13,11 +13,13 @@ let markersToShow;
     }
   }
 const fitMapToMarkers = (map, markers) => {
+  // if (typeof markers !== 'undefined') {
   const bounds = new mapboxgl.LngLatBounds();
   markers.forEach(marker => {
     bounds.extend([ marker.longitude, marker.latitude ])
   });
-  map.fitBounds(bounds, { padding: 80, maxZoom: 20, duration: 1});
+  map.fitBounds(bounds, { padding: 80, maxZoom: 15, duration: 0});
+  // }
 };
 
 const createCustomMarkers = (element, marker) => {
@@ -37,12 +39,12 @@ const initMapbox = () => {
       style: 'mapbox://styles/matanmatan999new/ck6c251js4mwd1imo5g3w2j2q',
       center: [-74.0066, 40.7135],
       zoom: 14,
-      maxZoom: 20,
+      maxZoom: 16,
       minZoom: 13,
       pitch: 60,
       bearing: -17.6,
       container: 'map',
-      antialias: true
+      antialias: false
     });
 
     // The 'building' layer in the mapbox-streets vector source contains building-height
@@ -53,7 +55,6 @@ const initMapbox = () => {
       navigator.geolocation.getCurrentPosition(function(position) {
         let lat = position.coords.latitude;
         let lng = position.coords.longitude;
-        console.log(lat + "|" + lng);
         fetch('./mylocation', {
           method: 'POST', // *GET, POST, PUT, DELETE, etc.
           mode: 'cors', // no-cors, *cors, same-origin
@@ -66,9 +67,22 @@ const initMapbox = () => {
           redirect: 'follow', // manual, *follow, error
           referrerPolicy: 'no-referrer', // no-referrer, *client
           body: JSON.stringify({latitude: lat,longitude: lng }) // body data type must match "Content-Type" header
-        });
+        }).then((response) => {
+          if (response.response === 200){
+            cleaner(allmarkers);
+            console.log(data.markers)
+            data.markers.forEach((resource) => {
+              const element = document.createElement('div');
+              createCustomMarkers(element, resource)
+              newMarker = new mapboxgl.Marker(element)
+                .setLngLat([ resource.longitude, resource.latitude ])
+                .addTo(map);
+            });
+            fitMapToMarkers(map, data.markers);
+          }
       });
     });
+  });
     let layers = map.getStyle().layers;
 
     let labelLayerId;
@@ -138,7 +152,6 @@ const initMapbox = () => {
       allmarkers.push(newMarker)
     });
 
-
     fitMapToMarkers(map, markers);
 
 
@@ -179,7 +192,7 @@ const initMapbox = () => {
 
 
       });
-     const postData = async (url , data ) => {
+     const postData = async (url , data,getloc = false ) => {
         // Default options are marked with *
         let answer = null;
 
@@ -208,25 +221,27 @@ const initMapbox = () => {
                   .addTo(map);
               });
               fitMapToMarkers(map, data.allResources);
-              if (data.pickedResources.length === 0) {
-                initSweetalert('#map', 'btn-extract-resource', {
-                          title: "Get closer!",
-                            text: `You're not close enough to any resource.`,
-                            icon: "error"
-                          }, (value) => {
-                            console.log(data)
-                          });
+              if (getloc === false) // checks if its fetch (true means its being called from get location)
+              {
+                if (data.pickedResources.length === 0) {
+                  initSweetalert('#map', 'btn-extract-resource', {
+                            title: "Get closer!",
+                              text: `You're not close enough to any resource.`,
+                              icon: "error"
+                            }, (value) => {
+                              console.log(data)
+                            });
 
-              } else {
-                initSweetalert('#map', 'btn-extract-resource', {
-                          title: "Extracted!",
-                            text: `${data.pickedResources[0].resource.amount} ${data.pickedResources[0].resource_name} units have been added to your inventory.`,
-                            icon: "success"
-                          }, (value) => {
-                            console.log(data)
-                          });
+                } else {
+                  initSweetalert('#map', 'btn-extract-resource', {
+                            title: "Extracted!",
+                              text: `${data.pickedResources[0].resource.amount} ${data.pickedResources[0].resource_name} units have been added to your inventory.`,
+                              icon: "success"
+                            }, (value) => {
+                              console.log(data)
+                            });
+                }
               }
-
             }).catch((err) => {
                 console.log(err);
             })
