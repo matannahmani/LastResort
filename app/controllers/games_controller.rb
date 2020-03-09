@@ -7,7 +7,7 @@ class GamesController < ApplicationController
 
   def index
     if !current_user.nil?
-      render json: {msg: current_user.base}
+      render json: {msg: current_user.base,imgupdate: current_user.imgupdate}
     else
       render json: {msg: 'please log in!'}
     end
@@ -54,11 +54,11 @@ class GamesController < ApplicationController
 
   def upload
     if !current_user.nil?
-
       basephoto = params['_json']
       image = Cloudinary::Uploader.upload(basephoto)
       file = open(image["url"])
       current_user.photo.attach(io: file, filename: 'base.jpg', content_type: 'image/png')
+      current_user.update(imgupdate: false)
     end
   end
   def raid
@@ -91,6 +91,7 @@ class GamesController < ApplicationController
     def checkwon(enemyuser)
       myuser = [0,0,0,0] # 0 - power , 1 - defense, 2 - range, 3 - hp
       enemy  = [0,0,0,0]
+      won = 'You won congratz !'
       current_user.user_units.each do |myunit|
         myuser[0] += myunit.unit.attack
         myuser[1] += myunit.unit.defense
@@ -113,7 +114,9 @@ class GamesController < ApplicationController
         amountsecond = current_user.user_resources.second.amount
         enemyuser.user_resources.first.update(amount: (amount += 20))
         enemyuser.user_resources.second.update(amount: (amount += 20))
+        won = 'You lost try next time !'
       end
+      flash[:notice] = won
       redirect_to games_main_path
     end
 end

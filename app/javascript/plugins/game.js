@@ -203,6 +203,25 @@ function loadBase() {
       commands.msg.forEach((command) =>{
         eval(command);
       })
+      // takes a snapshot of base and upload to the server if user needs to update image
+      console.log(commands.imgupdate)
+      if(commands.imgupdate == true){
+        game.renderer.snapshot(function (image) {
+            fetch('../upload', {
+              method: 'POST', // *GET, POST, PUT, DELETE, etc.
+              mode: 'cors', // no-cors, *cors, same-origin
+              cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+              credentials: 'same-origin', // include, *same-origin, omit
+              headers: {
+                'Content-Type': 'application/json'
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+              },
+              redirect: 'follow', // manual, *follow, error
+              referrerPolicy: 'no-referrer', // no-referrer, *client
+              body: JSON.stringify(image.currentSrc) // body data type must match "Content-Type" header
+            })
+        });
+      }
     });
 }
 
