@@ -46,7 +46,10 @@ class ExtractsController < ApplicationController
   def updateresource
     if !current_user.nil? && !params[:latitude].nil? && !params[:longitude].nil?
       current_user.generate_random_resource([params[:latitude],params[:longitude]])
-      render json: {response: 200}
+      filtered_resources = current_user.cache_resources.where(extracted: false)
+      respond_to do |format|
+        format.json {render json: {response: 200,markers: filtered_resources} }
+      end
     else
       render json: {response: 500}
     end

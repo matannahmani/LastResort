@@ -12,20 +12,21 @@ class User < ApplicationRecord
   validates :nickname, uniqueness: true
   has_one_attached :photo
 
-  def generate_random_resource(location=nil)
+  def generate_random_resource(location=[1.1,1.1])
     if location != nil
-      mycache = CacheResource.where(user_id: current_user.id)
-      gennewbool = false
+      mycache = CacheResource.where(user_id: self)
+      gennewbool = true
       mycache.each do |loc|
         distance = Geocoder::Calculations.distance_between([location[0],location[1]], [loc.latitude, loc.longitude], options = { unit: :km} )
-        if distance >= 0.7
-          gennewbool = true
+        # binding.pry
+        if distance >= 0.15
+          gennewbool = false
         end
       end
       if gennewbool == true
         mycache.destroy_all
           radius = ENV['CACHE_RESOURCE_RANDOM_RADIUS'].to_f
-          resource_count = 10 * radius
+          resource_count = 80 * radius
           center = location
           resource_count.to_i.times do
             random_resource = Resource.order(Arel.sql('RANDOM()')).first
