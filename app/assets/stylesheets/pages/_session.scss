@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css?family=Marcellus+SC&display=swap');
+.form-inputs h2{
+  font-weight: 500;
+  font-family: 'Marcellus SC', serif;
+  color: wheat;
+}
+.form-inputs label{
+  font-weight: 700;
+  font-size: 18px;
+  font-family: 'Marcellus SC', serif;
+  color: wheat;
+}
+.user_password small{
+  font-weight: 1000;
+  font-size: 16px;
+  font-family: 'Marcellus SC', serif;
+  color: white !important;
+}
+.invalid-feedback{
+  font-weight: 600;
+  font-size: 18px;
+}
+.form-actions a{
+  font-weight: 800;
+  font-size: 22px;
+  font-family: 'Marcellus SC', serif;
+  color: white;
+}
+.form-inputs{
+  position: absolute;
+  right: 50%;
+  bottom: 50%;
+  width: 300px;
+  display: block;
+  transform: translate(50%,50%);
+  text-align: center;
+  padding: 10px 0;
+  border: solid black;
+  border-radius: 8px;
+  background-color: rgba(51, 170, 51, .1);
+}
+
+.form-inputs input[type = "email"],.form-inputs input[type = "text"],.form-inputs input[type = "password"],.form-inputs input[type = "submit"]{
+  display: block;
+  background: none;
+  margin: 20px auto;
+  text-align: center;
+  border: 2px solid #8DE969;
+  padding: 14px 10px;
+  width: 200px;
+  outline: none;
+  color: white;
+  border-radius: 24px;
+  transition: 0.25s;
+}
+.form-inputs input[type = "email"]:focus,.form-inputs input[type = "password"]:focus{
+  border-color: #CBEF43;
+  width: 280px;
+}
