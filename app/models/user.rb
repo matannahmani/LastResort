@@ -31,6 +31,7 @@ class User < ApplicationRecord
 
   def init
     self.raidcount  ||= 0           #will set the default value only if it's nil
+    self.imgupdate = true if self.imgupdate.nil?
   end
     def generate_user_structures
     structure_types = Structure.all
