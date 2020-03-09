@@ -13,13 +13,13 @@ let markersToShow;
     }
   }
 const fitMapToMarkers = (map, markers) => {
-  // if (typeof markers !== 'undefined') {
+  if (typeof markers !== 'undefined') {
   const bounds = new mapboxgl.LngLatBounds();
   markers.forEach(marker => {
     bounds.extend([ marker.longitude, marker.latitude ])
   });
   map.fitBounds(bounds, { padding: 80, maxZoom: 15, duration: 0});
-  // }
+  }
 };
 
 const createCustomMarkers = (element, marker) => {
@@ -68,21 +68,26 @@ const initMapbox = () => {
           referrerPolicy: 'no-referrer', // no-referrer, *client
           body: JSON.stringify({latitude: lat,longitude: lng }) // body data type must match "Content-Type" header
         }).then((response) => {
-          if (response.response === 200){
-            cleaner(allmarkers);
-            console.log(data.markers)
-            data.markers.forEach((resource) => {
-              const element = document.createElement('div');
-              createCustomMarkers(element, resource)
-              newMarker = new mapboxgl.Marker(element)
-                .setLngLat([ resource.longitude, resource.latitude ])
-                .addTo(map);
+          response.json().then((data) => {
+            if (data.response === 200){
+              console.log(allmarkers)
+              cleaner(allmarkers);
+              allmarkers = [];
+              console.log(data.markers)
+              data.markers.forEach((resource) => {
+                const element = document.createElement('div');
+                createCustomMarkers(element, resource)
+                newMarker = new mapboxgl.Marker(element)
+                  .setLngLat([ resource.longitude, resource.latitude ])
+                  .addTo(map);
+                allmarkers.push(newMarker);
+                });
+              fitMapToMarkers(map, data.markers);
+              }
             });
-            fitMapToMarkers(map, data.markers);
-          }
+          });
       });
     });
-  });
     let layers = map.getStyle().layers;
 
     let labelLayerId;
@@ -160,7 +165,6 @@ const initMapbox = () => {
     // check if find my location is clicked
 
     class MyCustomControl {
-
       onAdd(map){
         this.map = map;
         this.container = document.createElement('div');
