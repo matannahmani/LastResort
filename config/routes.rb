@@ -18,4 +18,5 @@ Rails.application.routes.draw do
   get 'story', to: "stories#show"
   get 'base/raid', to: "games#raid"
   get '/raid/:id', to: "games#startraid"
+  post '/games/mylocation', to: "extracts#updateresource"
 end

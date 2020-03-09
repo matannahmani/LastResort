@@ -20,7 +20,6 @@ function preload() {
       // scene.load.scenePlugin('rexuiplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexuiplugin.min.js', 'rexUI', 'rexUI');
       this.load.plugin('rexpinchplugin', url, true);
       this.load.scenePlugin('rexuiplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexuiplugin.min.js', 'rexUI', 'rexUI');
-      this.load.image('btn', '../../basepop.png');
     }
 
 function create() {
@@ -43,6 +42,9 @@ function create() {
 
       layer3 = map.createDynamicLayer(3, tiles);
 
+      cam = this.cameras.main;
+      cam.setBounds(0, 0, water.width, water.height);
+      cam.centerToBounds();
       // Loading base , setting camera , setting up drag screen
       isplacing = [false]
       loadBase();
@@ -78,9 +80,6 @@ function create() {
           });
       // }
       buttons.forEachButtton((x,index) => {buttons.hideButton(index)});
-      cam = this.cameras.main;
-      cam.setBounds(0, 0, water.width, water.height);
-      cam.centerToBounds();
 
       var dragScale = this.plugins.get('rexpinchplugin').add(this); // SETTING UP DRAG SCREEN
       dragScale
@@ -204,7 +203,6 @@ function loadBase() {
         eval(command);
       })
       // takes a snapshot of base and upload to the server if user needs to update image
-      console.log(commands.imgupdate)
       if(commands.imgupdate == true){
         game.renderer.snapshot(function (image) {
             fetch('../upload', {

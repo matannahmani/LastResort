@@ -11,22 +11,36 @@ class User < ApplicationRecord
   has_many :user_structures
   validates :nickname, uniqueness: true
   has_one_attached :photo
-  def generate_random_resource
-    radius = ENV['CACHE_RESOURCE_RANDOM_RADIUS'].to_f
-    resource_count = 100 * radius
-    center = ENV['CACHE_RESOURCE_RANDOM_CENTER']
-    resource_count.to_i.times do
-      random_resource = Resource.order(Arel.sql('RANDOM()')).first
-      random_amount = rand(1..100)
-      location = Geocoder::Calculations.random_point_near(center, radius)
-      CacheResource.create!(
-        longitude: location[1],
-        latitude: location[0],
-        amount: random_amount,
-        resource: random_resource,
-        user: self
-      )
-    end
+
+  def generate_random_resource(location=nil)
+    if location != nil
+      mycache = CacheResource.where(user_id: current_user.id)
+      gennewbool = false
+      mycache.each do |loc|
+        distance = Geocoder::Calculations.distance_between([location[0],location[1]], [loc.latitude, loc.longitude], options = { unit: :km} )
+        if distance >= 0.7
+          gennewbool = true
+        end
+      end
+      if gennewbool == true
+        mycache.destroy_all
+          radius = ENV['CACHE_RESOURCE_RANDOM_RADIUS'].to_f
+          resource_count = 10 * radius
+          center = location
+          resource_count.to_i.times do
+            random_resource = Resource.order(Arel.sql('RANDOM()')).first
+            random_amount = rand(1..100)
+            location = Geocoder::Calculations.random_point_near(center, radius)
+            CacheResource.create!(
+              longitude: location[1],
+              latitude: location[0],
+              amount: random_amount,
+              resource: random_resource,
+              user: self
+            )
+          end
+        end
+      end
   end
 
   def init
