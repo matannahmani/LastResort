@@ -11,6 +11,8 @@ class User < ApplicationRecord
   has_many :user_structures
   validates :nickname, uniqueness: true
   has_one_attached :photo
+  has_many :sender,  :class_name => 'Transaction', :foreign_key => 'sender_id'
+  has_many :receiver,  :class_name => 'Transaction', :foreign_key => 'receiver_id'
 
   def generate_random_resource(location=[1.1,1.1])
     if location != nil
@@ -48,6 +50,7 @@ class User < ApplicationRecord
 
   def init
     self.raidcount  ||= 0           #will set the default value only if it's nil
+    self.xp  ||= 0
     self.imgupdate = true if self.imgupdate.nil?
   end
     def generate_user_structures
@@ -83,5 +86,13 @@ class User < ApplicationRecord
       iron: resources_by_name('iron').first.amount,
       gold: resources_by_name('gold').first.amount
     }
+  end
+
+  def xptolevel
+    return Level.find_by(xp: self.xp+1..Level.last.xp)
+  end
+
+  def protected
+    return [self.xp,self.nickname,self.xptolevel]
   end
 end

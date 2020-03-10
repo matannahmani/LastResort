@@ -45,6 +45,7 @@ function create() {
       cam = this.cameras.main;
       cam.setBounds(0, 0, water.width, water.height);
       cam.centerToBounds();
+      cam.zoom = 0.45;
       // Loading base , setting camera , setting up drag screen
       isplacing = [false]
       loadBase();
@@ -52,10 +53,10 @@ function create() {
       placeables = checkuser; // [true/false,name,amountLeft]
       buttons = this.rexUI.add.buttons({
           anchor: {
-              left: 'left+10',
-              centerY: 'bottom-100'
+              left: 'left',
+              centerY: 'bottom'
           },
-
+          draggable: true,
           orientation: 'x',
           buttons: [
             createButton(this, 'Barracks'),
@@ -80,18 +81,16 @@ function create() {
           });
       // }
       buttons.forEachButtton((x,index) => {buttons.hideButton(index)});
-
       var dragScale = this.plugins.get('rexpinchplugin').add(this); // SETTING UP DRAG SCREEN
       dragScale
           .on('drag1', function (dragScale) {
-            // debugger
               var drag1Vector = dragScale.drag1Vector;
               cam.scrollX -= drag1Vector.x / cam.zoom;
               cam.scrollY -= drag1Vector.y / cam.zoom;
           })
           .on('pinch', function (dragScale) {
               var scaleFactor = dragScale.scaleFactor;
-              if (cam.zoom > 0.6){
+              if (cam.zoom > 0.7){
               cam.zoom *= scaleFactor;
             }
           }, this);
@@ -119,9 +118,12 @@ function update() {
     if (item[1] === 'Medic' && item[2] > 0) buttons.showButton(1);
     if (item[1] === 'Boat' && item[2] > 0) buttons.showButton(2);
     if (item[1] === 'Weel' && item[2] > 0) buttons.showButton(3);
-    buttons.layout();
+     buttons.layout();
   });
-  // TO DO - add checking if its a wall if so display diffrent
+  buttons.scaleY = 2 - cam.zoom;
+  buttons.scaleX = 2 - cam.zoom;
+
+    // TO DO - add checking if its a wall if so display diffrent
   if (isplacing[0] === true && isplacing[2] > 0){
     const worldPoint = this.input.activePointer.positionToCamera(this.cameras.main); // click cords.
     // Draw tiles (only within the groundLayer)
@@ -221,6 +223,7 @@ function loadBase() {
         });
       }
     });
+    cam.zoomTo(0.8)
 }
 
 // Fetching if user bought new structure, then enable drawing

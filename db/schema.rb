@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_09_122651) do
+ActiveRecord::Schema.define(version: 2020_03_10_170252) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,23 @@ ActiveRecord::Schema.define(version: 2020_03_09_122651) do
     t.string "image_url"
     t.index ["resource_id"], name: "index_cache_resources_on_resource_id"
     t.index ["user_id"], name: "index_cache_resources_on_user_id"
+  end
+
+  create_table "friends", force: :cascade do |t|
+    t.bigint "sender_id"
+    t.bigint "receiver_id"
+    t.boolean "status"
+    t.boolean "pending"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["receiver_id"], name: "index_friends_on_receiver_id"
+    t.index ["sender_id"], name: "index_friends_on_sender_id"
+  end
+
+  create_table "levels", force: :cascade do |t|
+    t.integer "level"
+    t.integer "xp"
+    t.string "title"
   end
 
   create_table "resources", force: :cascade do |t|
@@ -126,6 +143,7 @@ ActiveRecord::Schema.define(version: 2020_03_09_122651) do
     t.string "base", default: [], array: true
     t.integer "raidcount"
     t.boolean "imgupdate"
+    t.integer "xp"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -133,6 +151,8 @@ ActiveRecord::Schema.define(version: 2020_03_09_122651) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "cache_resources", "resources"
   add_foreign_key "cache_resources", "users"
+  add_foreign_key "friends", "users", column: "receiver_id"
+  add_foreign_key "friends", "users", column: "sender_id"
   add_foreign_key "user_resources", "resources"
   add_foreign_key "user_resources", "users"
   add_foreign_key "user_structures", "structures"
