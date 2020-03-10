@@ -61,13 +61,12 @@ class GamesController < ApplicationController
       current_user.update(imgupdate: false)
     end
   end
+
   def raid
     if !current_user.nil?
       @enemis = []
-      while @enemis.length != 2
-        sample = User.all.sample
-          @enemis << sample if !(@enemis.include?(sample)) && sample != current_user
-      end
+      @enemis = User.all
+      # @enemis = User.where.not(id: current_user.id).shuffle[0..20]
     end
   end
 
