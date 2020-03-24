@@ -32,3 +32,5 @@ group :development, :test do
   gem 'dotenv-rails'
 
 end
+
+gem "browser", "~> 4.0"

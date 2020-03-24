@@ -3,7 +3,7 @@
     <h1>Select your Opponent</h1>
   </div>
   <div class="cards">
-    <% @enemis.each do |enemy| %>
+    <% @enemis[0..1].each do |enemy| %>
     <% resource = current_user.user_resources.sample %>
       <div class="card-trip">
         <% if enemy.photo.attached? %>
