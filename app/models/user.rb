@@ -50,7 +50,7 @@ class User < ApplicationRecord
 
   def init
     self.raidcount  ||= 0           #will set the default value only if it's nil
-    self.xp  ||= 0
+    self.xp = 0
     self.imgupdate = true if self.imgupdate.nil?
   end
     def generate_user_structures
