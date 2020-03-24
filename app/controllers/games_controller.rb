@@ -1,7 +1,6 @@
 class GamesController < ApplicationController
   require 'open-uri'
   skip_before_action :verify_authenticity_token
-
   def main
   end
 
@@ -11,6 +10,10 @@ class GamesController < ApplicationController
     else
       render json: {msg: 'please log in!'}
     end
+  end
+
+  def desktop
+    # raise
   end
 
   def getupdate

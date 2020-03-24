@@ -22,4 +22,5 @@ Rails.application.routes.draw do
   get '/friends/randomfriends', to: "friends#randomfriends"
   get '/friends/show', to: "friends#show"
   post '/games/mylocation', to: "extracts#updateresource"
+  get 'desktop', to: "games#desktop"
 end

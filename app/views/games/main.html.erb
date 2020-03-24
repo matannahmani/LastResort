@@ -5,15 +5,15 @@
       <img class="avatar" src='<%= asset_path('warp.png') %>' alt="">
       Time Travel
     </a>
-    <a class="dropdown-item" id="shop" href="../user_units/new">
+    <a class="dropdown-item" id="shop" href="<%= new_user_unit_path %>">
       <img class="avatar" src="<%= asset_path('shop.svg') %>" alt="">
       Shop
     </a>
-    <a class="dropdown-item" id="raid" href="../base/raid">
+    <a class="dropdown-item" id="raid" href="<%= base_raid_path %>">
       <img class="avatar" src="<%= asset_path('sword.svg') %>" alt="">
       Raid
     </a>
-    <a class="dropdown-item" id="friend" href="../base/friend">
+    <a class="dropdown-item" id="friend" href="<%= friends_show_path %>">
       <img class="avatar" src="<%= asset_path('sword.svg') %>" alt="">
       Friends
     </a>

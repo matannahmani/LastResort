@@ -53,7 +53,7 @@
   border-radius: 24px;
   transition: 0.25s;
 }
-.form-inputs input[type = "email"]:focus,.form-inputs input[type = "password"]:focus{
+.form-inputs input[type = "email"]:focus,.form-inputs input[type = "password"]:focus,.form-inputs input[type = "text"]:focus{
   border-color: #CBEF43;
   width: 280px;
 }
