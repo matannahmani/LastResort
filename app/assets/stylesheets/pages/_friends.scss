@@ -1,43 +1,7 @@
-.tabs-underlined {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  padding-top: 8px;
-}
-
-.tabs-underlined .tab-underlined {
-  color: black;
-  opacity: .6;
-  cursor: pointer;
-  text-decoration: none;
-  border-bottom: 4px solid transparent;
-  font-size: 12px;
-}
-
-.tabs-underlined .tab-underlined.active {
-  opacity: 1;
-  border-bottom: 3px solid #555555;
-}
-
-.friend{
+.friend-buttons{
   position: absolute;
-  width: 80vw;
-  height: 80vh;
-  left: 10%;
-  top: 10%;
-  border: black 4px;
-  border-radius: 4px;
-  box-shadow: 1px 4px;
-  background-color: white;
-}
-.dom{
-  display: flex;
-  flex-direction: column;
-}
-.displayfriends{
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  right: 0px;
+  padding: 8px;
 }
 .friend-card{
   margin-top: 8px;
@@ -56,4 +20,8 @@
     letter-spacing: -0.1px;
     font-weight: 800px;
   }
+}
+#btn-search{
+  position: relative;
+  left: -50px;
 }
