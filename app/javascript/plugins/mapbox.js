@@ -36,7 +36,7 @@ const initMapbox = () => {
   if (mapElement) {
     mapboxgl.accessToken = mapElement.dataset.mapboxApiKey
     map = new mapboxgl.Map({
-      style: 'mapbox://styles/matanmatan999new/ck6c251js4mwd1imo5g3w2j2q',
+      style: 'mapbox://styles/mapbox/satellite-streets-v11',
       center: [-74.0066, 40.7135],
       zoom: 14,
       maxZoom: 16,

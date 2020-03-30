@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  include PgSearch::Model
   after_initialize :init
   after_create :generate_random_resource, :generate_user_structures, :generate_user_resources
   devise :database_authenticatable, :registerable,
@@ -11,8 +12,9 @@ class User < ApplicationRecord
   has_many :user_structures
   validates :nickname, uniqueness: true
   has_one_attached :photo
-  has_many :sender,  :class_name => 'Transaction', :foreign_key => 'sender_id'
-  has_many :receiver,  :class_name => 'Transaction', :foreign_key => 'receiver_id'
+  has_many :sender,  :class_name => 'Friend', :foreign_key => 'sender_id', dependent: :destroy
+  has_many :receiver,  :class_name => 'Friend', :foreign_key => 'receiver_id', dependent: :destroy
+  pg_search_scope :search, against: [:nickname], using: {tsearch: {prefix: true}}
 
   def generate_random_resource(location=[1.1,1.1])
     if location != nil
@@ -50,7 +52,8 @@ class User < ApplicationRecord
 
   def init
     self.raidcount  ||= 0           #will set the default value only if it's nil
-    self.xp  ||= 0
+    self.xp ||= 0
+    self.gems ||= 200
     self.imgupdate = true if self.imgupdate.nil?
   end
     def generate_user_structures
@@ -68,7 +71,7 @@ class User < ApplicationRecord
     resources_types = Resource.all
     resources_types.each do |type|
       UserResource.create!(
-        amount: 100,
+        amount: 200,
         resource: type,
         user: self
         )

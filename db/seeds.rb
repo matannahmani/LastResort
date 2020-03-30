@@ -128,5 +128,23 @@ puts "seeded!"
 puts "Seeded #{Resource.all.count} resources"
 
 
-User.create!(email: 'bob@bob.bob', password: '123456', nickname: 'bobby', gems: 100)
-puts "Created user bob@bob.bob"
+# Creating Users
+User.create!(email: 'bob@bob.bob', password: '123456', nickname: 'bobby', gems: 200)
+User.create!(email: 'bob2@bob.bob', password: '123456', nickname: 'bobby2', gems: 200)
+User.create!(email: 'bob3@bob.bob', password: '123456', nickname: 'bobby3', gems: 200)
+User.create!(email: 'bob4@bob.bob', password: '123456', nickname: 'bobby4', gems: 200)
+
+# Creating Levels
+Level.create(level:1 ,xp: 0,title:'begginer')
+Level.create(level:2 ,xp: 100,title:'novice')
+Level.create(level:3 ,xp: 200,title:'explorer')
+Level.create(level:4 ,xp: 400,title:'little hero')
+Level.create(level:5 ,xp: 800,title:'dream maker')
+Level.create(level:6 ,xp: 1600,title:'ruler')
+
+#Creating dummy account with friends
+Friend.create(sender_id: User.first.id,receiver_id: User.second.id,status: true,pending: false)
+Friend.create(sender_id: User.first.id,receiver_id: User.third.id,status: true,pending: false)
+Friend.create(sender_id: User.first.id,receiver_id: User.fourth.id,status: true,pending: false)
+
+puts "Created user bob@bob.bob 4 bobs accounts , with first user as dummy with friends"
