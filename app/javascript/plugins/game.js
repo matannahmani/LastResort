@@ -20,6 +20,7 @@ function preload() {
       // scene.load.scenePlugin('rexuiplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexuiplugin.min.js', 'rexUI', 'rexUI');
       this.load.plugin('rexpinchplugin', url, true);
       this.load.scenePlugin('rexuiplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexuiplugin.min.js', 'rexUI', 'rexUI');
+      this.load.image('btn', '../../basepop.png');
     }
 
 function create() {
@@ -42,10 +43,6 @@ function create() {
 
       layer3 = map.createDynamicLayer(3, tiles);
 
-      cam = this.cameras.main;
-      cam.setBounds(0, 0, water.width, water.height);
-      cam.centerToBounds();
-      cam.zoom = 0.45;
       // Loading base , setting camera , setting up drag screen
       isplacing = [false]
       loadBase();
@@ -53,16 +50,16 @@ function create() {
       placeables = checkuser; // [true/false,name,amountLeft]
       buttons = this.rexUI.add.buttons({
           anchor: {
-              left: 'left',
-              centerY: 'bottom'
+              left: 'left+10',
+              centerY: 'bottom-100'
           },
-          draggable: true,
+
           orientation: 'x',
           buttons: [
             createButton(this, 'Barracks'),
             createButton(this, 'Medic'),
             createButton(this, 'Boat'),
-            createButton(this, 'Weel')
+            createButton(this, 'Wheel')
           ],
 
       })
@@ -81,16 +78,23 @@ function create() {
           });
       // }
       buttons.forEachButtton((x,index) => {buttons.hideButton(index)});
+      cam = this.cameras.main;
+      cam.setBounds(0, 0, water.width, water.height);
+      cam.centerToBounds();
+      cam.zoom = 0.45;
+      cam.zoomTo(0.8);
+
       var dragScale = this.plugins.get('rexpinchplugin').add(this); // SETTING UP DRAG SCREEN
       dragScale
           .on('drag1', function (dragScale) {
+            // debugger
               var drag1Vector = dragScale.drag1Vector;
               cam.scrollX -= drag1Vector.x / cam.zoom;
               cam.scrollY -= drag1Vector.y / cam.zoom;
           })
           .on('pinch', function (dragScale) {
               var scaleFactor = dragScale.scaleFactor;
-              if (cam.zoom > 0.7){
+              if (cam.zoom < 0.6){
               cam.zoom *= scaleFactor;
             }
           }, this);
@@ -117,13 +121,13 @@ function update() {
     if (item[1] === 'Barracks' && item[2] > 0) buttons.showButton(0);
     if (item[1] === 'Medic' && item[2] > 0) buttons.showButton(1);
     if (item[1] === 'Boat' && item[2] > 0) buttons.showButton(2);
-    if (item[1] === 'Weel' && item[2] > 0) buttons.showButton(3);
-     buttons.layout();
+    if (item[1] === 'Wheel' && item[2] > 0) buttons.showButton(3);
+    buttons.layout();
   });
   buttons.scaleY = 2 - cam.zoom;
   buttons.scaleX = 2 - cam.zoom;
-
-    // TO DO - add checking if its a wall if so display diffrent
+  buttons.layout();
+  // TO DO - add checking if its a wall if so display diffrent
   if (isplacing[0] === true && isplacing[2] > 0){
     const worldPoint = this.input.activePointer.positionToCamera(this.cameras.main); // click cords.
     // Draw tiles (only within the groundLayer)
@@ -145,6 +149,7 @@ function update() {
       else{
         isplacing[0] = false;
         placeables[isplacing[3]][2] += 1;
+        alert('Please choose different location\nThe location you have choosen has building on it')
     }
    }
   }
@@ -204,26 +209,7 @@ function loadBase() {
       commands.msg.forEach((command) =>{
         eval(command);
       })
-      // takes a snapshot of base and upload to the server if user needs to update image
-      if(commands.imgupdate == true){
-        game.renderer.snapshot(function (image) {
-            fetch('../upload', {
-              method: 'POST', // *GET, POST, PUT, DELETE, etc.
-              mode: 'cors', // no-cors, *cors, same-origin
-              cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-              credentials: 'same-origin', // include, *same-origin, omit
-              headers: {
-                'Content-Type': 'application/json'
-                // 'Content-Type': 'application/x-www-form-urlencoded',
-              },
-              redirect: 'follow', // manual, *follow, error
-              referrerPolicy: 'no-referrer', // no-referrer, *client
-              body: JSON.stringify(image.currentSrc) // body data type must match "Content-Type" header
-            })
-        });
-      }
     });
-    cam.zoomTo(0.8)
 }
 
 // Fetching if user bought new structure, then enable drawing
