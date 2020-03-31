@@ -1,3 +1,4 @@
+
 .con,#phaser-app {
   position: absolute;
   width: 100vw;
@@ -15,6 +16,8 @@
   background-color: gray;
 }
 .extract-button button {
+  position: relative;
+  top: -18px;
   color: white;
   padding: 8px 24px;
   border-radius: 4px;

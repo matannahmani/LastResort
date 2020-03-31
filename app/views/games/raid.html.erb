@@ -24,10 +24,9 @@
       </div>
     <% end %>
   </div>
-  <div class="raid-action">
-    <h3>counter: <%= current_user.raidcount %></h3>
-    <a href="<%= games_main_path %>">go back</a>
-    <small>work in progress :(</small>
+  <div class="raid-action fixed-bottom">
+    <h3 class=".text-info btn-secondary btn-lg pm">Today Raids: <%= current_user.raidcount %></h3>
+    <a class=".text-info btn btn-secondary btn-lg text-center pm" href="<%= games_main_path %>">Main screen</a>
   </div>
 </div>
 
