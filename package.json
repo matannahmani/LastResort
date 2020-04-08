@@ -8,6 +8,7 @@
     "@rails/webpacker": "4.2.2",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "bootstrap": "^4.4.1",
+    "fastclick": "^1.0.6",
     "geocoder": "^0.2.3",
     "geokit": "^0.1.4",
     "jquery": "^3.4.1",
