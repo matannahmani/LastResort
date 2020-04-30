@@ -11,7 +11,7 @@
     "fastclick": "^1.0.6",
     "geocoder": "^0.2.3",
     "geokit": "^0.1.4",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "mapbox": "^1.0.0-beta10",
     "mapbox-gl": "^1.8.0",
     "npm": "^6.14.1",
