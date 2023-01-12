@@ -15,7 +15,7 @@
     "mapbox": "^1.0.0-beta10",
     "mapbox-gl": "^1.8.0",
     "npm": "^6.14.1",
-    "phaser3-rex-plugins": "^1.1.8",
+    "phaser3-rex-plugins": "^1.1.79",
     "popper.js": "^1.16.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.0",
